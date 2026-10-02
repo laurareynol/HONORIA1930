@@ -2,64 +2,45 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import NotaTata from '../components/NotaTata.astro';
-import Convite from '../components/Convite.astro';
+import Declaracao from '../components/Declaracao.astro';
+import Chamada from '../components/Chamada.astro';
 import { url } from '../config/site';
 import noivas from '../assets/fotos/noivas.jpg';
 ---
 <Base titulo="Honoria para Casar" pagina="honoria-para-casar" descricao="Honoria para Casar: vestidos de noiva criados com Tata Ribeiro, para noivas de qualquer cidade ou país.">
-  <section class="topo">
+  <section class="cabeca">
     <div class="envelope">
-      <span class="rotulo">Honoria para Casar</span>
-      <h1 class="display">Um vestido de noiva que nasce da sua <em>história.</em></h1>
-      <p class="lead texto-2">Não existe um modelo à espera. Existe uma conversa com a Tata, e uma peça construída para acompanhar a mulher que vai vesti-la.</p>
-      <div class="botoes">
-        <a class="btn" href={`${url('atendimento')}?interesse=noiva`}>Pedir atendimento de noiva</a>
+      <span class="olho">Honoria para Casar</span>
+      <h1 class="h-hero">Um vestido de noiva que nasce da sua história.</h1>
+      <p class="sub texto-2">Não existe um modelo à espera. Existe uma conversa com a Tata.</p>
+      <div class="acoes acoes--centro">
+        <a class="botao" href={`${url('atendimento')}?interesse=noiva`}>Pedir atendimento de noiva</a>
+        <a class="seta" href="#criacao">Como funciona</a>
       </div>
     </div>
   </section>
 
-  <div class="envelope">
-    <div class="dupla__foto" style="aspect-ratio: 16 / 10">
-      <Image src={noivas} alt="Três noivas sentadas lado a lado, sorrindo, com vestidos de renda, tule e mangas longas transparentes." widths={[800, 1200, 1600]} sizes="(min-width: 1440px) 1312px, 100vw" loading="eager" />
-    </div>
+  <div class="imagem-larga imagem-larga--16x9 aproxima">
+    <Image src={noivas} alt="Três noivas sentadas lado a lado, sorrindo, com vestidos de renda, tule e mangas longas transparentes." widths={[800, 1200, 1600]} sizes="100vw" loading="eager" style="object-position: 50% 45%" />
   </div>
 
-  <section class="secao" aria-labelledby="criacao">
-    <div class="envelope dupla dupla--topo">
-      <div class="revela">
-        <span class="rotulo">A criação</span>
-        <h2 class="titulo" id="criacao">Uma relação de <em>confiança</em> com a estilista.</h2>
-      </div>
-      <div class="revela">
-        <p class="lead">A criação começa numa reunião com a Tata. É ali que ela escuta como você imagina esse momento, quem você é e o que precisa sentir ao vestir a peça.</p>
-        <p class="texto texto-2">Depois, desenho, medidas, modelagem, corte, costura, arremate e as provas necessárias até tudo estar alinhado. Cada etapa acontece no nosso ateliê, em Goiânia.</p>
-        <div class="botoes"><a class="link" href={url('sob-medida')}>Todas as etapas</a></div>
-      </div>
+  <section class="secao centro" id="criacao" aria-labelledby="confianca">
+    <div class="envelope envelope--estreito revela">
+      <span class="olho">A criação</span>
+      <h2 class="h-1" id="confianca">Uma relação de confiança com a estilista.</h2>
+      <p class="sub texto-2">Na reunião, a Tata escuta como você imagina esse momento, quem você é e o que precisa sentir ao vestir a peça.</p>
+      <p class="texto texto-2" style="margin-top:24px">Depois vêm desenho, medidas, modelagem, corte, costura, arremate e as provas necessárias até tudo estar alinhado. Cada etapa acontece no nosso ateliê, em Goiânia.</p>
+      <div class="acoes"><a class="seta" href={`${url('sob-medida')}#etapas`}>Todas as etapas</a></div>
     </div>
   </section>
 
-  <section class="secao secao--preta" aria-labelledby="distancia">
-    <div class="envelope dupla dupla--topo">
-      <div class="revela">
-        <span class="rotulo">De qualquer lugar</span>
-        <h2 class="titulo" id="distancia">Noivas de outras cidades e <em>países.</em></h2>
-      </div>
-      <div class="revela">
-        <p class="lead">A Tata atende noivas de qualquer lugar do mundo. Para quem mora longe de Goiânia, o encontro com ela normalmente acontece por chamada de vídeo.</p>
-        <p class="texto texto-2">Conte para a Cris onde você está e a data do seu casamento. Ela organiza o seu atendimento.</p>
-      </div>
+  <Declaracao olho="De qualquer lugar" texto="A Tata atende noivas de qualquer cidade e de qualquer país. Para quem mora longe, o encontro normalmente acontece por chamada de vídeo." />
+
+  <section class="secao" aria-label="Atendimento com a Tata">
+    <div class="envelope">
+      <NotaTata />
     </div>
   </section>
 
-  <section class="secao" aria-labelledby="valores">
-    <div class="envelope dupla dupla--topo">
-      <div class="revela">
-        <span class="rotulo">Como agendar</span>
-        <h2 class="titulo" id="valores">O primeiro <em>encontro.</em></h2>
-      </div>
-      <div class="revela"><NotaTata /></div>
-    </div>
-  </section>
-
-  <Convite titulo="Vamos começar a sua criação?" texto="Conte para a Cris a data do casamento e a cidade onde você está. Ela agenda o seu encontro com a Tata." interesse="noiva" />
+  <Chamada titulo="Vamos começar a sua criação?" texto="Conte para a Cris a data do casamento e a cidade onde você está. Ela agenda o seu encontro com a Tata." interesse="noiva" />
 </Base>

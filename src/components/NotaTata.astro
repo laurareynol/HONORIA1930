@@ -1,12 +1,12 @@
 ---
 import { atendimentoTata } from '../config/site';
 ---
-<aside class="nota" aria-label="Atendimento com a Tata">
-  <span class="rotulo" style="margin:0">Atendimento com a Tata</span>
-  <p class="pequeno" style="margin:0">A criação começa numa reunião agendada com a Tata, presencial ou online.</p>
-  <p class="nota__valores" style="margin:0">
-    <span>Online <strong>{atendimentoTata.online}</strong></span>
-    <span>Presencial <strong>{atendimentoTata.presencial}</strong></span>
-  </p>
-  <p class="pequeno texto-2" style="margin:0">Valor pago uma única vez, não devolvido e não abatido do valor da peça.</p>
+<aside class="valor revela" aria-label="Atendimento com a Tata">
+  <span class="olho">Atendimento com a Tata</span>
+  <h3 class="h-2">Sempre agendado.</h3>
+  <div class="valor__numeros">
+    <div><strong>{atendimentoTata.online}</strong><span>Online</span></div>
+    <div><strong>{atendimentoTata.presencial}</strong><span>Presencial</span></div>
+  </div>
+  <p class="pequeno texto-2">Valor pago uma única vez, não devolvido e não abatido do valor da peça.</p>
 </aside>

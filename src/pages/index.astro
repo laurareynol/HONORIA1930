@@ -2,116 +2,93 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Lojas from '../components/Lojas.astro';
-import { url } from '../config/site';
+import Declaracao from '../components/Declaracao.astro';
+import Etapas from '../components/Etapas.astro';
+import Chamada from '../components/Chamada.astro';
+import { url, etapasSobMedida } from '../config/site';
 import vermelhoJanela from '../assets/fotos/vermelho-janela.jpg';
 import noivas from '../assets/fotos/noivas.jpg';
 import vermelhoCroquis from '../assets/fotos/vermelho-croquis.jpg';
 import pretoManequim from '../assets/fotos/preto-manequim.jpg';
 import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
 import tata from '../assets/fotos/tata.jpg';
+
+const blocos = [
+  { titulo: 'Honoria para Casar', texto: 'Um vestido de noiva que nasce da sua história.', href: 'honoria-para-casar', acao: 'Para noivas', foto: noivas, alt: 'Três noivas sentadas lado a lado, com vestidos de renda e tule.', posicao: '50% 40%' },
+  { titulo: 'Sob Medida', texto: 'Para madrinhas, formandas, debutantes e convidadas.', href: 'sob-medida', acao: 'Como funciona', foto: vermelhoCroquis, alt: 'Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê.', posicao: '50% 30%' },
+  { titulo: 'Pronta entrega', texto: 'Criações autorais nas lojas de Goiânia e São Paulo.', href: 'pronta-entrega', acao: 'Ver as peças', foto: pretoManequim, alt: 'Em preto e branco, modelo com vestido de renda ao lado de um manequim.', posicao: '64% 50%' },
+  { titulo: 'O ateliê', texto: 'Desenhado por Tata, construído por muitas mãos.', href: 'atelie', acao: 'Conhecer', foto: rosaMaquina, alt: 'Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura.', posicao: '50% 38%' },
+];
 ---
 <Base>
   <section class="abertura">
     <div class="abertura__foto">
-      <Image src={vermelhoJanela} alt="Modelo com vestido vermelho de babados volumosos, apoiada numa mesa de costura junto à janela do ateliê." widths={[480, 800, 1200]} sizes="(min-width: 900px) 50vw, 100vw" loading="eager" fetchpriority="high" />
+      <Image src={vermelhoJanela} alt="Modelo com vestido vermelho de babados volumosos, apoiada numa mesa de costura junto à janela do ateliê." widths={[640, 960, 1271]} sizes="100vw" loading="eager" fetchpriority="high" />
     </div>
-    <div class="abertura__texto">
-      <span class="rotulo">Alta-costura autoral brasileira</span>
-      <h1 class="display">Feito para pertencer a uma <em>única</em> história.</h1>
-      <p class="lead texto-2">Vestidos de festa e de noiva criados por Tata Ribeiro e construídos à mão no nosso ateliê, em Goiânia.</p>
-      <div class="botoes">
-        <a class="btn" href={url('atendimento')}>Agendar uma conversa</a>
-        <a class="btn btn--linha" href={url('sob-medida')}>Conhecer o Sob Medida</a>
+    <div class="envelope abertura__texto">
+      <span class="olho entra">Honōria 1930</span>
+      <h1 class="h-hero entra">Feito para uma única história.</h1>
+      <p class="sub entra">Alta-costura autoral brasileira, criada por Tata Ribeiro e construída à mão em Goiânia.</p>
+      <div class="acoes entra">
+        <a class="botao botao--claro" href={url('atendimento')}>Agendar uma conversa</a>
+        <a class="seta" href={url('sob-medida')}>Conhecer o Sob Medida</a>
       </div>
     </div>
   </section>
 
-  <section class="secao" aria-labelledby="comecar">
-    <div class="envelope">
-      <div class="cabeca-secao">
-        <div>
-          <span class="rotulo">Por onde começar</span>
-          <h2 class="titulo" id="comecar">Cada ocasião pede <em>um caminho.</em></h2>
+  <Declaracao olho="O nosso princípio" texto="Antes do vestido, existe a escuta. Cada criação começa por uma conversa: a ocasião, o que você deseja sentir, a sua relação com a roupa.">
+    <div class="acoes" style="margin-top:48px"><a class="seta" href={url('sob-medida')} style="color:var(--branco)">As etapas da criação</a></div>
+  </Declaracao>
+
+  <section class="mosaico" aria-label="Por onde começar">
+    {blocos.map((b) => (
+      <a class="bloco" href={url(b.href)}>
+        <div class="bloco__foto"><Image src={b.foto} alt={b.alt} widths={[640, 960, 1400]} sizes="(min-width: 900px) 50vw, 100vw" style={`object-position:${b.posicao}`} /></div>
+        <div class="bloco__texto">
+          <h2 class="h-1">{b.titulo}</h2>
+          <p class="sub">{b.texto}</p>
+          <span class="seta">{b.acao}</span>
         </div>
-        <p class="texto-2 texto">Uma noiva, uma madrinha, uma formanda ou uma convidada chegam com perguntas diferentes. Escolha a sua.</p>
-      </div>
-      <div class="entradas">
-        <a class="entrada revela" href={url('honoria-para-casar')}>
-          <div class="entrada__foto"><Image src={noivas} alt="Três noivas sentadas lado a lado, com vestidos de renda e tule." widths={[480, 800]} sizes="(min-width: 760px) 33vw, 100vw" /></div>
-          <h3 class="entrada__nome">Honoria para Casar</h3>
-          <p class="entrada__texto">Um vestido de noiva criado com a Tata, do primeiro encontro à última prova.</p>
-          <span class="link">Para noivas</span>
-        </a>
-        <a class="entrada revela" href={url('sob-medida')}>
-          <div class="entrada__foto"><Image src={vermelhoCroquis} alt="Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê." widths={[480, 800]} sizes="(min-width: 760px) 33vw, 100vw" /></div>
-          <h3 class="entrada__nome">Sob Medida</h3>
-          <p class="entrada__texto">Para madrinhas, mães dos noivos, formandas, debutantes e convidadas. Uma peça que nasce de você.</p>
-          <span class="link">Como funciona</span>
-        </a>
-        <a class="entrada revela" href={url('pronta-entrega')}>
-          <div class="entrada__foto"><Image src={pretoManequim} alt="Em preto e branco, modelo com vestido de renda ao lado de um manequim." widths={[480, 800]} sizes="(min-width: 760px) 33vw, 100vw" style="object-position: 62% center" /></div>
-          <h3 class="entrada__nome">Pronta entrega</h3>
-          <p class="entrada__texto">Criações autorais nas lojas de Goiânia e São Paulo, prontas para encontrar quem vai vesti-las.</p>
-          <span class="link">Ver as peças</span>
-        </a>
-      </div>
+      </a>
+    ))}
+  </section>
+
+  <section class="secao secao--cinza" aria-labelledby="processo">
+    <div class="envelope revela">
+      <span class="olho">Sob Medida</span>
+      <h2 class="h-1" id="processo">Da conversa à entrega.</h2>
+      <p class="sub texto-2">Nove etapas, todas no nosso ateliê. O tempo de cada uma depende da peça.</p>
+    </div>
+    <div style="margin-top:clamp(40px,5vw,64px)">
+      <Etapas etapas={etapasSobMedida} />
     </div>
   </section>
 
-  <section class="secao secao--preta manifesto" aria-labelledby="escuta">
-    <div class="envelope">
-      <span class="rotulo">O nosso princípio</span>
-      <h2 class="display revela" id="escuta">Antes do vestido, existe a <em>escuta.</em></h2>
-      <div class="manifesto__corpo">
-        <div class="revela">
-          <p class="lead">Cada criação começa por uma conversa: a ocasião, o que você deseja sentir, a sua relação com a roupa.</p>
-          <p class="texto-2">A partir daí, desenho, modelagem e mãos especialistas constroem uma peça que só poderia ser sua. O luxo está no tempo dedicado a cada detalhe.</p>
-          <div class="botoes"><a class="btn btn--linha" href={url('sob-medida')}>As etapas da criação</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="secao" aria-labelledby="maos">
-    <div class="envelope dupla">
-      <div class="dupla__foto revela" style="aspect-ratio: 2 / 3">
-        <Image src={rosaMaquina} alt="Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura no ateliê." widths={[480, 800, 1200]} sizes="(min-width: 900px) 50vw, 100vw" />
+  <section class="secao centro" aria-labelledby="tata">
+    <div class="envelope envelope--estreito">
+      <div class="retrato revela">
+        <Image src={tata} alt="Tata Ribeiro desenhando um croqui à mesa." widths={[340, 494]} sizes="340px" />
       </div>
       <div class="revela">
-        <span class="rotulo">O ateliê</span>
-        <h2 class="titulo" id="maos">Desenhado por Tata, construído por <em>muitas mãos.</em></h2>
-        <p class="lead texto-2" style="margin-top:24px">No ateliê de Goiânia, as costureiras transformam desenho em matéria. Corte, costura, arremate e cada ajuste até a peça encontrar o corpo.</p>
-        <div class="botoes"><a class="link" href={url('atelie')}>Conhecer o ateliê</a></div>
+        <span class="olho">Direção criativa</span>
+        <h2 class="h-1" id="tata">Tata Ribeiro.</h2>
+        <p class="sub texto-2">Mineira, Tata cria de forma livre e intuitiva. Leveza, movimento, volumes, flores e laços atravessam o seu trabalho.</p>
+        <p class="texto texto-2" style="margin-top:24px">O nome da casa homenageia Honória Paulino da Silva, sua avó, costureira.</p>
+        <div class="acoes"><a class="seta" href={url('atelie')}>A nossa história</a></div>
       </div>
     </div>
   </section>
 
-  <section class="secao secao--papel" aria-labelledby="tata">
-    <div class="envelope dupla dupla--inversa">
-      <div class="dupla__foto revela" style="aspect-ratio: 4 / 5; max-width: 520px; justify-self: end; width: 100%">
-        <Image src={tata} alt="Tata Ribeiro desenhando um croqui à mesa." widths={[480]} sizes="(min-width: 900px) 40vw, 100vw" />
-      </div>
-      <div class="revela">
-        <span class="rotulo">Direção criativa</span>
-        <h2 class="titulo" id="tata">Tata Ribeiro</h2>
-        <p class="subtitulo texto-2" style="margin:12px 0 24px">Estilista, fundadora e diretora criativa.</p>
-        <p class="texto">Mineira, Tata cria de forma livre e intuitiva, guiada por repertório e observação. Leveza, movimento, volumes, flores, laços e detalhes inesperados atravessam o seu trabalho.</p>
-        <p class="texto texto-2">O nome da casa homenageia Honória Paulino da Silva, sua avó, costureira. Uma memória que continua viva em cada peça.</p>
-        <div class="botoes"><a class="link" href={url('atelie')}>A nossa história</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="secao" aria-labelledby="lojas">
+  <section class="secao secao--cinza centro" aria-labelledby="lojas">
     <div class="envelope">
-      <div class="cabeca-secao">
-        <div>
-          <span class="rotulo">Visite</span>
-          <h2 class="titulo" id="lojas">Goiânia e <em>São Paulo.</em></h2>
-        </div>
-        <p class="texto-2 texto">As lojas recebem sem hora marcada. Para criar com a Tata, o atendimento é agendado.</p>
+      <div class="revela">
+        <span class="olho">Visite</span>
+        <h2 class="h-1" id="lojas">Goiânia e São Paulo.</h2>
+        <p class="sub texto-2">As lojas recebem sem hora marcada. Para criar com a Tata, o atendimento é agendado.</p>
       </div>
       <Lojas />
     </div>
   </section>
+
+  <Chamada />
 </Base>

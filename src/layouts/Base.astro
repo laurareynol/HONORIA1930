@@ -1,9 +1,7 @@
 ---
-import '@fontsource/bodoni-moda/400.css';
-import '@fontsource/bodoni-moda/400-italic.css';
-import '@fontsource-variable/manrope';
+import '@fontsource-variable/inter';
 import '../styles/global.css';
-import Cabecalho from '../components/Cabecalho.astro';
+import Barra from '../components/Barra.astro';
 import Rodape from '../components/Rodape.astro';
 import WhatsFixo from '../components/WhatsFixo.astro';
 
@@ -21,7 +19,7 @@ const tituloCompleto = titulo ? `${titulo} · Honōria 1930` : 'Honōria 1930 ·
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <!doctype html>
-<html lang="pt-BR" class="sem-js">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,29 +31,67 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <meta property="og:locale" content="pt_BR" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
-    <script is:inline>document.documentElement.classList.remove('sem-js');</script>
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
-    <Cabecalho pagina={pagina} />
+    <Barra pagina={pagina} />
     <main id="conteudo">
       <slot />
     </main>
     <Rodape />
     <WhatsFixo />
     <script>
-      // Revela os blocos com suavidade, uma única vez.
+      const reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Blocos que surgem com suavidade, uma única vez.
       const alvos = document.querySelectorAll('.revela');
-      if ('IntersectionObserver' in window) {
+      if ('IntersectionObserver' in window && !reduzir) {
         const obs = new IntersectionObserver((entradas) => {
           for (const e of entradas) {
             if (e.isIntersecting) { e.target.classList.add('visivel'); obs.unobserve(e.target); }
           }
-        }, { rootMargin: '0px 0px -8% 0px' });
+        }, { rootMargin: '0px 0px -10% 0px' });
         alvos.forEach((a) => obs.observe(a));
       } else {
         alvos.forEach((a) => a.classList.add('visivel'));
       }
+
+      // Frases que acendem palavra por palavra conforme a rolagem.
+      const frases = document.querySelectorAll<HTMLElement>('[data-acende]');
+      if (frases.length && !reduzir) {
+        const atualizar = () => {
+          const h = window.innerHeight;
+          frases.forEach((f) => {
+            const r = f.getBoundingClientRect();
+            const progresso = Math.min(1, Math.max(0, (h * 0.85 - r.top) / (r.height + h * 0.35)));
+            const palavras = f.querySelectorAll('.palavra');
+            const n = Math.round(progresso * palavras.length);
+            palavras.forEach((p, i) => p.classList.toggle('acesa', i < n));
+          });
+        };
+        let pedido = 0;
+        window.addEventListener('scroll', () => { cancelAnimationFrame(pedido); pedido = requestAnimationFrame(atualizar); }, { passive: true });
+        window.addEventListener('resize', atualizar);
+        atualizar();
+      }
+
+      // Carrosséis com botões de avançar e voltar.
+      document.querySelectorAll<HTMLElement>('[data-carrossel]').forEach((c) => {
+        const trilho = c.querySelector<HTMLElement>('.carrossel__trilho');
+        const voltar = c.querySelector<HTMLButtonElement>('[data-voltar]');
+        const avancar = c.querySelector<HTMLButtonElement>('[data-avancar]');
+        if (!trilho || !voltar || !avancar) return;
+        const passo = () => (trilho.querySelector<HTMLElement>('.cartao')?.offsetWidth ?? 320) + 20;
+        const estado = () => {
+          voltar.disabled = trilho.scrollLeft < 8;
+          avancar.disabled = trilho.scrollLeft + trilho.clientWidth > trilho.scrollWidth - 8;
+        };
+        voltar.addEventListener('click', () => trilho.scrollBy({ left: -passo(), behavior: 'smooth' }));
+        avancar.addEventListener('click', () => trilho.scrollBy({ left: passo(), behavior: 'smooth' }));
+        trilho.addEventListener('scroll', estado, { passive: true });
+        estado();
+      });
     </script>
   </body>
 </html>

@@ -4,8 +4,8 @@ import { navegacao, url, linkWhatsApp, contato } from '../config/site';
 interface Props { pagina?: string }
 const { pagina = '' } = Astro.props;
 ---
-<header class="cabecalho" id="cabecalho">
-  <div class="envelope cabecalho__barra">
+<header class="barra" id="barra">
+  <div class="envelope barra__conteudo">
     <a class="marca" href={url()} aria-label="Honōria 1930, página inicial"><Logo rotulo="Honōria 1930" /></a>
     <nav class="nav" aria-label="Principal">
       <ul>
@@ -14,10 +14,9 @@ const { pagina = '' } = Astro.props;
         ))}
       </ul>
     </nav>
-    <div class="cabecalho__acoes">
-      <a class="btn cabecalho__agendar" href={url('atendimento')}>Agendar</a>
-      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">
-        <span class="menu-botao__texto">Menu</span>
+    <div class="barra__direita">
+      <a class="botao botao--pequeno barra__agendar" href={url('atendimento')}>Agendar</a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
         <span class="menu-botao__linhas" aria-hidden="true"></span>
       </button>
     </div>
@@ -25,37 +24,34 @@ const { pagina = '' } = Astro.props;
   <div class="menu" id="menu">
     <nav aria-label="Menu">
       <ul>
-        <li><a href={url()}>Início</a></li>
         {navegacao.map((item) => <li><a href={url(item.href)}>{item.rotulo}</a></li>)}
         <li><a href={url('atendimento')}>Atendimento</a></li>
       </ul>
     </nav>
     <div class="menu__rodape">
-      <a class="btn" href={linkWhatsApp()} target="_blank" rel="noopener">Falar com a {contato.atendente} no WhatsApp</a>
-      <a class="link" href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">@{contato.instagram}</a>
+      <a class="botao" href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp da {contato.atendente}</a>
+      <a href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">@{contato.instagram}</a>
     </div>
   </div>
 </header>
 <script>
   const raiz = document.documentElement;
   const botao = document.querySelector<HTMLButtonElement>('.menu-botao');
-  const texto = document.querySelector('.menu-botao__texto');
   const fechar = () => {
     raiz.removeAttribute('data-menu');
     botao?.setAttribute('aria-expanded', 'false');
-    if (texto) texto.textContent = 'Menu';
+    botao?.setAttribute('aria-label', 'Abrir menu');
   };
   botao?.addEventListener('click', () => {
-    const aberto = raiz.getAttribute('data-menu') === 'aberto';
-    if (aberto) { fechar(); return; }
+    if (raiz.getAttribute('data-menu') === 'aberto') { fechar(); return; }
     raiz.setAttribute('data-menu', 'aberto');
     botao.setAttribute('aria-expanded', 'true');
-    if (texto) texto.textContent = 'Fechar';
+    botao.setAttribute('aria-label', 'Fechar menu');
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fechar(); botao?.focus(); } });
   document.querySelectorAll('.menu a').forEach((a) => a.addEventListener('click', fechar));
-  const cab = document.getElementById('cabecalho');
-  const marcar = () => cab?.classList.toggle('rolado', window.scrollY > 8);
+  const barra = document.getElementById('barra');
+  const marcar = () => barra?.classList.toggle('rolada', window.scrollY > 4);
   window.addEventListener('scroll', marcar, { passive: true });
   marcar();
 </script>

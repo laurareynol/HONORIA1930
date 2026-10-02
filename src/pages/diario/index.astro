@@ -7,22 +7,24 @@ const textos = (await getCollection('diario', (t) => !t.data.rascunho)).sort((a,
 const fmt = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
 <Base titulo="Diário" pagina="diario" descricao="Diário da Honōria 1930: processo, matéria, criação e repertório.">
-  <section class="topo">
+  <section class="cabeca">
     <div class="envelope">
-      <span class="rotulo">Diário</span>
-      <h1 class="display">Do ateliê, em <em>palavras.</em></h1>
-      <p class="lead texto-2">Processo, matéria, decisões de criação e o repertório que atravessa a Honōria.</p>
+      <span class="olho">Diário</span>
+      <h1 class="h-hero">Do ateliê, em palavras.</h1>
+      <p class="sub texto-2">Processo, matéria, decisões de criação e o repertório que atravessa a Honōria.</p>
     </div>
   </section>
-  <section class="secao">
+  <section class="secao secao--colada">
     <div class="envelope textos">
       {textos.map((t) => (
         <a class="cartao-texto revela" href={url(`diario/${t.id}`)}>
           {t.data.capa && <div class="cartao-texto__foto"><Image src={t.data.capa} alt={t.data.descricaoCapa ?? ''} widths={[480, 800]} sizes="(min-width: 900px) 50vw, 100vw" /></div>}
-          <span class="pequeno texto-2">{fmt.format(t.data.data)}</span>
-          <h2>{t.data.titulo}</h2>
-          <p class="texto-2">{t.data.resumo}</p>
-          <span class="link">Ler</span>
+          <div class="cartao-texto__corpo">
+            <span class="pequeno texto-2">{fmt.format(t.data.data)}</span>
+            <h2 class="h-2">{t.data.titulo}</h2>
+            <p class="texto-2">{t.data.resumo}</p>
+            <span class="seta">Ler</span>
+          </div>
         </a>
       ))}
     </div>

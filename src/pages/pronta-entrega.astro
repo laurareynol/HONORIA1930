@@ -9,49 +9,47 @@ const pecas = (await getCollection('pronta-entrega')).filter((p) => p.data.dispo
 const renderizadas = await Promise.all(pecas.map(async (p) => ({ peca: p, Conteudo: (await render(p)).Content })));
 ---
 <Base titulo="Pronta entrega" pagina="pronta-entrega" descricao="Pronta entrega Honōria 1930: criações autorais disponíveis nas lojas de Goiânia e São Paulo.">
-  <section class="topo">
+  <section class="cabeca">
     <div class="envelope">
-      <span class="rotulo">Pronta entrega</span>
-      <h1 class="display">Uma criação que encontra <em>quem vai vesti-la.</em></h1>
-      <p class="lead texto-2">Peças autorais com o mesmo desenho, acabamento e cuidado de toda criação Honōria, disponíveis nas lojas de Goiânia e São Paulo.</p>
+      <span class="olho">Pronta entrega</span>
+      <h1 class="h-hero">Pronta para encontrar quem vai vesti-la.</h1>
+      <p class="sub texto-2">Peças autorais com o mesmo desenho, acabamento e cuidado de toda criação Honōria, nas lojas de Goiânia e São Paulo.</p>
     </div>
   </section>
 
-  <section class="secao" aria-label="Peças disponíveis">
+  <section class="secao secao--colada" aria-label="Peças disponíveis">
     <div class="envelope">
       {renderizadas.length > 0 ? (
         <div class="pecas">
           {renderizadas.map(({ peca, Conteudo }) => (
             <article class="peca revela">
               <div class="peca__foto"><Image src={peca.data.foto} alt={peca.data.descricao} widths={[480, 800]} sizes="(min-width: 1080px) 33vw, (min-width: 640px) 50vw, 100vw" /></div>
-              <h2 class="peca__nome">{peca.data.nome}</h2>
+              <h2 class="h-3 peca__nome">{peca.data.nome}</h2>
               <p class="peca__dados">
                 <span>Loja {peca.data.loja}</span>
                 {peca.data.tamanho && <span>Tamanho {peca.data.tamanho}</span>}
               </p>
               <div class="pequeno texto-2"><Conteudo /></div>
               {peca.data.preco && <p class="peca__preco">{peca.data.preco}</p>}
-              <a class="link" href={linkWhatsApp(`Olá, Cris! Gostaria de saber mais sobre a peça "${peca.data.nome}" (loja ${peca.data.loja}).`)} target="_blank" rel="noopener">Consultar esta peça</a>
+              <a class="seta" href={linkWhatsApp(`Olá, Cris! Gostaria de saber mais sobre a peça "${peca.data.nome}" (loja ${peca.data.loja}).`)} target="_blank" rel="noopener">Consultar esta peça</a>
             </article>
           ))}
         </div>
       ) : (
-        <div class="vazio">
-          <p class="subtitulo">As peças disponíveis mudam com frequência.</p>
-          <p class="texto texto-2">Para saber o que está nas lojas agora, fale com a {contato.atendente} ou visite a loja mais próxima, sem hora marcada.</p>
-          <div class="botoes"><a class="btn" href={linkWhatsApp('Olá, Cris! Gostaria de saber quais peças estão disponíveis para pronta entrega.')} target="_blank" rel="noopener">Perguntar no WhatsApp</a></div>
+        <div class="vazio revela">
+          <h2 class="h-2">As peças mudam com frequência.</h2>
+          <p class="sub texto-2">Para saber o que está nas lojas agora, fale com a {contato.atendente} ou visite a loja mais próxima, sem hora marcada.</p>
+          <div class="acoes acoes--centro"><a class="botao" href={linkWhatsApp('Olá, Cris! Gostaria de saber quais peças estão disponíveis para pronta entrega.')} target="_blank" rel="noopener">Perguntar no WhatsApp</a></div>
         </div>
       )}
     </div>
   </section>
 
-  <section class="secao secao--papel" aria-labelledby="visitar">
+  <section class="secao secao--cinza centro" aria-labelledby="visitar">
     <div class="envelope">
-      <div class="cabeca-secao">
-        <div>
-          <span class="rotulo">Nas lojas</span>
-          <h2 class="titulo" id="visitar">Prove na <em>loja.</em></h2>
-        </div>
+      <div class="revela">
+        <span class="olho">Nas lojas</span>
+        <h2 class="h-1" id="visitar">Prove na loja.</h2>
       </div>
       <Lojas />
     </div>

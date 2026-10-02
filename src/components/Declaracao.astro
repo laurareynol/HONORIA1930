@@ -1,0 +1,14 @@
+---
+interface Props { texto: string; olho?: string }
+const { texto, olho } = Astro.props;
+const palavras = texto.split(' ');
+---
+<section class="secao declaracao">
+  <div class="envelope">
+    {olho && <span class="olho">{olho}</span>}
+    <p class="declaracao__texto" data-acende>
+      {palavras.map((p, i) => <><span class="palavra">{p}</span>{i < palavras.length - 1 ? ' ' : ''}</>)}
+    </p>
+    <slot />
+  </div>
+</section>

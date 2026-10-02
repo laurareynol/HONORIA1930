@@ -1,68 +1,71 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import Convite from '../components/Convite.astro';
+import Declaracao from '../components/Declaracao.astro';
+import Chamada from '../components/Chamada.astro';
 import tata from '../assets/fotos/tata.jpg';
 import pretoManequim from '../assets/fotos/preto-manequim.jpg';
 import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
 ---
 <Base titulo="Ateliê" pagina="atelie" descricao="A história da Honōria 1930, a direção criativa de Tata Ribeiro e o saber das mãos que constroem cada peça.">
-  <section class="topo">
+  <section class="cabeca">
     <div class="envelope">
-      <span class="rotulo">A casa</span>
-      <h1 class="display">Desenhado por Tata, construído por <em>muitas mãos.</em></h1>
-      <p class="lead texto-2">A Honōria é uma casa de moda autoral brasileira. Cada peça nasce do encontro entre visão criativa, modelagem, técnica, matéria e o trabalho das mulheres que a constroem.</p>
+      <span class="olho">A casa</span>
+      <h1 class="h-hero">Desenhado por Tata. Construído por muitas mãos.</h1>
+      <p class="sub texto-2">Cada peça nasce do encontro entre visão criativa, modelagem, técnica, matéria e o trabalho das mulheres que a constroem.</p>
     </div>
   </section>
 
-  <div class="envelope">
-    <div class="dupla__foto" style="aspect-ratio: 16 / 9">
-      <Image src={pretoManequim} alt="Em preto e branco, modelo com vestido de renda ajusta um manequim no ateliê." widths={[800, 1200, 1600]} sizes="(min-width: 1440px) 1312px, 100vw" loading="eager" />
-    </div>
+  <div class="imagem-larga imagem-larga--16x9 aproxima">
+    <Image src={pretoManequim} alt="Em preto e branco, modelo com vestido de renda ajusta um manequim no ateliê." widths={[800, 1200, 1600]} sizes="100vw" loading="eager" style="object-position: 62% 50%" />
   </div>
 
-  <section class="secao" id="historia" aria-labelledby="origem">
-    <div class="envelope dupla dupla--topo">
-      <div class="revela">
-        <span class="rotulo">A origem</span>
-        <h2 class="titulo" id="origem">Um nome que é <em>memória viva.</em></h2>
-      </div>
-      <div class="revela">
-        <p class="lead">Honōria é uma homenagem a Honória Paulino da Silva, avó paterna da fundadora, Renata Ribeiro. Honória era costureira, e se tornou uma grande referência afetiva e criativa para a família.</p>
-        <p class="texto texto-2">A sua memória está na origem do fazer manual, na costura como linguagem e na roupa como portadora de histórias. O número 1930 está ligado a essa história.</p>
-        <p class="texto texto-2">A Honōria foi fundada em março de 2017, em Uberlândia, Minas Gerais. Hoje, o ateliê fica em Goiânia, com lojas em Goiânia e em São Paulo.</p>
+  <section class="secao centro" id="historia" aria-labelledby="origem">
+    <div class="envelope envelope--estreito revela">
+      <span class="olho">A origem</span>
+      <h2 class="h-1" id="origem">Um nome que é memória viva.</h2>
+      <p class="sub texto-2">Honōria é uma homenagem a Honória Paulino da Silva, avó paterna da fundadora, Renata Ribeiro. Honória era costureira.</p>
+      <p class="texto texto-2" style="margin-top:24px">A sua memória está na origem do fazer manual, na costura como linguagem e na roupa como portadora de histórias. O número 1930 está ligado a essa história.</p>
+    </div>
+    <div class="envelope">
+      <div class="destaques" style="text-align:left">
+        <div class="destaque revela"><span class="olho">Fundação</span><h3 class="h-2">2017</h3><p>Março, em Uberlândia, Minas Gerais.</p></div>
+        <div class="destaque revela revela-atraso"><span class="olho">Ateliê</span><h3 class="h-2">Goiânia</h3><p>Onde cada peça é modelada, cortada e costurada.</p></div>
+        <div class="destaque revela revela-atraso"><span class="olho">Lojas</span><h3 class="h-2">Goiânia e São Paulo</h3><p>Visitas sem hora marcada.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="secao secao--papel" id="tata-ribeiro" aria-labelledby="tata">
-    <div class="envelope dupla">
-      <div class="dupla__foto revela" style="aspect-ratio: 4 / 5; max-width: 520px; width: 100%">
-        <Image src={tata} alt="Tata Ribeiro desenhando um croqui à mesa." widths={[480]} sizes="(min-width: 900px) 40vw, 100vw" />
+  <section class="secao secao--cinza" id="tata-ribeiro" aria-labelledby="tata">
+    <div class="envelope lado">
+      <div class="lado__foto revela" style="max-width:480px;justify-self:center;width:100%">
+        <Image src={tata} alt="Tata Ribeiro desenhando um croqui à mesa." widths={[494]} sizes="(min-width: 900px) 40vw, 100vw" />
       </div>
       <div class="revela">
-        <span class="rotulo">Direção criativa</span>
-        <h2 class="titulo" id="tata">Tata Ribeiro</h2>
-        <p class="subtitulo texto-2" style="margin:12px 0 24px">Estilista, fundadora e diretora criativa.</p>
-        <p class="texto">Renata Ribeiro, a Tata, é mineira e a principal força criativa da Honōria. Desenha de forma livre, intuitiva e sensível, guiada por repertório e observação.</p>
-        <p class="texto texto-2">Leveza, romantismo, movimento, volumes, tecidos fluidos, flores, laços, bordados e detalhes inesperados atravessam o seu trabalho. Uma elegância sem rigidez, com sensibilidade brasileira.</p>
+        <span class="olho">Direção criativa</span>
+        <h2 class="h-1" id="tata">Tata Ribeiro.</h2>
+        <p class="sub texto-2">Estilista, fundadora e diretora criativa.</p>
+        <p class="texto texto-2" style="margin-top:24px">Renata Ribeiro, a Tata, é mineira e a principal força criativa da Honōria. Desenha de forma livre, intuitiva e sensível, guiada por repertório e observação.</p>
+        <p class="texto texto-2">Leveza, romantismo, movimento, volumes, tecidos fluidos, flores, laços, bordados e detalhes inesperados. Uma elegância sem rigidez, com sensibilidade brasileira.</p>
       </div>
     </div>
   </section>
+
+  <Declaracao olho="As mãos do ateliê" texto="As costureiras não apenas executam um desenho. Interpretam, decidem e constroem." />
 
   <section class="secao" id="maos" aria-labelledby="saber">
-    <div class="envelope dupla dupla--inversa">
-      <div class="dupla__foto revela" style="aspect-ratio: 2 / 3">
+    <div class="envelope lado lado--inverso">
+      <div class="lado__foto revela">
         <Image src={rosaMaquina} alt="Vestido rosa de saia em camadas de tule diante de uma máquina de costura no ateliê de Goiânia." widths={[480, 800, 1200]} sizes="(min-width: 900px) 50vw, 100vw" />
       </div>
       <div class="revela">
-        <span class="rotulo">As mãos do ateliê</span>
-        <h2 class="titulo" id="saber">Mulheres que dominam o <em>fazer.</em></h2>
-        <p class="lead texto-2" style="margin-top:24px">A produção da Honōria é própria e acontece em Goiânia. As costureiras não apenas executam um desenho: interpretam, decidem e constroem.</p>
-        <p class="texto texto-2">Moldes, linhas, agulhas, avessos, acabamentos. Há detalhes que apenas quem faz consegue perceber, e é deles que depende o caimento de cada peça.</p>
+        <span class="olho">Produção própria</span>
+        <h2 class="h-1" id="saber">O que só quem faz percebe.</h2>
+        <p class="sub texto-2">Moldes, linhas, agulhas, avessos, acabamentos.</p>
+        <p class="texto texto-2" style="margin-top:24px">A produção da Honōria é própria e acontece em Goiânia. Há detalhes que apenas quem faz consegue perceber, e é deles que depende o caimento de cada peça.</p>
       </div>
     </div>
   </section>
 
-  <Convite />
+  <Chamada />
 </Base>

@@ -5,46 +5,42 @@ const ano = new Date().getFullYear();
 ---
 <footer class="rodape">
   <div class="envelope">
-    <div class="rodape__topo">
+    <div class="rodape__marca"><Logo rotulo="Honōria 1930" /></div>
+    <div class="rodape__colunas">
       <div>
-        <p class="rodape__frase">Antes do vestido, existe a escuta.</p>
-        <a class="btn" href={url('atendimento')}>Agendar uma conversa</a>
+        <h2>A casa</h2>
+        <ul>
+          {navegacao.map((item) => <li><a href={url(item.href)}>{item.rotulo}</a></li>)}
+        </ul>
       </div>
-      <div class="rodape__colunas">
-        <div>
-          <h2>A casa</h2>
-          <ul>
-            {navegacao.map((item) => <li><a href={url(item.href)}>{item.rotulo}</a></li>)}
-            <li><a href={url('atendimento')}>Atendimento</a></li>
-          </ul>
-        </div>
-        <div class="rodape__lojas">
-          <h2>Lojas</h2>
-          {lojas.map((loja) => (
-            <address>
-              <strong>{loja.cidade}</strong>
-              <a href={linkMapa(loja)} target="_blank" rel="noopener">{loja.endereco}<br />{loja.cidade} - {loja.uf}, {loja.cep}</a>
-            </address>
-          ))}
-          <p class="pequeno">{horario.map((h) => <>{h.dias}: {h.horas}<br /></>)}</p>
-        </div>
-        <div>
-          <h2>Contato</h2>
-          <ul>
-            <li><a href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp {contato.whatsappExibicao}</a></li>
-            <li><a href={`mailto:${contato.email}`}>{contato.email}</a></li>
-            <li><a href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">Instagram @{contato.instagram}</a></li>
-          </ul>
-          <h2 style="margin-top:32px">Informações</h2>
-          <ul>
-            <li><a href={url('perguntas-frequentes')}>Perguntas frequentes</a></li>
-            <li><a href={url('imprensa')}>Imprensa</a></li>
-            <li><a href={url('privacidade')}>Privacidade</a></li>
-          </ul>
-        </div>
+      <div>
+        <h2>Lojas</h2>
+        {lojas.map((loja) => (
+          <address>
+            <strong>{loja.cidade}</strong><br />
+            <a href={linkMapa(loja)} target="_blank" rel="noopener">{loja.endereco}<br />{loja.cidade} - {loja.uf}, {loja.cep}</a>
+          </address>
+        ))}
+        <p style="margin:0">{horario.map((h) => <>{h.dias}: {h.horas}<br /></>)}</p>
+      </div>
+      <div>
+        <h2>Atendimento</h2>
+        <ul>
+          <li><a href={url('atendimento')}>Agendar uma conversa</a></li>
+          <li><a href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp {contato.whatsappExibicao}</a></li>
+          <li><a href={`mailto:${contato.email}`}>{contato.email}</a></li>
+          <li><a href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">Instagram @{contato.instagram}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Informações</h2>
+        <ul>
+          <li><a href={url('perguntas-frequentes')}>Perguntas frequentes</a></li>
+          <li><a href={url('imprensa')}>Imprensa</a></li>
+          <li><a href={url('privacidade')}>Privacidade</a></li>
+        </ul>
       </div>
     </div>
-    <div class="rodape__marca"><Logo rotulo="Honōria 1930" /></div>
     <div class="rodape__base">
       <span>© {ano} Honōria 1930. Alta-costura autoral brasileira.</span>
       <span>Goiânia · São Paulo</span>

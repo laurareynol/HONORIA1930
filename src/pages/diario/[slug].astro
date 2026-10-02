@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import Convite from '../../components/Convite.astro';
+import Chamada from '../../components/Chamada.astro';
 import { url } from '../../config/site';
 export async function getStaticPaths() {
   const textos = await getCollection('diario', (t) => !t.data.rascunho);
@@ -14,17 +14,17 @@ const fmt = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', ye
 ---
 <Base titulo={texto.data.titulo} pagina="diario" descricao={texto.data.resumo}>
   <article>
-    <section class="topo">
+    <section class="cabeca">
       <div class="envelope">
-        <a class="link" href={url('diario')} style="margin-bottom:40px">Diário</a>
-        <p class="pequeno texto-2" style="margin-top:32px">{fmt.format(texto.data.data)}</p>
-        <h1 class="display">{texto.data.titulo}</h1>
+        <span class="olho"><a href={url('diario')} style="text-decoration:none">Diário</a> · {fmt.format(texto.data.data)}</span>
+        <h1 class="h-hero">{texto.data.titulo}</h1>
+        <p class="sub texto-2">{texto.data.resumo}</p>
       </div>
     </section>
     {texto.data.capa && (
-      <div class="envelope"><div class="dupla__foto" style="aspect-ratio: 16 / 9"><Image src={texto.data.capa} alt={texto.data.descricaoCapa ?? ''} widths={[800, 1200, 1600]} sizes="100vw" loading="eager" /></div></div>
+      <div class="imagem-larga imagem-larga--16x9 aproxima"><Image src={texto.data.capa} alt={texto.data.descricaoCapa ?? ''} widths={[800, 1200, 1600]} sizes="100vw" loading="eager" /></div>
     )}
-    <section class="secao"><div class="envelope"><div class="artigo"><Content /></div></div></section>
+    <section class="secao" style="padding-top:clamp(48px,6vw,96px)"><div class="envelope envelope--estreito"><div class="artigo"><Content /></div></div></section>
   </article>
-  <Convite />
+  <Chamada />
 </Base>

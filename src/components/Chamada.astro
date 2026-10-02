@@ -8,15 +8,13 @@ const {
 } = Astro.props;
 const destino = interesse ? `${url('atendimento')}?interesse=${interesse}` : url('atendimento');
 ---
-<section class="secao secao--papel">
-  <div class="envelope dupla">
-    <h2 class="titulo revela">{titulo}</h2>
-    <div class="revela">
-      <p class="lead">{texto}</p>
-      <div class="botoes">
-        <a class="btn" href={destino}>Agendar uma conversa</a>
-        <a class="btn btn--linha" href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp</a>
-      </div>
+<section class="secao chamada">
+  <div class="envelope envelope--estreito revela">
+    <h2 class="h-1">{titulo}</h2>
+    <p class="sub">{texto}</p>
+    <div class="acoes">
+      <a class="botao botao--claro" href={destino}>Agendar uma conversa</a>
+      <a class="seta" href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </div>
 </section>

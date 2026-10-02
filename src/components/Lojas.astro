@@ -2,18 +2,18 @@
 import { lojas, horario, linkMapa, linkWhatsApp } from '../config/site';
 ---
 <div class="lojas">
-  {lojas.map((loja) => (
-    <article class="loja">
-      <h3 class="loja__cidade">{loja.cidade}</h3>
-      <p class="loja__papel rotulo">{loja.papel}</p>
+  {lojas.map((loja, i) => (
+    <article class={`loja revela ${i ? 'revela-atraso' : ''}`}>
+      <span class="olho">{loja.papel}</span>
+      <h3 class="h-2">{loja.cidade}</h3>
       <address>{loja.endereco}<br />{loja.cidade} - {loja.uf}, {loja.cep}</address>
       <dl>
-        {horario.map((h) => (<><dt>{h.dias}</dt><dd>{h.horas}</dd></>))}
+        {horario.map((h) => (<div><dt>{h.dias}</dt> <dd>{h.horas}</dd></div>))}
       </dl>
-      <p class="pequeno texto-2">Visitas sem hora marcada.</p>
-      <div class="botoes" style="margin-top:20px">
-        <a class="link" href={linkMapa(loja)} target="_blank" rel="noopener">Como chegar</a>
-        <a class="link" href={linkWhatsApp(`Olá, Cris! Gostaria de saber mais sobre a loja de ${loja.cidade}.`)} target="_blank" rel="noopener">Falar com a loja</a>
+      <p class="pequeno texto-2" style="margin:0">Sem hora marcada.</p>
+      <div class="acoes">
+        <a class="seta" href={linkMapa(loja)} target="_blank" rel="noopener">Como chegar</a>
+        <a class="seta" href={linkWhatsApp(`Olá, Cris! Gostaria de saber mais sobre a loja de ${loja.cidade}.`)} target="_blank" rel="noopener">Falar com a loja</a>
       </div>
     </article>
   ))}

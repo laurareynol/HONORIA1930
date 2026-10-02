@@ -38,6 +38,19 @@ export const atendimentoTata = {
   presencial: 'R$ 500',
 };
 
+// Etapas do Sob Medida, na ordem em que acontecem.
+export const etapasSobMedida: [string, string][] = [
+  ['Reunião com a Tata', 'Uma conversa sobre a ocasião, os seus desejos e a forma como você quer se sentir vestida.'],
+  ['Criação conjunta', 'O desenho nasce dessa conversa. Silhueta, matéria e detalhes são decididos juntos.'],
+  ['Tiragem de medidas', 'O seu corpo é a referência de tudo o que vem depois.'],
+  ['Modelagem', 'O desenho ganha molde, construído a partir das suas medidas.'],
+  ['Corte', 'A matéria escolhida é cortada com a precisão que o molde pede.'],
+  ['Costura', 'No ateliê, a peça ganha forma pelas mãos das costureiras.'],
+  ['Arremate', 'Os acabamentos que só quem faz percebe, e que sustentam a peça por dentro.'],
+  ['Provas', 'Quantas forem necessárias, até tudo estar alinhado.'],
+  ['Entrega', 'A peça segue para a sua ocasião.'],
+];
+
 export function linkWhatsApp(mensagem = 'Olá, Cris! Vim pelo site da Honōria.') {
   return `https://wa.me/${contato.whatsapp}?text=${encodeURIComponent(mensagem)}`;
 }

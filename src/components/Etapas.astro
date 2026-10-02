@@ -1,0 +1,21 @@
+---
+interface Props { etapas: [string, string][] }
+const { etapas } = Astro.props;
+---
+<div class="carrossel" data-carrossel>
+  <ol class="carrossel__trilho" aria-label="Etapas">
+    {etapas.map(([nome, texto], i) => (
+      <li class="cartao cartao--grande">
+        <span class="cartao__numero">{String(i + 1).padStart(2, '0')}</span>
+        <div class="cartao__corpo">
+          <h3 class="h-3">{nome}</h3>
+          <p>{texto}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+  <div class="envelope carrossel__controles">
+    <button class="redondo" type="button" data-voltar aria-label="Etapa anterior"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 2 4 7l5 5"/></svg></button>
+    <button class="redondo" type="button" data-avancar aria-label="Próxima etapa"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 2 5 5-5 5"/></svg></button>
+  </div>
+</div>

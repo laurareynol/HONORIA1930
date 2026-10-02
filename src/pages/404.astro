@@ -3,11 +3,11 @@ import Base from '../layouts/Base.astro';
 import { url } from '../config/site';
 ---
 <Base titulo="Página não encontrada">
-  <section class="topo" style="min-height:60svh">
+  <section class="cabeca" style="min-height:60svh">
     <div class="envelope">
-      <span class="rotulo">Página não encontrada</span>
-      <h1 class="display">Este caminho não <em>existe.</em></h1>
-      <div class="botoes"><a class="btn" href={url()}>Voltar ao início</a></div>
+      <span class="olho">Página não encontrada</span>
+      <h1 class="h-hero">Este caminho não existe.</h1>
+      <div class="acoes acoes--centro"><a class="botao" href={url()}>Voltar ao início</a></div>
     </div>
   </section>
 </Base>

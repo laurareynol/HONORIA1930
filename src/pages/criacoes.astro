@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import Convite from '../components/Convite.astro';
+import Chamada from '../components/Chamada.astro';
 import { linkWhatsApp } from '../config/site';
 
 const criacoes = (await getCollection('criacoes')).sort((a, b) => a.data.ordem - b.data.ordem);
@@ -14,19 +14,21 @@ const filtros = [
 ].filter((f) => f.id === 'todas' || criacoes.some((c) => c.data.ocasiao === f.id));
 ---
 <Base titulo="Criações" pagina="criacoes" descricao="Criações da Honōria 1930: vestidos de noiva e de festa feitos no ateliê.">
-  <section class="topo">
+  <section class="cabeca">
     <div class="envelope">
-      <span class="rotulo">Criações</span>
-      <h1 class="display">Da ideia à <em>matéria.</em></h1>
-      <p class="lead texto-2">Vestidos de noiva e de festa desenhados por Tata Ribeiro e construídos no nosso ateliê.</p>
+      <span class="olho">Criações</span>
+      <h1 class="h-hero">Da ideia à matéria.</h1>
+      <p class="sub texto-2">Vestidos de noiva e de festa desenhados por Tata Ribeiro e construídos no nosso ateliê.</p>
     </div>
   </section>
 
-  <section class="secao" aria-label="Galeria">
+  <section class="secao secao--colada" aria-label="Galeria">
     <div class="envelope">
       {filtros.length > 2 && (
-        <div class="filtros" role="group" aria-label="Filtrar por ocasião">
-          {filtros.map((f, i) => <button class="filtro" type="button" data-filtro={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>{f.rotulo}</button>)}
+        <div class="filtros-envelope">
+          <div class="filtros" role="group" aria-label="Filtrar por ocasião">
+            {filtros.map((f, i) => <button class="filtro" type="button" data-filtro={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>{f.rotulo}</button>)}
+          </div>
         </div>
       )}
       <div class="galeria">
@@ -36,7 +38,7 @@ const filtros = [
             {(c.data.titulo || c.data.legenda) && (
               <figcaption>
                 {c.data.titulo && <strong>{c.data.titulo}</strong>}
-                {c.data.legenda && <span class="texto-2">{c.data.legenda}</span>}
+                {c.data.legenda && <span>{c.data.legenda}</span>}
               </figcaption>
             )}
           </figure>
@@ -45,21 +47,17 @@ const filtros = [
     </div>
   </section>
 
-  <section class="secao secao--preta" id="tata-by-honoria" aria-labelledby="tata-linha">
-    <div class="envelope dupla dupla--topo">
-      <div>
-        <span class="rotulo">Linha</span>
-        <h2 class="titulo" id="tata-linha">TATA by <em>Honoria 1930</em></h2>
-      </div>
-      <div>
-        <p class="lead">Uma linha mais descontraída, ligada ao estilo pessoal da Tata, com o mesmo cuidado de construção e acabamento de toda peça Honōria.</p>
-        <p class="texto texto-2">As peças são feitas somente sob encomenda.</p>
-        <div class="botoes"><a class="btn" href={linkWhatsApp('Olá, Cris! Gostaria de encomendar uma peça da linha TATA by Honoria 1930.')} target="_blank" rel="noopener">Encomendar pelo WhatsApp</a></div>
-      </div>
+  <section class="secao secao--cinza centro" id="tata-by-honoria" aria-labelledby="tata-linha">
+    <div class="envelope envelope--estreito revela">
+      <span class="olho">Linha</span>
+      <h2 class="h-1" id="tata-linha">TATA by Honoria 1930.</h2>
+      <p class="sub texto-2">Uma linha mais descontraída, ligada ao estilo pessoal da Tata, com o mesmo cuidado de construção e acabamento de toda peça Honōria.</p>
+      <p class="texto texto-2" style="margin-top:20px">Peças feitas somente sob encomenda.</p>
+      <div class="acoes"><a class="botao" href={linkWhatsApp('Olá, Cris! Gostaria de encomendar uma peça da linha TATA by Honoria 1930.')} target="_blank" rel="noopener">Encomendar pelo WhatsApp</a></div>
     </div>
   </section>
 
-  <Convite titulo="Viu algo que conversa com você?" texto="Toda criação pode ser o ponto de partida para a sua. Conte para a Cris o que chamou a sua atenção." />
+  <Chamada titulo="Viu algo que conversa com você?" texto="Toda criação pode ser o ponto de partida para a sua. Conte para a Cris o que chamou a sua atenção." />
 </Base>
 
 <script>

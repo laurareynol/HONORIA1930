@@ -5,25 +5,24 @@ import NotaTata from '../components/NotaTata.astro';
 import { contato, linkWhatsApp, url } from '../config/site';
 ---
 <Base titulo="Atendimento" pagina="atendimento" descricao="Agende uma conversa com a Honōria 1930: atendimento nas lojas de Goiânia e São Paulo ou com Tata Ribeiro, presencial ou online.">
-  <section class="topo">
+  <section class="cabeca">
     <div class="envelope">
-      <span class="rotulo">Atendimento</span>
-      <h1 class="display">Vamos <em>conversar.</em></h1>
-      <p class="lead texto-2">Conte um pouco sobre a sua ocasião. A mensagem segue pelo WhatsApp para a {contato.atendente}, que organiza o seu atendimento.</p>
+      <span class="olho">Atendimento</span>
+      <h1 class="h-hero">Vamos conversar.</h1>
+      <p class="sub texto-2">Conte um pouco sobre a sua ocasião. A mensagem segue pelo WhatsApp para a {contato.atendente}, que organiza o seu atendimento.</p>
     </div>
   </section>
 
-  <section class="secao" aria-labelledby="pedido">
-    <div class="envelope dupla dupla--topo">
+  <section class="secao secao--colada" aria-labelledby="pedido">
+    <div class="envelope duas-colunas">
       <form class="formulario" id="formulario" novalidate>
         <h2 class="visualmente-oculto" id="pedido">Pedido de atendimento</h2>
         <div class="campo">
+          <input id="nome" name="nome" autocomplete="name" required placeholder=" " />
           <label for="nome">Seu nome</label>
-          <input id="nome" name="nome" autocomplete="name" required />
         </div>
         <div class="campos-duplos">
           <div class="campo">
-            <label for="interesse">Interesse</label>
             <select id="interesse" name="interesse">
               <option value="Vestido de noiva" data-chave="noiva">Vestido de noiva</option>
               <option value="Criação Sob Medida" data-chave="sob-medida">Criação Sob Medida</option>
@@ -31,9 +30,9 @@ import { contato, linkWhatsApp, url } from '../config/site';
               <option value="TATA by Honoria 1930" data-chave="tata">TATA by Honoria 1930</option>
               <option value="Outro assunto" data-chave="outro">Outro assunto</option>
             </select>
+            <label for="interesse">Interesse</label>
           </div>
           <div class="campo">
-            <label for="ocasiao">Ocasião</label>
             <select id="ocasiao" name="ocasiao">
               <option value="">Escolha</option>
               <option>Meu casamento</option>
@@ -44,47 +43,48 @@ import { contato, linkWhatsApp, url } from '../config/site';
               <option>Convidada</option>
               <option>Outra</option>
             </select>
+            <label for="ocasiao">Ocasião</label>
           </div>
         </div>
         <div class="campos-duplos">
           <div class="campo">
-            <label for="data">Data do evento</label>
             <input id="data" name="data" type="date" />
+            <label for="data">Data do evento</label>
           </div>
           <div class="campo">
+            <input id="cidade" name="cidade" autocomplete="address-level2" placeholder=" " />
             <label for="cidade">Cidade onde você está</label>
-            <input id="cidade" name="cidade" autocomplete="address-level2" />
           </div>
         </div>
         <div class="campo">
+          <textarea id="mensagem" name="mensagem" placeholder=" "></textarea>
           <label for="mensagem">Conte mais, se quiser</label>
-          <textarea id="mensagem" name="mensagem"></textarea>
         </div>
-        <p class="pequeno texto-2" style="margin:0">Os seus dados não ficam guardados no site: eles seguem apenas na mensagem que você envia pelo WhatsApp. <a href={url('privacidade')}>Privacidade</a>.</p>
-        <p class="pequeno" id="aviso" role="alert" style="margin:0"></p>
-        <div><button class="btn" type="submit">Enviar pelo WhatsApp</button></div>
+        <p class="pequeno aviso" id="aviso" role="alert" style="margin:0"></p>
+        <button class="botao" type="submit">Enviar pelo WhatsApp</button>
+        <p class="pequeno texto-2" style="margin:4px 0 0;text-align:center">Os seus dados não ficam guardados no site: seguem apenas na mensagem que você envia. <a href={url('privacidade')}>Privacidade</a></p>
       </form>
 
-      <div>
+      <div style="display:grid;gap:24px">
         <NotaTata />
-        <div style="margin-top:48px" class="pequeno">
-          <span class="rotulo">Outros canais</span>
-          <p style="margin:0 0 8px"><a href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp {contato.whatsappExibicao}</a> ({contato.atendente})</p>
-          <p style="margin:0 0 8px"><a href={`mailto:${contato.email}`}>{contato.email}</a></p>
-          <p style="margin:0"><a href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">Instagram @{contato.instagram}</a></p>
+        <div class="cartao-contato">
+          <span class="olho">Outros canais</span>
+          <ul>
+            <li><a href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp {contato.whatsappExibicao}</a> <span class="texto-2">({contato.atendente})</span></li>
+            <li><a href={`mailto:${contato.email}`}>{contato.email}</a></li>
+            <li><a href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">Instagram @{contato.instagram}</a></li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="secao secao--papel" aria-labelledby="lojas">
+  <section class="secao secao--cinza centro" aria-labelledby="lojas">
     <div class="envelope">
-      <div class="cabeca-secao">
-        <div>
-          <span class="rotulo">Lojas</span>
-          <h2 class="titulo" id="lojas">Sem hora <em>marcada.</em></h2>
-        </div>
-        <p class="texto texto-2">As lojas recebem visitas no horário de funcionamento. O atendimento com a Tata é sempre agendado.</p>
+      <div class="revela">
+        <span class="olho">Lojas</span>
+        <h2 class="h-1" id="lojas">Sem hora marcada.</h2>
+        <p class="sub texto-2">As lojas recebem visitas no horário de funcionamento. O atendimento com a Tata é sempre agendado.</p>
       </div>
       <Lojas />
     </div>

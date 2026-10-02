@@ -12,6 +12,7 @@ Site estático feito com [Astro](https://astro.build). Publicado pelo GitHub Pag
 | Textos do Diário | `src/content/diario/` |
 | Fotos | `src/assets/fotos/` |
 | Cores, fontes, espaçamentos | `src/styles/global.css` |
+| Etapas do Sob Medida | `src/config/site.ts` (etapasSobMedida) |
 
 Cada pasta de conteúdo tem um arquivo `_modelo.md`. Para criar algo novo, copie o modelo, renomeie (sem o `_` no início, ex.: `vestido-azul.md`) e preencha. Arquivos que começam com `_` não aparecem no site.
 

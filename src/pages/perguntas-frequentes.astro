@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import Convite from '../components/Convite.astro';
+import Chamada from '../components/Chamada.astro';
 import { contato, horario, atendimentoTata, lojas } from '../config/site';
 
 // Perguntas provisórias, até a equipe reunir as dúvidas reais das clientes.
@@ -18,14 +18,14 @@ const perguntas = [
 ];
 ---
 <Base titulo="Perguntas frequentes" descricao="Perguntas frequentes sobre o atendimento, o Sob Medida, as noivas e a pronta entrega da Honōria 1930.">
-  <section class="topo">
+  <section class="cabeca">
     <div class="envelope">
-      <span class="rotulo">Perguntas frequentes</span>
-      <h1 class="display">Antes de <em>começar.</em></h1>
+      <span class="olho">Perguntas frequentes</span>
+      <h1 class="h-hero">Antes de começar.</h1>
     </div>
   </section>
-  <section class="secao" aria-label="Perguntas">
-    <div class="envelope">
+  <section class="secao secao--colada" aria-label="Perguntas">
+    <div class="envelope envelope--estreito">
       <div class="perguntas">
         {perguntas.map(([p, r], i) => (
           <details open={i === 0}>
@@ -36,5 +36,5 @@ const perguntas = [
       </div>
     </div>
   </section>
-  <Convite titulo="Ficou alguma dúvida?" />
+  <Chamada titulo="Ficou alguma dúvida?" />
 </Base>
