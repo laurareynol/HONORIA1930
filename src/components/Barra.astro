@@ -51,7 +51,17 @@ const { pagina = '' } = Astro.props;
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fechar(); botao?.focus(); } });
   document.querySelectorAll('.menu a').forEach((a) => a.addEventListener('click', fechar));
   const barra = document.getElementById('barra');
-  const marcar = () => barra?.classList.toggle('rolada', window.scrollY > 4);
+  // A barra se esconde ao descer a página e volta ao menor movimento para cima.
+  let ultimo = window.scrollY;
+  const marcar = () => {
+    const y = window.scrollY;
+    barra?.classList.toggle('rolada', y > 4);
+    const aberto = raiz.getAttribute('data-menu') === 'aberto' || barra?.contains(document.activeElement);
+    if (y < 80 || aberto || y < ultimo - 1) barra?.classList.remove('escondida');
+    else if (y > ultimo + 1) barra?.classList.add('escondida');
+    ultimo = y;
+  };
   window.addEventListener('scroll', marcar, { passive: true });
+  barra?.addEventListener('focusin', () => barra.classList.remove('escondida'));
   marcar();
 </script>

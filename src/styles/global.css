@@ -179,9 +179,11 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
   /* Pontas de baixo arredondadas; o conteúdo seguinte passa por trás das curvas. */
   border-radius: 0 0 var(--barra-raio) var(--barra-raio);
   margin-bottom: calc(-1 * var(--barra-raio));
-  transition: border-color .3s, background-color .3s;
+  transition: border-color .3s, background-color .3s, transform .45s var(--suave);
 }
 .barra.rolada { border-bottom-color: rgba(0, 0, 0, .08); }
+.barra.escondida { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px) - 2px)); }
+@media (prefers-reduced-motion: reduce) { .barra { transition: none; } }
 .barra__conteudo { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .marca { display: block; color: var(--tinta); line-height: 0; flex: none; }
 .marca svg { width: 108px; height: auto; }
