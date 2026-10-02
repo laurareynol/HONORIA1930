@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import NotaTata from '../components/NotaTata.astro';
 import Etapas from '../components/Etapas.astro';
 import Chamada from '../components/Chamada.astro';
 import { url, etapasSobMedida } from '../config/site';
@@ -49,8 +48,7 @@ const ocasioes = ['Madrinhas', 'Mães dos noivos', 'Irmãs dos noivos', 'Formand
 
   <section class="secao secao--colada" aria-label="Atendimento com a Tata">
     <div class="envelope">
-      <NotaTata />
-      <div class="destaques">
+      <div class="destaques" style="margin-top:0">
         <div class="destaque revela"><h3 class="h-3">De qualquer cidade.</h3><p>Mora longe? A reunião com a Tata pode ser online.</p></div>
         <div class="destaque revela revela-atraso"><h3 class="h-3">Valor por criação.</h3><p>O valor de cada peça Sob Medida varia conforme a criação.</p></div>
         <div class="destaque revela revela-atraso"><h3 class="h-3">Feito em Goiânia.</h3><p>Modelagem, corte, costura e arremate acontecem no nosso ateliê.</p></div>

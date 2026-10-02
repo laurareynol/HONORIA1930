@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import NotaTata from '../components/NotaTata.astro';
 import Declaracao from '../components/Declaracao.astro';
 import Chamada from '../components/Chamada.astro';
 import { url } from '../config/site';
@@ -35,12 +34,6 @@ import noivas from '../assets/fotos/noivas.jpg';
   </section>
 
   <Declaracao olho="De qualquer lugar" texto="A Tata atende noivas de qualquer cidade e de qualquer país. Para quem mora longe, o encontro normalmente acontece por chamada de vídeo." />
-
-  <section class="secao" aria-label="Atendimento com a Tata">
-    <div class="envelope">
-      <NotaTata />
-    </div>
-  </section>
 
   <Chamada titulo="Vamos começar a sua criação?" texto="Conte a data do casamento e a cidade onde você está. Agendamos o seu primeiro encontro." interesse="noiva" />
 </Base>
