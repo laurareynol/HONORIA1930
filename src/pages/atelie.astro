@@ -16,7 +16,7 @@ import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
     </div>
   </section>
 
-  <div class="imagem-larga imagem-larga--16x9 aproxima">
+  <div class="imagem-larga imagem-larga--16x9 aproxima" data-pixela>
     <Image src={pretoManequim} alt="Em preto e branco, modelo com vestido de renda ajusta um manequim no ateliê." widths={[800, 1200, 1600]} sizes="100vw" loading="eager" style="object-position: 62% 50%" />
   </div>
 
@@ -38,7 +38,7 @@ import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
 
   <section class="secao secao--cinza" id="tata-ribeiro" aria-labelledby="tata">
     <div class="envelope lado">
-      <div class="lado__foto revela" style="max-width:480px;justify-self:center;width:100%">
+      <div class="lado__foto revela" data-pixela style="max-width:480px;justify-self:center;width:100%">
         <Image src={tata} alt="Tata Ribeiro desenhando um croqui à mesa." widths={[494]} sizes="(min-width: 900px) 40vw, 100vw" />
       </div>
       <div class="revela">
@@ -51,11 +51,11 @@ import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
     </div>
   </section>
 
-  <Declaracao olho="As mãos do ateliê" texto="As costureiras não apenas executam um desenho. Interpretam, decidem e constroem." />
+  <Declaracao antes="cinza" olho="As mãos do ateliê" texto="As costureiras não apenas executam um desenho. Interpretam, decidem e constroem." />
 
   <section class="secao" id="maos" aria-labelledby="saber">
     <div class="envelope lado lado--inverso">
-      <div class="lado__foto revela">
+      <div class="lado__foto revela" data-pixela>
         <Image src={rosaMaquina} alt="Vestido rosa de saia em camadas de tule diante de uma máquina de costura no ateliê de Goiânia." widths={[480, 800, 1200]} sizes="(min-width: 900px) 50vw, 100vw" />
       </div>
       <div class="revela">
@@ -67,5 +67,5 @@ import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
     </div>
   </section>
 
-  <Chamada />
+  <Chamada antes="branco" />
 </Base>

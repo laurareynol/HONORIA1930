@@ -23,7 +23,7 @@ const ocasioes = ['Madrinhas', 'Mães dos noivos', 'Irmãs dos noivos', 'Formand
     </div>
   </section>
 
-  <div class="imagem-larga imagem-larga--16x9 aproxima">
+  <div class="imagem-larga imagem-larga--16x9 aproxima" data-pixela>
     <Image src={vermelhoCroquis} alt="Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê." widths={[800, 1200, 1600]} sizes="100vw" loading="eager" style="object-position: 50% 30%" />
   </div>
 
@@ -60,7 +60,7 @@ const ocasioes = ['Madrinhas', 'Mães dos noivos', 'Irmãs dos noivos', 'Formand
 
   <section class="secao secao--cinza" aria-labelledby="mao">
     <div class="envelope lado">
-      <div class="lado__foto revela">
+      <div class="lado__foto revela" data-pixela>
         <Image src={rosaMaquina} alt="Vestido rosa de saia em camadas de tule diante de uma máquina de costura." widths={[480, 800, 1200]} sizes="(min-width: 900px) 50vw, 100vw" />
       </div>
       <div class="revela">
@@ -72,5 +72,5 @@ const ocasioes = ['Madrinhas', 'Mães dos noivos', 'Irmãs dos noivos', 'Formand
     </div>
   </section>
 
-  <Chamada titulo="Conte sobre a sua ocasião." interesse="sob-medida" />
+  <Chamada antes="cinza" titulo="Conte sobre a sua ocasião." interesse="sob-medida" />
 </Base>

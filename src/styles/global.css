@@ -597,3 +597,51 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 
 .abertura .acoes { justify-content: center; }
 .bloco__texto { text-shadow: 0 1px 24px rgba(0,0,0,.25); }
+
+/* ---------- Motion: pixels, degraus, vitrine ---------- */
+
+.lado__foto, .imagem-larga, .retrato, .peca__foto, .cartao-texto__foto { position: relative; }
+.galeria figcaption { z-index: 2; }
+.pixel-tela {
+  position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;
+  image-rendering: pixelated; pointer-events: none;
+  transition: opacity .4s var(--suave);
+}
+.pixel-tela.some { opacity: 0; }
+.js [data-pixela] img { opacity: 0; }
+.js [data-pixela].pixelada img { opacity: 1; }
+
+.degraus {
+  display: grid; grid-template-columns: repeat(var(--colunas, 20), 1fr);
+  background: var(--fundo-degraus, var(--branco));
+  margin-bottom: -1px;
+}
+.degraus span { aspect-ratio: 1; background: var(--preto); box-shadow: 0 0 0 1px var(--preto); transform: scaleY(0); transform-origin: bottom; transition: transform .25s steps(2, end); }
+.degraus span.cheio, .degraus.estatica span { transform: none; }
+.degraus--cinza { --fundo-degraus: var(--cinza); }
+
+.vitrine { position: relative; overflow: hidden; background: var(--preto); color: var(--branco); padding: clamp(72px, 9vw, 120px) 0; }
+.vitrine__fundo {
+  position: absolute; left: 0; top: 50%; z-index: 0;
+  white-space: nowrap; pointer-events: none; user-select: none;
+  font-size: clamp(120px, 22vw, 340px); font-weight: 200; letter-spacing: -0.04em; line-height: .8;
+  color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.22);
+  transform: translate3d(var(--deslize, 0px), -50%, 0);
+  will-change: transform;
+}
+.vitrine__grade { position: relative; z-index: 1; display: grid; gap: 32px; align-items: center; }
+.vitrine__palco { position: relative; width: min(100%, 440px); aspect-ratio: 3 / 4; margin: 0 auto; overflow: hidden; background: #111; }
+.vitrine__item { position: absolute; inset: 0; opacity: 0; transition: opacity .2s; }
+.vitrine__item.ativo { opacity: 1; }
+.vitrine__item img { width: 100%; height: 100%; object-fit: cover; }
+.vitrine__numero { font-size: 12px; letter-spacing: .2em; color: var(--claro-2); font-variant-numeric: tabular-nums; }
+.vitrine__legenda { min-height: 3em; }
+.vitrine__legenda p { margin: 0; color: var(--claro-2); }
+.vitrine .redondo { border-color: rgba(255,255,255,.3); color: var(--branco); }
+.vitrine .redondo:hover { border-color: var(--branco); }
+.vitrine__controles { display: flex; gap: 12px; margin-top: 28px; }
+@media (min-width: 900px) {
+  .vitrine__grade { grid-template-columns: 1fr minmax(0, 440px) 1fr; gap: 48px; }
+  .vitrine__numero { writing-mode: vertical-rl; transform: rotate(180deg); justify-self: start; }
+  .vitrine__lado { justify-self: end; max-width: 260px; }
+}

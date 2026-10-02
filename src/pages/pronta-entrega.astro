@@ -23,7 +23,7 @@ const renderizadas = await Promise.all(pecas.map(async (p) => ({ peca: p, Conteu
         <div class="pecas">
           {renderizadas.map(({ peca, Conteudo }) => (
             <article class="peca revela">
-              <div class="peca__foto"><Image src={peca.data.foto} alt={peca.data.descricao} widths={[480, 800]} sizes="(min-width: 1080px) 33vw, (min-width: 640px) 50vw, 100vw" /></div>
+              <div class="peca__foto" data-pixela><Image src={peca.data.foto} alt={peca.data.descricao} widths={[480, 800]} sizes="(min-width: 1080px) 33vw, (min-width: 640px) 50vw, 100vw" /></div>
               <h2 class="h-3 peca__nome">{peca.data.nome}</h2>
               <p class="peca__dados">
                 <span>Loja {peca.data.loja}</span>

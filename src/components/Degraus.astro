@@ -1,0 +1,6 @@
+---
+// Faixa de blocos pretos que preenchem a tela ao rolar, antes de uma seção preta.
+interface Props { fundo?: 'branco' | 'cinza' }
+const { fundo = 'branco' } = Astro.props;
+---
+<div class:list={['degraus', { 'degraus--cinza': fundo === 'cinza' }]} aria-hidden="true"></div>
