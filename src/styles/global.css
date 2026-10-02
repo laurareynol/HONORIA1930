@@ -613,3 +613,5 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .movimento__videos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .movimento__quadro { position: relative; aspect-ratio: 9 / 16; max-width: 100%; overflow: hidden; background: #111; }
 .movimento__quadro video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* No celular, o par branco inverte a ordem e forma um xadrez com o par preto. */
+@media (max-width: 899px) { .movimento__par:nth-child(2) .movimento__quadro:first-child { order: 2; } }
