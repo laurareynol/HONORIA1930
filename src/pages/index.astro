@@ -5,6 +5,7 @@ import Lojas from '../components/Lojas.astro';
 import Declaracao from '../components/Declaracao.astro';
 import Etapas from '../components/Etapas.astro';
 import Chamada from '../components/Chamada.astro';
+import Movimento from '../components/Movimento.astro';
 import { url, etapasSobMedida } from '../config/site';
 import vermelhoJanela from '../assets/fotos/vermelho-janela.jpg';
 import noivas from '../assets/fotos/noivas.jpg';
@@ -52,6 +53,8 @@ const blocos = [
       </a>
     ))}
   </section>
+
+  <Movimento />
 
   <section class="secao secao--cinza" aria-labelledby="processo">
     <div class="envelope revela">

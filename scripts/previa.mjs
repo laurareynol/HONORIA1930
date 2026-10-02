@@ -21,7 +21,7 @@ for (const arq of arquivos) {
     if (url === '/') return prefixo + 'index.html';
     return prefixo + url.slice(1);
   };
-  s = s.replace(/(href|src|action)="(\/(?!\/)[^"]*)"/g, (_, a, u) => `${a}="${rel(u)}"`);
+  s = s.replace(/(href|src|action|poster)="(\/(?!\/)[^"]*)"/g, (_, a, u) => `${a}="${rel(u)}"`);
   s = s.replace(/srcset="([^"]*)"/g, (_, v) => `srcset="${v.replace(/(^|,\s*)(\/(?!\/)[^\s,]+)/g, (m, sep, u) => sep + rel(u))}"`);
   s = s.replace(/url\((["']?)(\/(?!\/)[^)"']+)\1\)/g, (_, q, u) => `url(${q}${arq.endsWith('.css') ? '../' + u.slice(1) : rel(u)}${q})`);
   s = s.replace(/(import\s*["']|from\s*["'])(\/arquivos\/[^"']+)/g, (_, a, u) => a + rel(u));

@@ -1,0 +1,51 @@
+---
+// Faixa com quatro vídeos lado a lado: dois do vestido preto, dois do vestido branco.
+// Os arquivos ficam em public/videos/ (MP4 sem som + foto de capa .jpg com o mesmo nome).
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const pares = [
+  {
+    nome: 'Vestido preto',
+    videos: [
+      { arquivo: 'preto-passarela', alt: 'Modelo caminha em Paris com vestido preto longo de tule, a Torre Eiffel ao fundo.' },
+      { arquivo: 'preto-detalhe', alt: 'Detalhe do vestido preto de babados em camadas, decote profundo e costas abertas com alças finas.' },
+    ],
+  },
+  {
+    nome: 'Vestido branco',
+    videos: [
+      { arquivo: 'branco-passarela', alt: 'Modelo gira em Paris com vestido branco de saia volumosa em camadas de tule, a Torre Eiffel ao fundo.' },
+      { arquivo: 'branco-detalhe', alt: 'Detalhe do vestido branco: corpete com flores bordadas e tule franzido no ombro.' },
+    ],
+  },
+];
+---
+<section class="movimento" aria-labelledby="movimento">
+  <div class="envelope movimento__cabeca revela">
+    <span class="olho">Em movimento</span>
+    <h2 class="h-1" id="movimento">O tule ganha vida no caminhar.</h2>
+  </div>
+  <div class="movimento__grade">
+    {pares.map((par) => (
+      <figure class="movimento__par">
+        <div class="movimento__videos">
+          {par.videos.map((v) => (
+            <div class="movimento__quadro">
+              <video
+                data-movimento
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster={`${base}/videos/${v.arquivo}.jpg`}
+                aria-label={v.alt}
+              >
+                <source src={`${base}/videos/${v.arquivo}.mp4`} type="video/mp4" />
+              </video>
+            </div>
+          ))}
+        </div>
+        <figcaption class="olho">{par.nome}</figcaption>
+      </figure>
+    ))}
+  </div>
+</section>
