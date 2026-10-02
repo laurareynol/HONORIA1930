@@ -42,9 +42,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <Rodape />
     <WhatsFixo />
     <script>
-      import { iniciarMovimento, iniciarVitrines } from '../scripts/movimento';
-      iniciarMovimento();
-      iniciarVitrines();
       const reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       // Blocos que surgem com suavidade, uma única vez.

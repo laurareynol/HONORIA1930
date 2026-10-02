@@ -1,16 +1,13 @@
 ---
-import Degraus from './Degraus.astro';
 import { url, linkWhatsApp } from '../config/site';
-interface Props { antes?: 'branco' | 'cinza'; titulo?: string; texto?: string; interesse?: string }
+interface Props { titulo?: string; texto?: string; interesse?: string }
 const {
-  antes,
   titulo = 'Vamos conversar sobre a sua ocasião?',
   texto = 'Conte o que você procura. Organizamos o seu atendimento, nas lojas ou para uma criação exclusiva.',
   interesse,
 } = Astro.props;
 const destino = interesse ? `${url('atendimento')}?interesse=${interesse}` : url('atendimento');
 ---
-{antes && <Degraus fundo={antes} />}
 <section class="secao chamada">
   <div class="envelope envelope--estreito revela">
     <h2 class="h-1">{titulo}</h2>

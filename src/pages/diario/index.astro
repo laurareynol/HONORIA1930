@@ -18,7 +18,7 @@ const fmt = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', ye
     <div class="envelope textos">
       {textos.map((t) => (
         <a class="cartao-texto revela" href={url(`diario/${t.id}`)}>
-          {t.data.capa && <div class="cartao-texto__foto" data-pixela><Image src={t.data.capa} alt={t.data.descricaoCapa ?? ''} widths={[480, 800]} sizes="(min-width: 900px) 50vw, 100vw" /></div>}
+          {t.data.capa && <div class="cartao-texto__foto"><Image src={t.data.capa} alt={t.data.descricaoCapa ?? ''} widths={[480, 800]} sizes="(min-width: 900px) 50vw, 100vw" /></div>}
           <div class="cartao-texto__corpo">
             <span class="pequeno texto-2">{fmt.format(t.data.data)}</span>
             <h2 class="h-2">{t.data.titulo}</h2>

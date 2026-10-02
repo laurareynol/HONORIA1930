@@ -33,7 +33,7 @@ const filtros = [
       )}
       <div class="galeria">
         {criacoes.map((c) => (
-          <figure data-pixela data-ocasiao={c.data.ocasiao}>
+          <figure data-ocasiao={c.data.ocasiao}>
             <Image src={c.data.foto} alt={c.data.descricao} widths={[480, 800]} sizes="(min-width: 1080px) 33vw, (min-width: 640px) 50vw, 100vw" />
             {(c.data.titulo || c.data.legenda) && (
               <figcaption>
@@ -57,7 +57,7 @@ const filtros = [
     </div>
   </section>
 
-  <Chamada antes="cinza" titulo="Viu algo que conversa com você?" texto="Toda criação pode ser o ponto de partida para a sua. Conte o que chamou a sua atenção." />
+  <Chamada titulo="Viu algo que conversa com você?" texto="Toda criação pode ser o ponto de partida para a sua. Conte o que chamou a sua atenção." />
 </Base>
 
 <script>

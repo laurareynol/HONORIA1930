@@ -5,8 +5,6 @@ import Lojas from '../components/Lojas.astro';
 import Declaracao from '../components/Declaracao.astro';
 import Etapas from '../components/Etapas.astro';
 import Chamada from '../components/Chamada.astro';
-import Vitrine from '../components/Vitrine.astro';
-import Degraus from '../components/Degraus.astro';
 import { url, etapasSobMedida } from '../config/site';
 import vermelhoJanela from '../assets/fotos/vermelho-janela.jpg';
 import noivas from '../assets/fotos/noivas.jpg';
@@ -24,7 +22,7 @@ const blocos = [
 ---
 <Base>
   <section class="abertura">
-    <div class="abertura__foto" data-pixela>
+    <div class="abertura__foto">
       <Image src={vermelhoJanela} alt="Modelo com vestido vermelho de babados volumosos, apoiada numa mesa de costura junto à janela do ateliê." widths={[640, 960, 1271]} sizes="100vw" loading="eager" fetchpriority="high" />
     </div>
     <div class="envelope abertura__texto">
@@ -45,7 +43,7 @@ const blocos = [
   <section class="mosaico" aria-label="Por onde começar">
     {blocos.map((b) => (
       <a class="bloco" href={url(b.href)}>
-        <div class="bloco__foto" data-pixela><Image src={b.foto} alt={b.alt} widths={[640, 960, 1400]} sizes="(min-width: 900px) 50vw, 100vw" style={`object-position:${b.posicao}`} /></div>
+        <div class="bloco__foto"><Image src={b.foto} alt={b.alt} widths={[640, 960, 1400]} sizes="(min-width: 900px) 50vw, 100vw" style={`object-position:${b.posicao}`} /></div>
         <div class="bloco__texto">
           <h2 class="h-1">{b.titulo}</h2>
           <p class="sub">{b.texto}</p>
@@ -54,9 +52,6 @@ const blocos = [
       </a>
     ))}
   </section>
-
-  <Degraus />
-  <Vitrine />
 
   <section class="secao secao--cinza" aria-labelledby="processo">
     <div class="envelope revela">
@@ -71,7 +66,7 @@ const blocos = [
 
   <section class="secao centro" aria-labelledby="tata">
     <div class="envelope envelope--estreito">
-      <div class="retrato revela" data-pixela>
+      <div class="retrato revela">
         <Image src={tata} alt="Tata Ribeiro desenhando um croqui à mesa." widths={[340, 494]} sizes="340px" />
       </div>
       <div class="revela">
@@ -95,5 +90,5 @@ const blocos = [
     </div>
   </section>
 
-  <Chamada antes="cinza" />
+  <Chamada />
 </Base>

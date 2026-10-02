@@ -1,10 +1,8 @@
 ---
-import Degraus from './Degraus.astro';
-interface Props { antes?: 'branco' | 'cinza'; texto: string; olho?: string }
-const { antes, texto, olho } = Astro.props;
+interface Props { texto: string; olho?: string }
+const { texto, olho } = Astro.props;
 const palavras = texto.split(' ');
 ---
-{antes && <Degraus fundo={antes} />}
 <section class="secao declaracao">
   <div class="envelope">
     {olho && <span class="olho">{olho}</span>}

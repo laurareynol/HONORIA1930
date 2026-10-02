@@ -22,9 +22,9 @@ const fmt = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', ye
       </div>
     </section>
     {texto.data.capa && (
-      <div class="imagem-larga imagem-larga--16x9 aproxima" data-pixela><Image src={texto.data.capa} alt={texto.data.descricaoCapa ?? ''} widths={[800, 1200, 1600]} sizes="100vw" loading="eager" /></div>
+      <div class="imagem-larga imagem-larga--16x9 aproxima"><Image src={texto.data.capa} alt={texto.data.descricaoCapa ?? ''} widths={[800, 1200, 1600]} sizes="100vw" loading="eager" /></div>
     )}
     <section class="secao" style="padding-top:clamp(48px,6vw,96px)"><div class="envelope envelope--estreito"><div class="artigo"><Content /></div></div></section>
   </article>
-  <Chamada antes="branco" />
+  <Chamada />
 </Base>
