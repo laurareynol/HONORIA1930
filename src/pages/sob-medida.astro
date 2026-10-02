@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import NotaTata from '../components/NotaTata.astro';
+import Convite from '../components/Convite.astro';
+import { url } from '../config/site';
+import vermelhoCroquis from '../assets/fotos/vermelho-croquis.jpg';
+import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
+
+const etapas = [
+  ['Reunião com a Tata', 'Uma conversa sobre a ocasião, os seus desejos e a forma como você quer se sentir vestida.'],
+  ['Criação conjunta', 'O desenho nasce dessa conversa. Silhueta, matéria e detalhes são decididos juntos.'],
+  ['Tiragem de medidas', 'O seu corpo é a referência de tudo o que vem depois.'],
+  ['Modelagem', 'O desenho ganha molde, construído a partir das suas medidas.'],
+  ['Corte', 'A matéria escolhida é cortada com a precisão que o molde pede.'],
+  ['Costura', 'No ateliê, a peça ganha forma pelas mãos das costureiras.'],
+  ['Arremate', 'Os acabamentos que só quem faz percebe, e que sustentam a peça por dentro.'],
+  ['Provas', 'Quantas forem necessárias, até tudo estar alinhado.'],
+  ['Entrega', 'A peça segue para a sua ocasião.'],
+];
+
+const ocasioes = ['Madrinhas', 'Mães dos noivos', 'Irmãs dos noivos', 'Formandas', 'Debutantes', 'Convidadas', 'Bailes e celebrações'];
+---
+<Base titulo="Sob Medida" pagina="sob-medida" descricao="Sob Medida na Honōria 1930: um vestido de festa criado a partir de você, da reunião com Tata Ribeiro à entrega.">
+  <section class="topo-foto">
+    <div class="topo-foto__img">
+      <Image src={vermelhoCroquis} alt="Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê." widths={[480, 800, 1200]} sizes="(min-width: 900px) 50vw, 100vw" loading="eager" />
+    </div>
+    <div class="topo-foto__texto">
+      <span class="rotulo">Sob Medida</span>
+      <h1 class="display">Antes de criar o vestido, é preciso compreender a <em>mulher.</em></h1>
+      <p class="lead texto-2">Uma peça Sob Medida não é um vestido ajustado às suas medidas. É uma criação construída a partir de quem vai vesti-la.</p>
+      <div class="botoes"><a class="btn" href={`${url('atendimento')}?interesse=sob-medida`}>Agendar com a Tata</a></div>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="etapas">
+    <div class="envelope">
+      <div class="cabeca-secao">
+        <div>
+          <span class="rotulo">O processo</span>
+          <h2 class="titulo" id="etapas">Da conversa à <em>entrega.</em></h2>
+        </div>
+        <p class="texto texto-2">Estas são as etapas de cada criação. O tempo de cada uma depende da peça.</p>
+      </div>
+      <ol class="etapas">
+        {etapas.map(([nome, texto]) => (
+          <li class="revela"><h3>{nome}</h3><p>{texto}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="secao secao--papel" aria-labelledby="para-quem">
+    <div class="envelope dupla dupla--topo">
+      <div class="revela">
+        <span class="rotulo">Para quem</span>
+        <h2 class="titulo" id="para-quem">Para cada <em>ocasião.</em></h2>
+        <ul class="pequeno" style="list-style:none;padding:0;margin:32px 0 0;columns:2;column-gap:32px">
+          {ocasioes.map((o) => <li style="padding:10px 0;border-bottom:1px solid var(--linha);break-inside:avoid">{o}</li>)}
+        </ul>
+        <p class="texto texto-2" style="margin-top:32px">Para noivas, conheça <a href={url('honoria-para-casar')}>Honoria para Casar</a>.</p>
+      </div>
+      <div class="revela">
+        <NotaTata />
+        <p class="texto texto-2" style="margin-top:32px">Mora em outra cidade? A reunião com a Tata pode ser online.</p>
+        <p class="texto texto-2">O valor de cada criação Sob Medida varia conforme a peça.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="mao">
+    <div class="envelope dupla">
+      <div class="dupla__foto revela" style="aspect-ratio: 4 / 5">
+        <Image src={rosaMaquina} alt="Vestido rosa de saia em camadas de tule diante de uma máquina de costura." widths={[480, 800]} sizes="(min-width: 900px) 50vw, 100vw" style="object-position: 50% 70%" />
+      </div>
+      <div class="revela">
+        <span class="rotulo">Feito à mão</span>
+        <h2 class="titulo" id="mao">Uma peça que acompanha <em>quem a veste.</em></h2>
+        <p class="lead texto-2" style="margin-top:24px">Modelagem, corte e costura acontecem no nosso ateliê, em Goiânia, pelas mãos de quem domina cada etapa.</p>
+        <div class="botoes"><a class="link" href={url('atelie')}>Conhecer o ateliê</a></div>
+      </div>
+    </div>
+  </section>
+
+  <Convite titulo="Conte sobre a sua ocasião." interesse="sob-medida" />
+</Base>

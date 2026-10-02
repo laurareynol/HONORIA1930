@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Convite from '../components/Convite.astro';
+import { contato, horario, atendimentoTata, lojas } from '../config/site';
+
+// Perguntas provisórias, até a equipe reunir as dúvidas reais das clientes.
+const h = horario.map((x) => `${x.dias.toLowerCase()}, das ${x.horas}`).join('; ');
+const cidades = lojas.map((l) => l.cidade).join(' e ');
+const perguntas = [
+  ['Preciso agendar para visitar a loja?', `Não. As lojas de ${cidades} recebem sem hora marcada: ${h}.`],
+  ['Como faço para criar uma peça com a Tata?', `O atendimento com a Tata é agendado com a ${contato.atendente}, pelo WhatsApp ${contato.whatsappExibicao}. A reunião pode ser presencial (${atendimentoTata.presencial}) ou online (${atendimentoTata.online}). O valor é pago uma única vez e não é devolvido nem abatido do valor da peça.`],
+  ['Moro em outra cidade ou país. Posso fazer o meu vestido de noiva com a Honōria?', 'Sim. A Tata atende noivas de qualquer lugar do mundo, e o encontro com ela normalmente acontece por chamada de vídeo.'],
+  ['Como funciona o Sob Medida?', 'Reunião com a Tata, criação conjunta, tiragem de medidas, modelagem, corte, costura, arremate, as provas necessárias até tudo estar alinhado e, por fim, a entrega.'],
+  ['Vocês têm vestidos para pronta entrega?', `Sim, nas lojas de ${cidades}. Para saber de uma peça específica, fale com a ${contato.atendente} pelo WhatsApp.`],
+  ['Quanto custa um vestido?', 'As peças de pronta entrega publicadas no site mostram o seu valor. No Sob Medida, o valor depende de cada criação.'],
+  ['O que é a linha TATA by Honoria 1930?', 'Uma linha mais descontraída, ligada ao estilo pessoal da Tata, feita somente sob encomenda.'],
+  ['Como entro em contato?', `Pelo WhatsApp ${contato.whatsappExibicao} (${contato.atendente}), pelo e-mail ${contato.email} ou pelo Instagram @${contato.instagram}.`],
+];
+---
+<Base titulo="Perguntas frequentes" descricao="Perguntas frequentes sobre o atendimento, o Sob Medida, as noivas e a pronta entrega da Honōria 1930.">
+  <section class="topo">
+    <div class="envelope">
+      <span class="rotulo">Perguntas frequentes</span>
+      <h1 class="display">Antes de <em>começar.</em></h1>
+    </div>
+  </section>
+  <section class="secao" aria-label="Perguntas">
+    <div class="envelope">
+      <div class="perguntas">
+        {perguntas.map(([p, r], i) => (
+          <details open={i === 0}>
+            <summary>{p}</summary>
+            <div><p>{r}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Convite titulo="Ficou alguma dúvida?" />
+</Base>

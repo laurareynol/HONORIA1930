@@ -1,0 +1,61 @@
+---
+import '@fontsource/bodoni-moda/400.css';
+import '@fontsource/bodoni-moda/400-italic.css';
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+import Cabecalho from '../components/Cabecalho.astro';
+import Rodape from '../components/Rodape.astro';
+import WhatsFixo from '../components/WhatsFixo.astro';
+
+interface Props {
+  titulo?: string;
+  descricao?: string;
+  pagina?: string;
+}
+const {
+  titulo,
+  descricao = 'Honōria 1930: alta-costura autoral brasileira. Vestidos de festa e de noiva Sob Medida, criados por Tata Ribeiro. Lojas em Goiânia e São Paulo.',
+  pagina = '',
+} = Astro.props;
+const tituloCompleto = titulo ? `${titulo} · Honōria 1930` : 'Honōria 1930 · Alta-costura autoral brasileira';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<!doctype html>
+<html lang="pt-BR" class="sem-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descricao} />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    <script is:inline>document.documentElement.classList.remove('sem-js');</script>
+  </head>
+  <body>
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <Cabecalho pagina={pagina} />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <Rodape />
+    <WhatsFixo />
+    <script>
+      // Revela os blocos com suavidade, uma única vez.
+      const alvos = document.querySelectorAll('.revela');
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entradas) => {
+          for (const e of entradas) {
+            if (e.isIntersecting) { e.target.classList.add('visivel'); obs.unobserve(e.target); }
+          }
+        }, { rootMargin: '0px 0px -8% 0px' });
+        alvos.forEach((a) => obs.observe(a));
+      } else {
+        alvos.forEach((a) => a.classList.add('visivel'));
+      }
+    </script>
+  </body>
+</html>

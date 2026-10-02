@@ -1,0 +1,61 @@
+---
+import Logo from './Logo.astro';
+import { navegacao, url, linkWhatsApp, contato } from '../config/site';
+interface Props { pagina?: string }
+const { pagina = '' } = Astro.props;
+---
+<header class="cabecalho" id="cabecalho">
+  <div class="envelope cabecalho__barra">
+    <a class="marca" href={url()} aria-label="Honōria 1930, página inicial"><Logo rotulo="Honōria 1930" /></a>
+    <nav class="nav" aria-label="Principal">
+      <ul>
+        {navegacao.map((item) => (
+          <li><a href={url(item.href)} aria-current={pagina === item.href ? 'page' : undefined}>{item.rotulo}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="cabecalho__acoes">
+      <a class="btn cabecalho__agendar" href={url('atendimento')}>Agendar</a>
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="menu-botao__texto">Menu</span>
+        <span class="menu-botao__linhas" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+  <div class="menu" id="menu">
+    <nav aria-label="Menu">
+      <ul>
+        <li><a href={url()}>Início</a></li>
+        {navegacao.map((item) => <li><a href={url(item.href)}>{item.rotulo}</a></li>)}
+        <li><a href={url('atendimento')}>Atendimento</a></li>
+      </ul>
+    </nav>
+    <div class="menu__rodape">
+      <a class="btn" href={linkWhatsApp()} target="_blank" rel="noopener">Falar com a {contato.atendente} no WhatsApp</a>
+      <a class="link" href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">@{contato.instagram}</a>
+    </div>
+  </div>
+</header>
+<script>
+  const raiz = document.documentElement;
+  const botao = document.querySelector<HTMLButtonElement>('.menu-botao');
+  const texto = document.querySelector('.menu-botao__texto');
+  const fechar = () => {
+    raiz.removeAttribute('data-menu');
+    botao?.setAttribute('aria-expanded', 'false');
+    if (texto) texto.textContent = 'Menu';
+  };
+  botao?.addEventListener('click', () => {
+    const aberto = raiz.getAttribute('data-menu') === 'aberto';
+    if (aberto) { fechar(); return; }
+    raiz.setAttribute('data-menu', 'aberto');
+    botao.setAttribute('aria-expanded', 'true');
+    if (texto) texto.textContent = 'Fechar';
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fechar(); botao?.focus(); } });
+  document.querySelectorAll('.menu a').forEach((a) => a.addEventListener('click', fechar));
+  const cab = document.getElementById('cabecalho');
+  const marcar = () => cab?.classList.toggle('rolado', window.scrollY > 8);
+  window.addEventListener('scroll', marcar, { passive: true });
+  marcar();
+</script>

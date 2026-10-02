@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Convite from '../../components/Convite.astro';
+import { url } from '../../config/site';
+export async function getStaticPaths() {
+  const textos = await getCollection('diario', (t) => !t.data.rascunho);
+  return textos.map((t) => ({ params: { slug: t.id }, props: { texto: t } }));
+}
+const { texto } = Astro.props;
+const { Content } = await render(texto);
+const fmt = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+<Base titulo={texto.data.titulo} pagina="diario" descricao={texto.data.resumo}>
+  <article>
+    <section class="topo">
+      <div class="envelope">
+        <a class="link" href={url('diario')} style="margin-bottom:40px">Diário</a>
+        <p class="pequeno texto-2" style="margin-top:32px">{fmt.format(texto.data.data)}</p>
+        <h1 class="display">{texto.data.titulo}</h1>
+      </div>
+    </section>
+    {texto.data.capa && (
+      <div class="envelope"><div class="dupla__foto" style="aspect-ratio: 16 / 9"><Image src={texto.data.capa} alt={texto.data.descricaoCapa ?? ''} widths={[800, 1200, 1600]} sizes="100vw" loading="eager" /></div></div>
+    )}
+    <section class="secao"><div class="envelope"><div class="artigo"><Content /></div></div></section>
+  </article>
+  <Convite />
+</Base>

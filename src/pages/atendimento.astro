@@ -1,0 +1,124 @@
+---
+import Base from '../layouts/Base.astro';
+import Lojas from '../components/Lojas.astro';
+import NotaTata from '../components/NotaTata.astro';
+import { contato, linkWhatsApp, url } from '../config/site';
+---
+<Base titulo="Atendimento" pagina="atendimento" descricao="Agende uma conversa com a Honōria 1930: atendimento nas lojas de Goiânia e São Paulo ou com Tata Ribeiro, presencial ou online.">
+  <section class="topo">
+    <div class="envelope">
+      <span class="rotulo">Atendimento</span>
+      <h1 class="display">Vamos <em>conversar.</em></h1>
+      <p class="lead texto-2">Conte um pouco sobre a sua ocasião. A mensagem segue pelo WhatsApp para a {contato.atendente}, que organiza o seu atendimento.</p>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="pedido">
+    <div class="envelope dupla dupla--topo">
+      <form class="formulario" id="formulario" novalidate>
+        <h2 class="visualmente-oculto" id="pedido">Pedido de atendimento</h2>
+        <div class="campo">
+          <label for="nome">Seu nome</label>
+          <input id="nome" name="nome" autocomplete="name" required />
+        </div>
+        <div class="campos-duplos">
+          <div class="campo">
+            <label for="interesse">Interesse</label>
+            <select id="interesse" name="interesse">
+              <option value="Vestido de noiva" data-chave="noiva">Vestido de noiva</option>
+              <option value="Criação Sob Medida" data-chave="sob-medida">Criação Sob Medida</option>
+              <option value="Pronta entrega" data-chave="pronta-entrega">Pronta entrega</option>
+              <option value="TATA by Honoria 1930" data-chave="tata">TATA by Honoria 1930</option>
+              <option value="Outro assunto" data-chave="outro">Outro assunto</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="ocasiao">Ocasião</label>
+            <select id="ocasiao" name="ocasiao">
+              <option value="">Escolha</option>
+              <option>Meu casamento</option>
+              <option>Madrinha</option>
+              <option>Mãe dos noivos</option>
+              <option>Formatura</option>
+              <option>Debutante</option>
+              <option>Convidada</option>
+              <option>Outra</option>
+            </select>
+          </div>
+        </div>
+        <div class="campos-duplos">
+          <div class="campo">
+            <label for="data">Data do evento</label>
+            <input id="data" name="data" type="date" />
+          </div>
+          <div class="campo">
+            <label for="cidade">Cidade onde você está</label>
+            <input id="cidade" name="cidade" autocomplete="address-level2" />
+          </div>
+        </div>
+        <div class="campo">
+          <label for="mensagem">Conte mais, se quiser</label>
+          <textarea id="mensagem" name="mensagem"></textarea>
+        </div>
+        <p class="pequeno texto-2" style="margin:0">Os seus dados não ficam guardados no site: eles seguem apenas na mensagem que você envia pelo WhatsApp. <a href={url('privacidade')}>Privacidade</a>.</p>
+        <p class="pequeno" id="aviso" role="alert" style="margin:0"></p>
+        <div><button class="btn" type="submit">Enviar pelo WhatsApp</button></div>
+      </form>
+
+      <div>
+        <NotaTata />
+        <div style="margin-top:48px" class="pequeno">
+          <span class="rotulo">Outros canais</span>
+          <p style="margin:0 0 8px"><a href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp {contato.whatsappExibicao}</a> ({contato.atendente})</p>
+          <p style="margin:0 0 8px"><a href={`mailto:${contato.email}`}>{contato.email}</a></p>
+          <p style="margin:0"><a href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">Instagram @{contato.instagram}</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--papel" aria-labelledby="lojas">
+    <div class="envelope">
+      <div class="cabeca-secao">
+        <div>
+          <span class="rotulo">Lojas</span>
+          <h2 class="titulo" id="lojas">Sem hora <em>marcada.</em></h2>
+        </div>
+        <p class="texto texto-2">As lojas recebem visitas no horário de funcionamento. O atendimento com a Tata é sempre agendado.</p>
+      </div>
+      <Lojas />
+    </div>
+  </section>
+</Base>
+
+<script define:vars={{ numero: contato.whatsapp }}>
+  const form = document.getElementById('formulario');
+  const aviso = document.getElementById('aviso');
+  const interesse = document.getElementById('interesse');
+  const chave = new URLSearchParams(location.search).get('interesse');
+  if (chave) {
+    const opcao = interesse.querySelector(`[data-chave="${chave}"]`);
+    if (opcao) opcao.selected = true;
+  }
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(form);
+    const nome = String(d.get('nome') || '').trim();
+    if (!nome) { aviso.textContent = 'Escreva o seu nome para continuar.'; form.nome.focus(); return; }
+    aviso.textContent = '';
+    let data = String(d.get('data') || '');
+    if (data) { const [a, m, dia] = data.split('-'); data = `${dia}/${m}/${a}`; }
+    const linhas = [
+      `Olá, Cris! Sou ${nome} e vim pelo site da Honōria.`,
+      `Interesse: ${d.get('interesse')}`,
+      d.get('ocasiao') && `Ocasião: ${d.get('ocasiao')}`,
+      data && `Data do evento: ${data}`,
+      d.get('cidade') && `Cidade: ${d.get('cidade')}`,
+      d.get('mensagem') && `\n${d.get('mensagem')}`,
+    ].filter(Boolean);
+    const destino = `https://wa.me/${numero}?text=${encodeURIComponent(linhas.join('\n'))}`;
+    const janela = window.open(destino, '_blank');
+    if (janela) janela.opener = null;
+    else location.href = destino;
+  });
+</script>

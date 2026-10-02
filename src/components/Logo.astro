@@ -1,0 +1,7 @@
+---
+import LogoSvg from '../assets/logo.svg?raw';
+interface Props { rotulo?: string }
+const { rotulo = 'Honōria 1930' } = Astro.props;
+const svg = LogoSvg.replace('<svg ', `<svg role="img" aria-label="${rotulo}" `);
+---
+<Fragment set:html={svg} />

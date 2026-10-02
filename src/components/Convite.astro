@@ -1,0 +1,22 @@
+---
+import { url, linkWhatsApp, contato } from '../config/site';
+interface Props { titulo?: string; texto?: string; interesse?: string }
+const {
+  titulo = 'Vamos conversar sobre a sua ocasião?',
+  texto = `Conte para a ${contato.atendente} o que você procura. Ela organiza o seu atendimento, nas lojas ou com a Tata.`,
+  interesse,
+} = Astro.props;
+const destino = interesse ? `${url('atendimento')}?interesse=${interesse}` : url('atendimento');
+---
+<section class="secao secao--papel">
+  <div class="envelope dupla">
+    <h2 class="titulo revela">{titulo}</h2>
+    <div class="revela">
+      <p class="lead">{texto}</p>
+      <div class="botoes">
+        <a class="btn" href={destino}>Agendar uma conversa</a>
+        <a class="btn btn--linha" href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>

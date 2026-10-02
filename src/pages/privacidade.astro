@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { contato } from '../config/site';
+---
+<Base titulo="Privacidade" descricao="Política de privacidade do site da Honōria 1930.">
+  <section class="topo">
+    <div class="envelope">
+      <span class="rotulo">Privacidade</span>
+      <h1 class="display">Política de <em>privacidade.</em></h1>
+      <p class="pequeno texto-2" style="margin-top:24px">Atualizada em outubro de 2026.</p>
+    </div>
+  </section>
+  <section class="secao">
+    <div class="envelope prosa">
+      <p class="lead">Este site foi feito para apresentar a Honōria e facilitar o contato com o nosso atendimento. Ele não guarda os seus dados.</p>
+      <h2>Formulário de atendimento</h2>
+      <p>Ao preencher o formulário da página Atendimento, as informações (nome, interesse, ocasião, data do evento, cidade e mensagem) são reunidas numa mensagem que abre no seu WhatsApp. Nada é enviado ou armazenado pelo site: só chega até nós o que você decidir enviar.</p>
+      <h2>Como usamos as informações</h2>
+      <p>Usamos os dados que você nos envia pelo WhatsApp, e-mail ou Instagram apenas para responder ao seu contato e organizar o seu atendimento, de acordo com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+      <h2>Cookies e medição</h2>
+      <p>Este site não usa cookies de publicidade nem ferramentas de rastreamento. Links para WhatsApp, Instagram e Google Maps levam a serviços de terceiros, que têm as suas próprias políticas.</p>
+      <h2>Os seus direitos</h2>
+      <p>Você pode pedir a qualquer momento acesso, correção ou exclusão dos seus dados escrevendo para <a href={`mailto:${contato.email}`}>{contato.email}</a>.</p>
+    </div>
+  </section>
+</Base>
