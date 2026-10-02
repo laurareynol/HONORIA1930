@@ -20,7 +20,7 @@ Cada pasta de conteúdo tem um arquivo `_modelo.md`. Para criar algo novo, copie
 
 1. Coloque a foto em `src/assets/fotos/` (JPG, de preferência com pelo menos 1600 px de altura).
 2. Copie `src/content/pronta-entrega/_modelo.md` para um novo arquivo, ex.: `vestido-azul.md`.
-3. Preencha nome, foto, descrição e loja (`goiania` ou `sao-paulo`). O preço é opcional: se ficar em branco, a peça aparece sem valor.
+3. Preencha nome, foto, descrição e loja (`Goiânia`, `São Paulo` ou `Goiânia e São Paulo`). O preço é opcional: se ficar em branco, a peça aparece sem valor.
 4. Quando a peça for vendida, mude `disponivel: false` ou apague o arquivo.
 
 ## Publicar
