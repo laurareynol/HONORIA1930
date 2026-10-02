@@ -363,7 +363,7 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
   font-size: 15px; font-weight: 400; color: var(--tinta-2);
   font-variant-numeric: tabular-nums;
 }
-.cartao__corpo { margin-top: auto; }
+.cartao__corpo { margin-top: auto; min-height: 168px; }
 .cartao__corpo h3 { margin-bottom: 12px; }
 .cartao__corpo p { margin: 0; color: var(--tinta-2); }
 .cartao--grande .cartao__numero { font-size: clamp(64px, 7vw, 96px); font-weight: 150; letter-spacing: -0.04em; line-height: 1; color: var(--tinta); }
