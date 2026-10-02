@@ -26,7 +26,7 @@ const pares = [
   </div>
   <div class="movimento__grade">
     {pares.map((par) => (
-      <figure class="movimento__par">
+      <div class="movimento__par">
         <div class="movimento__videos">
           {par.videos.map((v) => (
             <div class="movimento__quadro">
@@ -44,8 +44,7 @@ const pares = [
             </div>
           ))}
         </div>
-        <figcaption class="olho">{par.nome}</figcaption>
-      </figure>
+      </div>
     ))}
   </div>
 </section>
