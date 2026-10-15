@@ -14,6 +14,25 @@ export const horario = [
   { dias: 'Sábado', horas: '9h às 13h' },
 ];
 
+export const contatoSaoPaulo = {
+  whatsapp: '5511924606664',
+  whatsappExibicao: '(11) 92460-6664',
+};
+
+export const producao = {
+  whatsapp: '5562998741001',
+  whatsappExibicao: '(62) 99874-1001',
+};
+
+export function linkWhatsAppProducao(mensagem = 'Olá! Vim pelo site da Honōria e gostaria de começar minha criação Sob Medida.') {
+  return `https://wa.me/${producao.whatsapp}?text=${encodeURIComponent(mensagem)}`;
+}
+
+export function linkWhatsAppSaoPaulo() {
+  const mensagem = 'Olá! Vim pelo site da Honōria e gostaria de agendar um atendimento online ou presencial em São Paulo.';
+  return `https://wa.me/${contatoSaoPaulo.whatsapp}?text=${encodeURIComponent(mensagem)}`;
+}
+
 // Para retirar uma loja do site, basta apagar o bloco dela.
 export const lojas = [
   {
@@ -23,13 +42,6 @@ export const lojas = [
     endereco: 'R. 1131, 412, St. Marista',
     cep: '74180-100',
   },
-  {
-    cidade: 'São Paulo',
-    uf: 'SP',
-    papel: 'Loja',
-    endereco: 'Alameda Itu, 1618, Jardim Paulista',
-    cep: '04191-080',
-  },
 ];
 
 // Atendimento com a Tata: agendado, pago uma única vez, sem devolução e sem abatimento.
@@ -38,17 +50,11 @@ export const atendimentoTata = {
   presencial: 'R$ 500',
 };
 
-// Etapas do Sob Medida, na ordem em que acontecem.
+// Os três momentos da experiência Sob Medida.
 export const etapasSobMedida: [string, string][] = [
-  ['Reunião com a Tata', 'Uma conversa sobre a ocasião, os seus desejos e a forma como você quer se sentir vestida.'],
-  ['Criação conjunta', 'O desenho nasce dessa conversa. Silhueta, matéria e detalhes são decididos juntos.'],
-  ['Tiragem de medidas', 'O seu corpo é a referência de tudo o que vem depois.'],
-  ['Modelagem', 'O desenho ganha molde, construído a partir das suas medidas.'],
-  ['Corte', 'A matéria escolhida é cortada com a precisão que o molde pede.'],
-  ['Costura', 'No ateliê, a peça ganha forma pelas mãos das costureiras.'],
-  ['Arremate', 'Os acabamentos que só quem faz percebe, e que sustentam a peça por dentro.'],
-  ['Provas', 'Quantas forem necessárias, até tudo estar alinhado.'],
-  ['Entrega', 'A peça segue para a sua ocasião.'],
+  ['Uma conversa com a estilista', 'Sua ocasião, seus desejos e a forma como você quer se sentir dão início à criação.'],
+  ['O desenho ganha forma', 'Silhueta, tecidos e detalhes são definidos com você. No ateliê em Goiânia, a peça é construída a partir das suas medidas.'],
+  ['As provas e os detalhes finais', 'O caimento é acompanhado nas provas, com os ajustes necessários até a entrega.'],
 ];
 
 export function linkWhatsApp(mensagem = 'Olá, Cris! Vim pelo site da Honōria.') {

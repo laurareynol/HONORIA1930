@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Etapas from '../components/Etapas.astro';
 import Chamada from '../components/Chamada.astro';
-import { url, etapasSobMedida } from '../config/site';
+import { url, etapasSobMedida, linkWhatsAppProducao } from '../config/site';
 import vermelhoCroquis from '../assets/fotos/vermelho-croquis.jpg';
 import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
 
@@ -16,8 +16,8 @@ const ocasioes = ['Madrinhas', 'Mães dos noivos', 'Irmãs dos noivos', 'Formand
       <h1 class="h-hero">Criado a partir de você.</h1>
       <p class="sub texto-2">Uma peça Sob Medida não é um vestido ajustado às suas medidas. É uma criação construída a partir de quem vai vesti-la.</p>
       <div class="acoes acoes--centro">
-        <a class="botao" href={`${url('atendimento')}?interesse=sob-medida`}>Agendar com a Tata</a>
-        <a class="seta" href="#etapas">Ver as etapas</a>
+        <a class="botao" href={linkWhatsAppProducao()} target="_blank" rel="noopener">Agendar com a Tata</a>
+        <a class="seta" href="#etapas">Conhecer a experiência</a>
       </div>
     </div>
   </section>
@@ -29,10 +29,11 @@ const ocasioes = ['Madrinhas', 'Mães dos noivos', 'Irmãs dos noivos', 'Formand
   <section class="secao secao--cinza" aria-labelledby="etapas" id="etapas">
     <div class="envelope revela">
       <span class="olho">O processo</span>
-      <h2 class="h-1">Da conversa à entrega.</h2>
-      <p class="sub texto-2">Estas são as etapas de cada criação. O tempo de cada uma depende da peça.</p>
+      <h2 class="h-1">Uma criação que começa em você.</h2>
+      <p class="sub texto-2">Da primeira conversa às provas, cada escolha faz parte da construção da sua peça.</p>
     </div>
     <div style="margin-top:clamp(40px,5vw,64px)"><Etapas etapas={etapasSobMedida} /></div>
+    <div class="envelope"><div class="acoes"><a class="seta" href={linkWhatsAppProducao()} target="_blank" rel="noopener">Começar minha criação</a></div></div>
   </section>
 
   <section class="secao centro" aria-labelledby="para-quem">

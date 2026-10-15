@@ -3,19 +3,48 @@ interface Props { etapas: [string, string][] }
 const { etapas } = Astro.props;
 ---
 <div class="carrossel" data-carrossel>
-  <ol class="carrossel__trilho" aria-label="Etapas">
+  <ol class="carrossel__trilho experiencia__trilho" aria-label="Os três momentos da criação Sob Medida">
     {etapas.map(([nome, texto], i) => (
-      <li class="cartao cartao--grande">
-        <span class="cartao__numero">{String(i + 1).padStart(2, '0')}</span>
-        <div class="cartao__corpo">
-          <h3 class="h-3">{nome}</h3>
-          <p>{texto}</p>
-        </div>
+      <li class="cartao experiencia__momento">
+        <span class="experiencia__numero" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <h3 class="h-3">{nome}</h3>
+        <p class="texto-2">{texto}</p>
       </li>
     ))}
   </ol>
   <div class="envelope carrossel__controles">
-    <button class="redondo" type="button" data-voltar aria-label="Etapa anterior"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 2 4 7l5 5"/></svg></button>
-    <button class="redondo" type="button" data-avancar aria-label="Próxima etapa"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 2 5 5-5 5"/></svg></button>
+    <button class="redondo" type="button" data-voltar aria-label="Momento anterior"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 2 4 7l5 5"/></svg></button>
+    <button class="redondo" type="button" data-avancar aria-label="Próximo momento"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 2 5 5-5 5"/></svg></button>
   </div>
 </div>
+<style>
+  .experiencia__trilho {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(82vw, 340px);
+    grid-template-rows: auto auto 1fr;
+    gap: 20px;
+  }
+  .experiencia__momento {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: 20px;
+    width: auto;
+    min-height: 320px;
+    align-items: start;
+  }
+  .experiencia__numero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--tinta-2);
+    font-size: 12px;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .04em;
+  }
+  .experiencia__momento h3, .experiencia__momento p { margin: 0; }
+</style>

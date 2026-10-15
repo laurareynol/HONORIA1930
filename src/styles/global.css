@@ -428,14 +428,19 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 /* ---------- Lojas ---------- */
 
 .lojas { display: grid; gap: 12px; margin-top: clamp(48px, 6vw, 72px); }
-@media (min-width: 760px) { .lojas { grid-template-columns: 1fr 1fr; } }
-.loja { background: var(--branco); border-radius: var(--raio); padding: clamp(36px, 4vw, 52px); text-align: center; }
+.loja { display: grid; gap: 24px; align-content: start; background: var(--branco); border-radius: var(--raio); padding: clamp(36px, 4vw, 52px); text-align: center; }
+@media (min-width: 760px) {
+  .lojas { grid-template-columns: 1fr 1fr; row-gap: 24px; }
+  .loja { grid-row: span 5; grid-template-rows: subgrid; }
+}
 .secao:not(.secao--cinza) .loja { background: var(--cinza); }
-.loja address { font-style: normal; color: var(--tinta-2); margin: 14px 0 20px; }
-.loja dl { display: grid; gap: 2px; margin: 0 0 4px; font-size: 15px; }
+.loja > .olho, .loja > .h-2, .loja p { margin: 0; }
+.loja address { font-style: normal; color: var(--tinta-2); margin: 0; }
+.loja__detalhes { display: grid; align-content: start; gap: 12px; }
+.loja dl { display: grid; gap: 2px; margin: 0; font-size: 15px; }
 .loja dt { color: var(--tinta-2); display: inline; }
 .loja dd { display: inline; margin: 0; }
-.loja .acoes { margin-top: 24px; }
+.loja .acoes { justify-content: center; align-self: end; margin-top: 8px; }
 
 /* ---------- Chamada final ---------- */
 

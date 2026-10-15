@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Chamada from '../components/Chamada.astro';
-import { linkWhatsApp } from '../config/site';
+import { linkWhatsAppProducao } from '../config/site';
 
 const criacoes = (await getCollection('criacoes')).sort((a, b) => a.data.ordem - b.data.ordem);
 const filtros = [
@@ -53,11 +53,11 @@ const filtros = [
       <h2 class="h-1" id="tata-linha">TATA by Honoria 1930.</h2>
       <p class="sub texto-2">Uma linha mais descontraída, ligada ao estilo pessoal da Tata, com o mesmo cuidado de construção e acabamento de toda peça Honōria.</p>
       <p class="texto texto-2" style="margin-top:20px">Peças feitas somente sob encomenda.</p>
-      <div class="acoes"><a class="botao" href={linkWhatsApp('Olá, Cris! Gostaria de encomendar uma peça da linha TATA by Honoria 1930.')} target="_blank" rel="noopener">Encomendar pelo WhatsApp</a></div>
+      <div class="acoes"><a class="botao" href={linkWhatsAppProducao('Olá, produção! Gostaria de encomendar uma peça da linha TATA by Honoria 1930.')} target="_blank" rel="noopener">Encomendar pelo WhatsApp</a></div>
     </div>
   </section>
 
-  <Chamada titulo="Viu algo que conversa com você?" texto="Toda criação pode ser o ponto de partida para a sua. Conte o que chamou a sua atenção." />
+  <Chamada titulo="Viu algo que conversa com você?" texto="Toda criação pode ser o ponto de partida para a sua. Conte o que chamou a sua atenção." interesse="sob-medida" />
 </Base>
 
 <script>

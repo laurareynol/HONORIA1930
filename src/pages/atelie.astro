@@ -11,7 +11,7 @@ import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
   <section class="cabeca">
     <div class="envelope">
       <span class="olho">A casa</span>
-      <h1 class="h-hero">Desenhado por Tata. Construído por muitas mãos.</h1>
+      <h1 class="h-hero titulo-atelie"><span>Desenhado por Tata.</span> <span>Construído por muitas mãos.</span></h1>
       <p class="sub texto-2">Cada peça nasce do encontro entre visão criativa, modelagem, técnica, matéria e o trabalho das mulheres que a constroem.</p>
     </div>
   </section>
@@ -31,7 +31,7 @@ import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
       <div class="destaques" style="text-align:left">
         <div class="destaque revela"><span class="olho">Fundação</span><h3 class="h-2">2017</h3><p>Março, em Uberlândia, Minas Gerais.</p></div>
         <div class="destaque revela revela-atraso"><span class="olho">Ateliê</span><h3 class="h-2">Goiânia</h3><p>Onde cada peça é modelada, cortada e costurada.</p></div>
-        <div class="destaque revela revela-atraso"><span class="olho">Lojas</span><h3 class="h-2">Goiânia e São Paulo</h3><p>Visitas sem hora marcada.</p></div>
+        <div class="destaque revela revela-atraso"><span class="olho">Loja e atendimento</span><h3 class="h-2">No Brasil e no mundo</h3><p>Loja em Goiânia, com visitas sem hora marcada. Atendimento online de onde você estiver ou presencial em São Paulo, com agendamento.</p></div>
       </div>
     </div>
   </section>
@@ -69,3 +69,9 @@ import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
 
   <Chamada />
 </Base>
+
+<style>
+  .cabeca .titulo-atelie { max-width: 16em; font-size: clamp(28px, 6vw, 88px); }
+  .titulo-atelie span { display: block; }
+  .titulo-atelie span:first-child { white-space: nowrap; }
+</style>

@@ -8,12 +8,12 @@ import { linkWhatsApp, contato } from '../config/site';
 const pecas = (await getCollection('pronta-entrega')).filter((p) => p.data.disponivel);
 const renderizadas = await Promise.all(pecas.map(async (p) => ({ peca: p, Conteudo: (await render(p)).Content })));
 ---
-<Base titulo="Pronta entrega" pagina="pronta-entrega" descricao="Pronta entrega Honōria 1930: criações autorais disponíveis nas lojas de Goiânia e São Paulo.">
+<Base titulo="Pronta entrega" pagina="pronta-entrega" descricao="Pronta entrega Honōria 1930: criações autorais disponíveis na loja de Goiânia.">
   <section class="cabeca">
     <div class="envelope">
       <span class="olho">Pronta entrega</span>
       <h1 class="h-hero">Pronta para encontrar quem vai vesti-la.</h1>
-      <p class="sub texto-2">Peças autorais com o mesmo desenho, acabamento e cuidado de toda criação Honōria, nas lojas de Goiânia e São Paulo.</p>
+      <p class="sub texto-2">Peças autorais com o mesmo desenho, acabamento e cuidado de toda criação Honōria, na loja de Goiânia.</p>
     </div>
   </section>
 
@@ -38,7 +38,7 @@ const renderizadas = await Promise.all(pecas.map(async (p) => ({ peca: p, Conteu
       ) : (
         <div class="vazio revela">
           <h2 class="h-2">As peças mudam com frequência.</h2>
-          <p class="sub texto-2">Para saber o que está nas lojas agora, fale com a {contato.atendente} ou visite a loja mais próxima, sem hora marcada.</p>
+          <p class="sub texto-2">Para saber o que está disponível na loja agora, fale com a {contato.atendente} ou visite nossa loja em Goiânia, sem hora marcada.</p>
           <div class="acoes acoes--centro"><a class="botao" href={linkWhatsApp('Olá, Cris! Gostaria de saber quais peças estão disponíveis para pronta entrega.')} target="_blank" rel="noopener">Perguntar no WhatsApp</a></div>
         </div>
       )}
@@ -48,8 +48,8 @@ const renderizadas = await Promise.all(pecas.map(async (p) => ({ peca: p, Conteu
   <section class="secao secao--cinza centro" aria-labelledby="visitar">
     <div class="envelope">
       <div class="revela">
-        <span class="olho">Nas lojas</span>
-        <h2 class="h-1" id="visitar">Prove na loja.</h2>
+        <span class="olho">Em Goiânia</span>
+        <h2 class="h-1" id="visitar">Loja e atendimento.</h2>
       </div>
       <Lojas />
     </div>

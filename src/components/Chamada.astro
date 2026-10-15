@@ -1,9 +1,9 @@
 ---
-import { url, linkWhatsApp } from '../config/site';
+import { url, linkWhatsApp, linkWhatsAppProducao } from '../config/site';
 interface Props { titulo?: string; texto?: string; interesse?: string }
 const {
   titulo = 'Vamos conversar sobre a sua ocasião?',
-  texto = 'Conte o que você procura. Organizamos o seu atendimento, nas lojas ou para uma criação exclusiva.',
+  texto = 'Conte o que você procura. Organizamos o seu atendimento na loja em Goiânia, online ou presencial em São Paulo, com agendamento.',
   interesse,
 } = Astro.props;
 const destino = interesse ? `${url('atendimento')}?interesse=${interesse}` : url('atendimento');
@@ -14,7 +14,7 @@ const destino = interesse ? `${url('atendimento')}?interesse=${interesse}` : url
     <p class="sub">{texto}</p>
     <div class="acoes">
       <a class="botao botao--claro" href={destino}>Agendar uma conversa</a>
-      <a class="seta" href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp</a>
+      <a class="seta" href={interesse ? linkWhatsAppProducao() : linkWhatsApp()} target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </div>
 </section>

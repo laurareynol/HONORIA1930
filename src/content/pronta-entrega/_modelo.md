@@ -4,7 +4,7 @@
 nome: Nome do vestido
 foto: ../../assets/fotos/NOME-DA-FOTO.jpg
 descricao: Descreva o que aparece na foto, para quem usa leitor de tela.
-loja: Goiânia # Goiânia, São Paulo ou "Goiânia e São Paulo"
+loja: Goiânia # Loja física em Goiânia
 preco: R$ 0.000 # opcional: apague a linha para não mostrar preço
 tamanho: 38 # opcional
 disponivel: true # mude para false quando a peça sair

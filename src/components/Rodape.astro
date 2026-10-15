@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { contato, lojas, horario, navegacao, url, linkWhatsApp, linkMapa } from '../config/site';
+import { contato, lojas, horario, navegacao, url, linkWhatsApp, linkMapa, contatoSaoPaulo, linkWhatsAppSaoPaulo, producao, linkWhatsAppProducao } from '../config/site';
 const ano = new Date().getFullYear();
 ---
 <footer class="rodape">
@@ -14,7 +14,7 @@ const ano = new Date().getFullYear();
         </ul>
       </div>
       <div>
-        <h2>Lojas</h2>
+        <h2>Loja e ateliê · Goiânia</h2>
         {lojas.map((loja) => (
           <address>
             <strong>{loja.cidade}</strong><br />
@@ -26,8 +26,10 @@ const ano = new Date().getFullYear();
       <div>
         <h2>Atendimento</h2>
         <ul>
+          <li><a href={linkWhatsAppSaoPaulo()} target="_blank" rel="noopener">No Brasil e no mundo · Com agendamento<br />WhatsApp {contatoSaoPaulo.whatsappExibicao}</a></li>
           <li><a href={url('atendimento')}>Agendar uma conversa</a></li>
-          <li><a href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp {contato.whatsappExibicao}</a></li>
+          <li><a href={linkWhatsAppProducao()} target="_blank" rel="noopener">Sob Medida · Produção {producao.whatsappExibicao}</a></li>
+          <li><a href={linkWhatsApp()} target="_blank" rel="noopener">Loja e dúvidas · {contato.whatsappExibicao}</a></li>
           <li><a href={`mailto:${contato.email}`}>{contato.email}</a></li>
           <li><a href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">Instagram @{contato.instagram}</a></li>
         </ul>
@@ -43,7 +45,7 @@ const ano = new Date().getFullYear();
     </div>
     <div class="rodape__base">
       <span>© {ano} Honōria 1930. Alta-costura autoral brasileira.</span>
-      <span>Goiânia · São Paulo</span>
+      <span>Goiânia · No Brasil e no mundo</span>
     </div>
   </div>
 </footer>

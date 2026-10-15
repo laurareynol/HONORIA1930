@@ -6,7 +6,7 @@ import Declaracao from '../components/Declaracao.astro';
 import Etapas from '../components/Etapas.astro';
 import Chamada from '../components/Chamada.astro';
 import Movimento from '../components/Movimento.astro';
-import { url, etapasSobMedida } from '../config/site';
+import { url, etapasSobMedida, linkWhatsAppProducao } from '../config/site';
 import vermelhoJanela from '../assets/fotos/vermelho-janela.jpg';
 import noivas from '../assets/fotos/noivas.jpg';
 import vermelhoCroquis from '../assets/fotos/vermelho-croquis.jpg';
@@ -17,7 +17,7 @@ import tata from '../assets/fotos/tata.jpg';
 const blocos = [
   { titulo: 'Honoria para Casar', texto: 'Um vestido de noiva que nasce da sua história.', href: 'honoria-para-casar', acao: 'Para noivas', foto: noivas, alt: 'Três noivas sentadas lado a lado, com vestidos de renda e tule.', posicao: '50% 40%' },
   { titulo: 'Sob Medida', texto: 'Para madrinhas, formandas, debutantes e convidadas.', href: 'sob-medida', acao: 'Como funciona', foto: vermelhoCroquis, alt: 'Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê.', posicao: '50% 30%' },
-  { titulo: 'Pronta entrega', texto: 'Criações autorais nas lojas de Goiânia e São Paulo.', href: 'pronta-entrega', acao: 'Ver as peças', foto: pretoManequim, alt: 'Em preto e branco, modelo com vestido de renda ao lado de um manequim.', posicao: '64% 50%' },
+  { titulo: 'Pronta entrega', texto: 'Criações autorais na nossa loja em Goiânia.', href: 'pronta-entrega', acao: 'Ver as peças', foto: pretoManequim, alt: 'Em preto e branco, modelo com vestido de renda ao lado de um manequim.', posicao: '64% 50%' },
   { titulo: 'O ateliê', texto: 'Desenhado por Tata, construído por muitas mãos.', href: 'atelie', acao: 'Conhecer', foto: rosaMaquina, alt: 'Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura.', posicao: '50% 38%' },
 ];
 ---
@@ -38,7 +38,7 @@ const blocos = [
   </section>
 
   <Declaracao olho="O nosso princípio" texto="Antes do vestido, existe a escuta. Cada criação começa por uma conversa: a ocasião, o que você deseja sentir, a sua relação com a roupa.">
-    <div class="acoes" style="margin-top:48px"><a class="seta" href={url('sob-medida')} style="color:var(--branco)">As etapas da criação</a></div>
+    <div class="acoes" style="margin-top:48px"><a class="seta" href={url('sob-medida')} style="color:var(--branco)">Conheça a criação Sob Medida</a></div>
   </Declaracao>
 
   <section class="mosaico" aria-label="Por onde começar">
@@ -59,11 +59,12 @@ const blocos = [
   <section class="secao secao--cinza" aria-labelledby="processo">
     <div class="envelope revela">
       <span class="olho">Sob Medida</span>
-      <h2 class="h-1" id="processo">Da conversa à entrega.</h2>
-      <p class="sub texto-2">Nove etapas, todas no nosso ateliê. O tempo de cada uma depende da peça.</p>
+      <h2 class="h-1" id="processo">Uma criação que começa em você.</h2>
+      <p class="sub texto-2">Da primeira conversa às provas, cada escolha faz parte da construção da sua peça.</p>
     </div>
     <div style="margin-top:clamp(40px,5vw,64px)">
       <Etapas etapas={etapasSobMedida} />
+      <div class="envelope"><div class="acoes"><a class="seta" href={linkWhatsAppProducao()} target="_blank" rel="noopener">Começar minha criação</a></div></div>
     </div>
   </section>
 
@@ -85,9 +86,9 @@ const blocos = [
   <section class="secao secao--cinza centro" aria-labelledby="lojas">
     <div class="envelope">
       <div class="revela">
-        <span class="olho">Visite</span>
-        <h2 class="h-1" id="lojas">Goiânia e São Paulo.</h2>
-        <p class="sub texto-2">As lojas recebem sem hora marcada. Para criar com a Tata, o atendimento é agendado.</p>
+        <span class="olho">Onde encontrar a Honōria</span>
+        <h2 class="h-1" id="lojas">Em Goiânia. No Brasil e no mundo.</h2>
+        <p class="sub texto-2">Nossa loja fica em Goiânia. Atendemos online de onde você estiver ou presencialmente em São Paulo, com agendamento.</p>
       </div>
       <Lojas />
     </div>

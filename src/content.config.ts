@@ -24,7 +24,7 @@ const prontaEntrega = defineCollection({
       nome: z.string(),
       foto: image(),
       descricao: z.string(),
-      loja: z.enum(['Goiânia', 'São Paulo', 'Goiânia e São Paulo']),
+      loja: z.literal('Goiânia'),
       preco: z.string().optional(), // ex.: "R$ 4.800"; deixe vazio para não exibir
       tamanho: z.string().optional(),
       disponivel: z.boolean().default(true),

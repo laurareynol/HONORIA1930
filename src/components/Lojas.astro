@@ -1,5 +1,5 @@
 ---
-import { lojas, horario, linkMapa, linkWhatsApp } from '../config/site';
+import { lojas, horario, linkMapa, linkWhatsApp, linkWhatsAppSaoPaulo, contatoSaoPaulo } from '../config/site';
 ---
 <div class="lojas">
   {lojas.map((loja, i) => (
@@ -7,14 +7,27 @@ import { lojas, horario, linkMapa, linkWhatsApp } from '../config/site';
       <span class="olho">{loja.papel}</span>
       <h3 class="h-2">{loja.cidade}</h3>
       <address>{loja.endereco}<br />{loja.cidade} - {loja.uf}, {loja.cep}</address>
-      <dl>
-        {horario.map((h) => (<div><dt>{h.dias}</dt> <dd>{h.horas}</dd></div>))}
-      </dl>
-      <p class="pequeno texto-2" style="margin:0">Sem hora marcada.</p>
+      <div class="loja__detalhes">
+        <dl>
+          {horario.map((h) => (<div><dt>{h.dias}</dt> <dd>{h.horas}</dd></div>))}
+        </dl>
+        <p class="pequeno texto-2">Visitas à loja sem hora marcada. Para atendimento com a Tata, agende previamente.</p>
+      </div>
       <div class="acoes">
         <a class="seta" href={linkMapa(loja)} target="_blank" rel="noopener">Como chegar</a>
         <a class="seta" href={linkWhatsApp(`Olá, Cris! Gostaria de saber mais sobre a loja de ${loja.cidade}.`)} target="_blank" rel="noopener">Falar com a loja</a>
       </div>
     </article>
   ))}
+  <article class="loja revela revela-atraso">
+    <span class="olho">Com agendamento</span>
+    <h3 class="h-2">No Brasil e no mundo</h3>
+    <p class="texto-2">Atendimento online de onde você estiver ou presencial em São Paulo, com agendamento.</p>
+    <div class="loja__detalhes">
+      <p class="pequeno texto-2">WhatsApp {contatoSaoPaulo.whatsappExibicao}</p>
+    </div>
+    <div class="acoes">
+      <a class="seta" href={linkWhatsAppSaoPaulo()} target="_blank" rel="noopener">Agendar atendimento</a>
+    </div>
+  </article>
 </div>
