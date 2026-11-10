@@ -1,24 +1,35 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Chamada from '../components/Chamada.astro';
 import { linkWhatsAppProducao } from '../config/site';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const criacoes = (await getCollection('criacoes')).sort((a, b) => a.data.ordem - b.data.ordem);
+const nomesOcasiao = { noivas: 'Noivas', festa: 'Festa', tata: 'TATA by Honoria 1930' } as const;
 const filtros = [
   { id: 'todas', rotulo: 'Todas' },
   { id: 'noivas', rotulo: 'Noivas' },
   { id: 'festa', rotulo: 'Festa' },
+  { id: 'movimento', rotulo: 'Em movimento' },
   { id: 'tata', rotulo: 'TATA by Honoria 1930' },
-].filter((f) => f.id === 'todas' || criacoes.some((c) => c.data.ocasiao === f.id));
+].filter((f) => f.id === 'todas' || criacoes.some((c) => (f.id === 'movimento' ? c.data.video : c.data.ocasiao === f.id)));
+
+// Cada peça leva a sua referência (o nome do arquivo) para a mensagem da produção.
+const pecas = await Promise.all(criacoes.map(async (c) => {
+  const grande = await getImage({ src: c.data.foto, width: 1400 });
+  const nome = c.data.titulo ? `a criação "${c.data.titulo}"` : 'uma criação';
+  const pedido = linkWhatsAppProducao(`Olá! Vi na galeria do site da Honōria ${nome} e gostaria de uma peça inspirada nela.\nReferência: ${c.id}`);
+  return { c, grande: grande.src, pedido, video: c.data.video ? `${base}/videos/${c.data.video}` : '' };
+}));
 ---
 <Base titulo="Criações" pagina="criacoes" descricao="Criações da Honōria 1930: vestidos de noiva e de festa feitos no ateliê.">
   <section class="cabeca">
     <div class="envelope">
       <span class="olho">Criações</span>
       <h1 class="h-hero">Da ideia à matéria.</h1>
-      <p class="sub texto-2">Vestidos de noiva e de festa desenhados por Tata Ribeiro e construídos no nosso ateliê.</p>
+      <p class="sub texto-2">Vestidos de noiva e de festa desenhados por Tata Ribeiro e construídos no nosso ateliê. Toque numa peça para vê-la de perto e pedir uma criação inspirada nela.</p>
     </div>
   </section>
 
@@ -26,15 +37,29 @@ const filtros = [
     <div class="envelope">
       {filtros.length > 2 && (
         <div class="filtros-envelope">
-          <div class="filtros" role="group" aria-label="Filtrar por ocasião">
+          <div class="filtros" role="group" aria-label="Filtrar criações">
             {filtros.map((f, i) => <button class="filtro" type="button" data-filtro={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>{f.rotulo}</button>)}
           </div>
         </div>
       )}
       <div class="galeria">
-        {criacoes.map((c) => (
-          <figure data-ocasiao={c.data.ocasiao}>
-            <Image src={c.data.foto} alt={c.data.descricao} widths={[480, 800]} sizes="(min-width: 1080px) 33vw, (min-width: 640px) 50vw, 100vw" />
+        {pecas.map(({ c, grande, pedido, video }) => (
+          <figure data-ocasiao={c.data.ocasiao ?? ''} data-com-video={video ? 'sim' : undefined}>
+            <button
+              class="galeria__abrir"
+              type="button"
+              data-grande={grande}
+              data-video={video || undefined}
+              data-titulo={c.data.titulo ?? ''}
+              data-legenda={c.data.legenda ?? ''}
+              data-ocasiao-nome={c.data.ocasiao ? nomesOcasiao[c.data.ocasiao] : ''}
+              data-pedido={pedido}
+              data-descricao={c.data.descricao}
+              aria-label={`Ver de perto: ${c.data.titulo ?? c.data.descricao}`}
+            >
+              <Image src={c.data.foto} alt={c.data.descricao} widths={[480, 800]} sizes="(min-width: 1080px) 33vw, (min-width: 640px) 50vw, 100vw" />
+              {video && <span class="galeria__selo" aria-hidden="true"><svg viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9L10.5 6z"/></svg></span>}
+            </button>
             {(c.data.titulo || c.data.legenda) && (
               <figcaption>
                 {c.data.titulo && <strong>{c.data.titulo}</strong>}
@@ -46,6 +71,26 @@ const filtros = [
       </div>
     </div>
   </section>
+
+  <dialog class="vitrine" id="vitrine" aria-labelledby="vitrine-titulo">
+    <div class="vitrine__corpo">
+      <div class="vitrine__midia" id="vitrine-midia"></div>
+      <div class="vitrine__texto">
+        <span class="olho" id="vitrine-ocasiao"></span>
+        <h2 class="h-2" id="vitrine-titulo">Criação Honōria</h2>
+        <p class="texto-2" id="vitrine-legenda"></p>
+        <p class="pequeno texto-2">Cada peça é única. A partir desta referência, a Tata cria a sua, com as suas medidas e as suas escolhas.</p>
+        <div class="acoes">
+          <a class="botao" id="vitrine-pedido" href="#" target="_blank" rel="noopener">Quero uma criação como esta</a>
+        </div>
+        <div class="vitrine__navegar">
+          <button class="redondo" type="button" data-vitrine="anterior" aria-label="Criação anterior"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 2 4 7l5 5"/></svg></button>
+          <button class="redondo" type="button" data-vitrine="proxima" aria-label="Próxima criação"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 2 5 5-5 5"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <button class="vitrine__fechar" type="button" data-vitrine="fechar" aria-label="Fechar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m2 2 10 10M12 2 2 12"/></svg></button>
+  </dialog>
 
   <section class="secao secao--cinza centro" id="tata-by-honoria" aria-labelledby="tata-linha">
     <div class="envelope envelope--estreito revela">
@@ -66,6 +111,66 @@ const filtros = [
   botoes.forEach((b) => b.addEventListener('click', () => {
     const f = b.dataset.filtro;
     botoes.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-    figuras.forEach((fig) => { fig.hidden = f !== 'todas' && fig.dataset.ocasiao !== f; });
+    figuras.forEach((fig) => {
+      const combina = f === 'todas' || (f === 'movimento' ? fig.dataset.comVideo === 'sim' : fig.dataset.ocasiao === f);
+      fig.hidden = !combina;
+    });
   }));
+
+  // Vitrine: a peça de perto, com o pedido de uma criação inspirada nela.
+  const vitrine = document.getElementById('vitrine') as HTMLDialogElement;
+  const midia = document.getElementById('vitrine-midia')!;
+  const titulo = document.getElementById('vitrine-titulo')!;
+  const legenda = document.getElementById('vitrine-legenda')!;
+  const ocasiao = document.getElementById('vitrine-ocasiao')!;
+  const pedido = document.getElementById('vitrine-pedido') as HTMLAnchorElement;
+  const abrir = [...document.querySelectorAll<HTMLButtonElement>('.galeria__abrir')];
+  let atual = -1;
+
+  const visiveis = () => abrir.filter((b) => !(b.closest('figure') as HTMLElement).hidden);
+  const mostrar = (botao: HTMLButtonElement) => {
+    const d = botao.dataset;
+    atual = abrir.indexOf(botao);
+    midia.replaceChildren();
+    if (d.video) {
+      const v = document.createElement('video');
+      Object.assign(v, { src: d.video, poster: d.grande, muted: true, loop: true, autoplay: true, playsInline: true, controls: false });
+      v.setAttribute('aria-label', d.descricao || '');
+      midia.append(v);
+    } else {
+      const img = new window.Image();
+      img.src = d.grande || '';
+      img.alt = d.descricao || '';
+      midia.append(img);
+    }
+    titulo.textContent = d.titulo || 'Criação Honōria';
+    legenda.textContent = d.legenda || '';
+    legenda.hidden = !d.legenda;
+    ocasiao.textContent = d.ocasiaoNome || 'Criações';
+    pedido.href = d.pedido || '#';
+    delete pedido.dataset.comOrigem;
+    if (!vitrine.open) vitrine.showModal();
+  };
+  const andar = (passo: number) => {
+    const lista = visiveis();
+    const i = lista.indexOf(abrir[atual]);
+    mostrar(lista[(i + passo + lista.length) % lista.length]);
+  };
+
+  abrir.forEach((b) => b.addEventListener('click', () => mostrar(b)));
+  vitrine.addEventListener('click', (e) => {
+    const alvo = e.target as HTMLElement;
+    const acao = alvo.closest<HTMLElement>('[data-vitrine]')?.dataset.vitrine;
+    if (acao === 'fechar' || alvo === vitrine) vitrine.close();
+    else if (acao === 'anterior') andar(-1);
+    else if (acao === 'proxima') andar(1);
+  });
+  vitrine.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') andar(-1);
+    if (e.key === 'ArrowRight') andar(1);
+  });
+  vitrine.addEventListener('close', () => {
+    midia.replaceChildren();
+    abrir[atual]?.focus();
+  });
 </script>

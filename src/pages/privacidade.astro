@@ -1,24 +1,29 @@
 ---
 import Base from '../layouts/Base.astro';
-import { contato } from '../config/site';
+import { contato, medicao } from '../config/site';
+const medindo = Boolean(medicao.googleAnalytics || medicao.pixelMeta);
 ---
 <Base titulo="Privacidade" descricao="Política de privacidade do site da Honōria 1930.">
   <section class="cabeca">
     <div class="envelope">
       <span class="olho">Privacidade</span>
       <h1 class="h-hero">Política de privacidade.</h1>
-      <p class="pequeno texto-2" style="margin-top:20px">Atualizada em outubro de 2026.</p>
+      <p class="pequeno texto-2" style="margin-top:20px">Atualizada em novembro de 2026.</p>
     </div>
   </section>
   <section class="secao secao--colada">
     <div class="envelope envelope--estreito prosa">
       <p class="sub">Este site foi feito para apresentar a Honōria e facilitar o contato com o nosso atendimento. Ele não guarda os seus dados.</p>
       <h2>Formulário de atendimento</h2>
-      <p>Ao preencher o formulário de atendimento Sob Medida, as informações (nome, telefone para contato, interesse, ocasião, data do evento, cidade e mensagem) são reunidas numa mensagem para a produção que abre no seu WhatsApp. Nada é enviado ou armazenado pelo site: só chega até nós o que você decidir enviar.</p>
+      <p>Ao preencher o formulário de atendimento Sob Medida, as informações (nome, telefone para contato, interesse, ocasião, data do evento, cidade, como conheceu a Honōria e mensagem) são reunidas numa mensagem para a produção que abre no seu WhatsApp. Nada é enviado ou armazenado pelo site: só chega até nós o que você decidir enviar.</p>
       <h2>Como usamos as informações</h2>
       <p>Usamos os dados que você nos envia pelo WhatsApp, e-mail ou Instagram apenas para responder ao seu contato e organizar o seu atendimento, de acordo com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
       <h2>Cookies e medição</h2>
-      <p>Este site não usa cookies de publicidade nem ferramentas de rastreamento. Links para WhatsApp, Instagram e Google Maps levam a serviços de terceiros, que têm as suas próprias políticas.</p>
+      {medindo ? (
+        <p>Com a sua permissão, usamos o Google Analytics e o Pixel do Meta para entender como as visitas chegam até nós e quais páginas ajudam a iniciar um atendimento. Esses serviços usam cookies e não recebem o conteúdo do formulário. Você pode aceitar ou recusar no aviso que aparece na primeira visita; para mudar de ideia, limpe os dados do site no seu navegador. Links para WhatsApp, Instagram e Google Maps levam a serviços de terceiros, que têm as suas próprias políticas.</p>
+      ) : (
+        <p>Este site não usa cookies de publicidade nem ferramentas de rastreamento. Links para WhatsApp, Instagram e Google Maps levam a serviços de terceiros, que têm as suas próprias políticas.</p>
+      )}
       <h2>Os seus direitos</h2>
       <p>Você pode pedir a qualquer momento acesso, correção ou exclusão dos seus dados escrevendo para <a href={`mailto:${contato.email}`}>{contato.email}</a>.</p>
     </div>

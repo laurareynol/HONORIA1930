@@ -6,7 +6,7 @@ import Declaracao from '../components/Declaracao.astro';
 import Etapas from '../components/Etapas.astro';
 import Chamada from '../components/Chamada.astro';
 import Movimento from '../components/Movimento.astro';
-import { url, etapasSobMedida, linkWhatsAppProducao } from '../config/site';
+import { url, etapasSobMedida, linkWhatsAppProducao, mensagemProducao } from '../config/site';
 import vermelhoJanela from '../assets/fotos/vermelho-janela.jpg';
 import noivas from '../assets/fotos/noivas.jpg';
 import vermelhoCroquis from '../assets/fotos/vermelho-croquis.jpg';
@@ -64,7 +64,7 @@ const blocos = [
     </div>
     <div style="margin-top:clamp(40px,5vw,64px)">
       <Etapas etapas={etapasSobMedida} />
-      <div class="envelope"><div class="acoes"><a class="seta" href={linkWhatsAppProducao()} target="_blank" rel="noopener">Começar minha criação</a></div></div>
+      <div class="envelope"><div class="acoes"><a class="seta" href={linkWhatsAppProducao(mensagemProducao('inicial'))} target="_blank" rel="noopener">Começar minha criação</a></div></div>
     </div>
   </section>
 

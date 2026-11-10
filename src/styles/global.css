@@ -620,3 +620,58 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .movimento__quadro video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 /* No celular, o par branco inverte a ordem e forma um xadrez com o par preto. */
 @media (max-width: 899px) { .movimento__par:nth-child(2) .movimento__quadro:first-child { order: 2; } }
+
+/* ---------- Pedido de atendimento: passos e prazo ---------- */
+.passos-pedido { margin: 14px 0 0; padding-left: 1.2em; display: grid; gap: 10px; color: var(--tinta-2); }
+.passos-pedido li::marker { color: var(--tinta); font-variant-numeric: tabular-nums; }
+.nota-data--alerta { color: var(--tinta); }
+
+/* ---------- Aviso de cookies (só aparece com a medição ligada) ---------- */
+.consentimento {
+  position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 60;
+  max-width: 560px; margin: 0 auto; padding: 18px 20px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px;
+  background: rgba(255, 255, 255, .92);
+  -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .08), 0 12px 32px rgba(0, 0, 0, .12);
+  font-size: 13px; color: var(--tinta-2);
+}
+.consentimento[hidden] { display: none; }
+.consentimento p { margin: 0; flex: 1 1 240px; }
+.consentimento__acoes { display: flex; gap: 8px; }
+
+/* ---------- Galeria: peças clicáveis e vitrine ---------- */
+.galeria__abrir { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; position: relative; }
+.galeria__abrir:focus-visible { outline: 2px solid var(--tinta); outline-offset: 3px; }
+.galeria__selo {
+  position: absolute; top: 14px; right: 14px; width: 30px; height: 30px;
+  display: grid; place-items: center; border-radius: 50%;
+  background: rgba(0, 0, 0, .45); color: var(--branco);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.galeria__selo svg { width: 11px; height: 11px; margin-left: 2px; }
+.galeria figure:has(.galeria__selo) .galeria__abrir { cursor: pointer; }
+
+.vitrine {
+  width: min(1100px, calc(100vw - 32px)); max-width: none; max-height: calc(100svh - 32px);
+  padding: 0; border: 0; background: var(--branco); color: var(--tinta); overflow: auto;
+}
+.vitrine::backdrop { background: rgba(0, 0, 0, .78); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.vitrine[open] { animation: vitrine-entra .45s var(--suave); }
+@keyframes vitrine-entra { from { opacity: 0; transform: translateY(12px); } }
+.vitrine__corpo { display: grid; }
+@media (min-width: 860px) { .vitrine__corpo { grid-template-columns: 1.15fr 1fr; } }
+.vitrine__midia { background: var(--preto); display: grid; place-items: center; min-height: 0; }
+.vitrine__midia img, .vitrine__midia video { width: 100%; height: auto; max-height: calc(100svh - 32px); object-fit: contain; display: block; }
+@media (max-width: 859px) { .vitrine__midia img, .vitrine__midia video { max-height: 50svh; } .vitrine__texto { gap: 12px; } }
+.vitrine__texto { padding: clamp(28px, 4vw, 56px); display: grid; gap: 16px; align-content: center; }
+.vitrine__texto p { margin: 0; }
+.vitrine__texto .acoes { margin-top: 8px; }
+.vitrine__navegar { display: flex; gap: 10px; margin-top: 8px; }
+.vitrine__fechar {
+  position: absolute; top: 12px; right: 12px; width: 40px; height: 40px;
+  display: grid; place-items: center; border: 0; border-radius: 50%; cursor: pointer;
+  background: rgba(255, 255, 255, .85); color: var(--tinta);
+}
+.vitrine__fechar svg { width: 14px; height: 14px; }
+@media (prefers-reduced-motion: reduce) { .vitrine[open] { animation: none; } }

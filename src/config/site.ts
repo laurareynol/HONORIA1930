@@ -24,6 +24,21 @@ export const producao = {
   whatsappExibicao: '(62) 99874-1001',
 };
 
+// Antecedência mínima pedida para uma criação Sob Medida (vale também para noivas).
+export const antecedencia = { meses: 3, texto: 'pelo menos 3 meses' };
+
+// Medição de visitas. Cole aqui os códigos quando tiver: enquanto estiverem vazios, nada é carregado.
+// Google Analytics: o "ID da métrica" (ex.: G-ABC123XYZ). Pixel do Meta: o número do pixel.
+export const medicao = {
+  googleAnalytics: '',
+  pixelMeta: '',
+};
+
+// Mensagem padrão para a produção, dizendo de qual página a cliente veio.
+export function mensagemProducao(origem: string, pedido = 'gostaria de começar minha criação Sob Medida') {
+  return `Olá! Vim pela página ${origem} do site da Honōria e ${pedido}.`;
+}
+
 export function linkWhatsAppProducao(mensagem = 'Olá! Vim pelo site da Honōria e gostaria de começar minha criação Sob Medida.') {
   return `https://wa.me/${producao.whatsapp}?text=${encodeURIComponent(mensagem)}`;
 }

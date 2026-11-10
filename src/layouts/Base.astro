@@ -4,6 +4,7 @@ import '../styles/global.css';
 import Barra from '../components/Barra.astro';
 import Rodape from '../components/Rodape.astro';
 import WhatsFixo from '../components/WhatsFixo.astro';
+import Medicao from '../components/Medicao.astro';
 
 interface Props {
   titulo?: string;
@@ -33,7 +34,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
-  <body>
+  <body data-pagina-nome={titulo ?? 'Início'}>
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     <Barra pagina={pagina} />
     <main id="conteudo">
@@ -41,6 +42,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </main>
     <Rodape />
     <WhatsFixo />
+    <Medicao />
     <script>
       const reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -107,6 +109,32 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       } else {
         videos.forEach((v) => { v.controls = true; });
       }
+
+      // Cada contato leva junto a página de onde a cliente veio, e vira um evento na medição.
+      const nomePagina = document.body.dataset.paginaNome || 'Início';
+      const registrar = (evento: string, detalhe: Record<string, string>) => {
+        const w = window as unknown as { gtag?: (...a: unknown[]) => void; fbq?: (...a: unknown[]) => void };
+        w.gtag?.('event', evento, detalhe);
+        w.fbq?.('track', evento === 'generate_lead' ? 'Lead' : 'Contact', detalhe);
+      };
+      document.addEventListener('click', (e) => {
+        const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href]');
+        if (!link) return;
+        const destino = new URL(link.href, location.href);
+        if (destino.hostname === 'wa.me') {
+          const texto = destino.searchParams.get('text');
+          if (texto && !link.dataset.comOrigem) {
+            link.href = `${destino.origin}${destino.pathname}?text=${encodeURIComponent(`${texto}\n\n(Página do site: ${nomePagina})`)}`;
+            link.dataset.comOrigem = '1';
+          }
+          registrar('contato_whatsapp', { pagina: nomePagina, numero: destino.pathname.slice(1) });
+        } else if (destino.origin === location.origin && /\/atendimento(\.html|\/)?$/.test(destino.pathname) && !destino.searchParams.has('origem')) {
+          link.href = `${destino.pathname}${destino.search ? `${destino.search}&` : '?'}origem=${encodeURIComponent(nomePagina)}${destino.hash}`;
+        }
+      });
+      document.addEventListener('honoria:pedido', (e) => {
+        registrar('generate_lead', (e as CustomEvent).detail || {});
+      });
     </script>
   </body>
 </html>

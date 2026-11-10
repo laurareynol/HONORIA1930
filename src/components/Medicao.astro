@@ -1,0 +1,55 @@
+---
+// Google Analytics e Pixel do Meta, carregados só depois que a visitante aceita.
+// Os códigos ficam em src/config/site.ts (medicao). Sem códigos, nada aparece.
+import { medicao, url } from '../config/site';
+const ativo = Boolean(medicao.googleAnalytics || medicao.pixelMeta);
+---
+{ativo && (
+  <div class="consentimento" id="consentimento" role="region" aria-label="Cookies" hidden>
+    <p>Usamos cookies para entender como as visitas chegam até nós. <a href={url('privacidade')}>Saiba mais</a></p>
+    <div class="consentimento__acoes">
+      <button class="botao botao--pequeno botao--contorno" type="button" data-consentimento="nao">Recusar</button>
+      <button class="botao botao--pequeno" type="button" data-consentimento="sim">Aceitar</button>
+    </div>
+  </div>
+)}
+{ativo && (
+  <script is:inline define:vars={{ ga: medicao.googleAnalytics, pixel: medicao.pixelMeta }}>
+    (function () {
+      var CHAVE = 'honoria-consentimento';
+      var caixa = document.getElementById('consentimento');
+      var ler = function () { try { return localStorage.getItem(CHAVE); } catch (e) { return null; } };
+      var gravar = function (v) { try { localStorage.setItem(CHAVE, v); } catch (e) {} };
+
+      function carregar() {
+        if (ga) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga;
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', ga);
+        }
+        if (pixel) {
+          !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+          window.fbq('init', pixel);
+          window.fbq('track', 'PageView');
+        }
+      }
+
+      var escolha = ler();
+      if (escolha === 'sim') carregar();
+      else if (!escolha && caixa) caixa.hidden = false;
+      document.querySelectorAll('[data-consentimento]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.getAttribute('data-consentimento');
+          gravar(v);
+          caixa.hidden = true;
+          if (v === 'sim') carregar();
+        });
+      });
+    })();
+  </script>
+)}

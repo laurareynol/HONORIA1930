@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Declaracao from '../components/Declaracao.astro';
 import Chamada from '../components/Chamada.astro';
-import { url } from '../config/site';
+import { url, antecedencia } from '../config/site';
 import noivas from '../assets/fotos/noivas.jpg';
 ---
 <Base titulo="Honoria para Casar" pagina="honoria-para-casar" descricao="Honoria para Casar: vestidos de noiva criados com Tata Ribeiro, para noivas de qualquer cidade ou país.">
@@ -30,6 +30,16 @@ import noivas from '../assets/fotos/noivas.jpg';
       <p class="sub texto-2">Na reunião, a Tata escuta como você imagina esse momento, quem você é e o que precisa sentir ao vestir a peça.</p>
       <p class="texto texto-2" style="margin-top:24px">Depois vêm desenho, medidas, modelagem, corte, costura, arremate e as provas necessárias até tudo estar alinhado. Cada etapa acontece no nosso ateliê, em Goiânia.</p>
       <div class="acoes"><a class="seta" href={`${url('sob-medida')}#etapas`}>Conhecer a experiência</a></div>
+    </div>
+  </section>
+
+  <section class="secao secao--colada" aria-label="Antes de começar">
+    <div class="envelope">
+      <div class="destaques" style="margin-top:0">
+        <div class="destaque revela"><h3 class="h-3">Consultoria com a Tata.</h3><p>O primeiro encontro é agendado e tem um valor de consultoria.</p></div>
+        <div class="destaque revela revela-atraso"><h3 class="h-3">Com antecedência.</h3><p>Pedimos {antecedencia.texto} entre o primeiro encontro e a data do casamento.</p></div>
+        <div class="destaque revela revela-atraso"><h3 class="h-3">De qualquer lugar.</h3><p>Noivas de outras cidades e países são atendidas por chamada de vídeo.</p></div>
+      </div>
     </div>
   </section>
 

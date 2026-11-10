@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Lojas from '../components/Lojas.astro';
-import { contato, linkWhatsApp, url, contatoSaoPaulo, linkWhatsAppSaoPaulo, producao, linkWhatsAppProducao } from '../config/site';
+import { contato, linkWhatsApp, url, contatoSaoPaulo, linkWhatsAppSaoPaulo, producao, linkWhatsAppProducao, antecedencia } from '../config/site';
 ---
 <Base titulo="Atendimento" pagina="atendimento" descricao="Honōria 1930: loja e ateliê em Goiânia, atendimento online no Brasil e no mundo ou presencial em São Paulo, com agendamento.">
   <section class="cabeca">
@@ -9,6 +9,7 @@ import { contato, linkWhatsApp, url, contatoSaoPaulo, linkWhatsAppSaoPaulo, prod
       <span class="olho">Atendimento</span>
       <h1 class="h-hero">Sua criação começa aqui.</h1>
       <p class="sub texto-2">Conte um pouco sobre a sua ocasião. O formulário segue pelo WhatsApp para a produção, que organiza o atendimento Sob Medida com a Tata.</p>
+      <p class="texto texto-2" style="margin:20px auto 0">Pedimos {antecedencia.texto} de antecedência. O atendimento com a Tata é agendado e tem um valor de consultoria.</p>
     </div>
   </section>
 
@@ -50,13 +51,26 @@ import { contato, linkWhatsApp, url, contatoSaoPaulo, linkWhatsAppSaoPaulo, prod
         </div>
         <div class="campos-duplos">
           <div class="campo">
-            <input id="data" name="data" type="date" />
+            <input id="data" name="data" type="date" aria-describedby="data-ajuda" />
             <label for="data">Data do evento</label>
           </div>
           <div class="campo">
             <input id="cidade" name="cidade" autocomplete="address-level2" placeholder=" " />
-            <label for="cidade">Cidade onde você está</label>
+            <label for="cidade">Cidade e país onde você está</label>
           </div>
+        </div>
+        <p class="pequeno texto-2 nota-data" id="data-ajuda" style="margin:0">Para criações Sob Medida, pedimos {antecedencia.texto} de antecedência.</p>
+        <div class="campo">
+          <select id="conheceu" name="conheceu">
+            <option value="">Escolha</option>
+            <option>Instagram</option>
+            <option>Indicação de alguém</option>
+            <option>Google</option>
+            <option>Já sou cliente</option>
+            <option>Evento ou imprensa</option>
+            <option>Outro</option>
+          </select>
+          <label for="conheceu">Como conheceu a Honōria?</label>
         </div>
         <div class="campo">
           <textarea id="mensagem" name="mensagem" placeholder=" "></textarea>
@@ -67,7 +81,16 @@ import { contato, linkWhatsApp, url, contatoSaoPaulo, linkWhatsAppSaoPaulo, prod
         <p class="pequeno texto-2" style="margin:4px 0 0;text-align:center">Os seus dados não ficam guardados no site: seguem apenas na mensagem que você envia. <a href={url('privacidade')}>Privacidade</a></p>
       </form>
 
-      <div style="display:grid;gap:24px">
+      <div style="display:grid;gap:24px;align-content:start">
+        <div class="cartao-contato">
+          <span class="olho">Como funciona</span>
+          <ol class="passos-pedido">
+            <li>Você envia o formulário pelo WhatsApp.</li>
+            <li>A produção responde e agenda a sua consultoria com a Tata, online ou presencial.</li>
+            <li>A consultoria tem um valor e dá início à sua criação.</li>
+          </ol>
+          <p class="pequeno texto-2" style="margin:16px 0 0">Pedimos {antecedencia.texto} de antecedência entre o primeiro encontro e a data do evento.</p>
+        </div>
         <div class="cartao-contato">
           <span class="olho">Outros canais</span>
           <ul>
@@ -94,7 +117,7 @@ import { contato, linkWhatsApp, url, contatoSaoPaulo, linkWhatsAppSaoPaulo, prod
   </section>
 </Base>
 
-<script define:vars={{ numero: producao.whatsapp }}>
+<script define:vars={{ numero: producao.whatsapp, meses: antecedencia.meses }}>
   const form = document.getElementById('formulario');
   const aviso = document.getElementById('aviso');
   const interesse = document.getElementById('interesse');
@@ -103,6 +126,23 @@ import { contato, linkWhatsApp, url, contatoSaoPaulo, linkWhatsAppSaoPaulo, prod
     const opcao = interesse.querySelector(`[data-chave="${chave}"]`);
     if (opcao) opcao.selected = true;
   }
+  const origem = new URLSearchParams(location.search).get('origem');
+  const campoData = document.getElementById('data');
+  const notaData = document.getElementById('data-ajuda');
+  const textoNota = notaData.textContent;
+  const prazoCurto = () => {
+    if (!campoData.value) return false;
+    const limite = new Date();
+    limite.setMonth(limite.getMonth() + meses);
+    return new Date(campoData.value + 'T12:00') < limite;
+  };
+  campoData.addEventListener('change', () => {
+    const curto = prazoCurto();
+    notaData.classList.toggle('nota-data--alerta', curto);
+    notaData.textContent = curto
+      ? `Sua data está a menos de ${meses} meses. Envie mesmo assim: a produção confere se ainda é possível.`
+      : textoNota;
+  });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const d = new FormData(form);
@@ -123,10 +163,13 @@ import { contato, linkWhatsApp, url, contatoSaoPaulo, linkWhatsAppSaoPaulo, prod
       `Telefone para contato: ${telefone}`,
       `Interesse: ${d.get('interesse')}`,
       d.get('ocasiao') && `Ocasião: ${d.get('ocasiao')}`,
-      data && `Data do evento: ${data}`,
+      data && `Data do evento: ${data}${prazoCurto() ? ` (menos de ${meses} meses)` : ''}`,
       d.get('cidade') && `Cidade: ${d.get('cidade')}`,
+      d.get('conheceu') && `Como conheceu a Honōria: ${d.get('conheceu')}`,
+      origem && `Vim pela página: ${origem}`,
       d.get('mensagem') && `\n${d.get('mensagem')}`,
     ].filter(Boolean);
+    document.dispatchEvent(new CustomEvent('honoria:pedido', { detail: { interesse: String(d.get('interesse')), ocasiao: String(d.get('ocasiao') || ''), prazo_curto: prazoCurto() ? 'sim' : 'nao' } }));
     const destino = `https://wa.me/${numero}?text=${encodeURIComponent(linhas.join('\n'))}`;
     const janela = window.open(destino, '_blank');
     if (janela) janela.opener = null;

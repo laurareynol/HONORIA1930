@@ -13,6 +13,9 @@ Site estático feito com [Astro](https://astro.build). Publicado pelo GitHub Pag
 | Fotos | `src/assets/fotos/` |
 | Cores, fontes, espaçamentos | `src/styles/global.css` |
 | Etapas do Sob Medida | `src/config/site.ts` (etapasSobMedida) |
+| Antecedência mínima (hoje 3 meses) | `src/config/site.ts` (antecedencia) |
+| Google Analytics e Pixel do Meta | `src/config/site.ts` (medicao): cole os códigos; vazio = desligado |
+| Vídeos da galeria | arquivo em `public/videos/` + campo `video:` na criação |
 
 Cada pasta de conteúdo tem um arquivo `_modelo.md`. Para criar algo novo, copie o modelo, renomeie (sem o `_` no início, ex.: `vestido-azul.md`) e preencha. Arquivos que começam com `_` não aparecem no site.
 
