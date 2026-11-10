@@ -30,7 +30,7 @@ export const antecedencia = { meses: 3, texto: 'pelo menos 3 meses' };
 // Medição de visitas. Cole aqui os códigos quando tiver: enquanto estiverem vazios, nada é carregado.
 // Google Analytics: o "ID da métrica" (ex.: G-ABC123XYZ). Pixel do Meta: o número do pixel.
 export const medicao = {
-  googleAnalytics: '',
+  googleAnalytics: 'G-B3SRKR9BDY',
   pixelMeta: '',
 };
 
