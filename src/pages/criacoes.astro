@@ -24,7 +24,7 @@ const pecas = await Promise.all(criacoes.map(async (c) => {
   return { c, grande: grande.src, pedido, video: c.data.video ? `${base}/videos/${c.data.video}` : '' };
 }));
 ---
-<Base titulo="Criações" pagina="criacoes" descricao="Criações da Honōria 1930: vestidos de noiva e de festa feitos no ateliê.">
+<Base titulo="Criações" tituloBusca="Criações: vestidos de noiva e de festa" pagina="criacoes" descricao="Criações da Honōria 1930: vestidos de noiva e de festa feitos no ateliê.">
   <section class="cabeca">
     <div class="envelope">
       <span class="olho">Criações</span>

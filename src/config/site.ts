@@ -32,6 +32,8 @@ export const antecedencia = { meses: 3, texto: 'pelo menos 3 meses' };
 export const medicao = {
   googleAnalytics: 'G-B3SRKR9BDY',
   pixelMeta: '',
+  // Google Search Console: só o código do campo content da "tag HTML" (ex.: abc123XYZ...).
+  googleSearchConsole: '',
 };
 
 // Mensagem padrão para a produção, dizendo de qual página a cliente veio.

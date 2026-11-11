@@ -8,7 +8,7 @@ import { linkWhatsApp, contato } from '../config/site';
 const pecas = (await getCollection('pronta-entrega')).filter((p) => p.data.disponivel);
 const renderizadas = await Promise.all(pecas.map(async (p) => ({ peca: p, Conteudo: (await render(p)).Content })));
 ---
-<Base titulo="Pronta entrega" pagina="pronta-entrega" descricao="Pronta entrega Honōria 1930: criações autorais disponíveis na loja de Goiânia.">
+<Base titulo="Pronta entrega" tituloBusca="Vestidos de festa pronta entrega em Goiânia" pagina="pronta-entrega" descricao="Pronta entrega Honōria 1930: criações autorais disponíveis na loja de Goiânia.">
   <section class="cabeca">
     <div class="envelope">
       <span class="olho">Pronta entrega</span>

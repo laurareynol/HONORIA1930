@@ -5,19 +5,53 @@ import Barra from '../components/Barra.astro';
 import Rodape from '../components/Rodape.astro';
 import WhatsFixo from '../components/WhatsFixo.astro';
 import Medicao from '../components/Medicao.astro';
+import { getImage } from 'astro:assets';
+import { contato, horario, lojas, medicao } from '../config/site';
+import fotoCompartilhar from '../assets/fotos/vermelho-janela.jpg';
 
 interface Props {
   titulo?: string;
+  /** Título para o Google, com as palavras que as clientes buscam. Se faltar, usa o título. */
+  tituloBusca?: string;
   descricao?: string;
   pagina?: string;
 }
 const {
   titulo,
+  tituloBusca,
   descricao = 'Honōria 1930: alta-costura autoral brasileira. Vestidos de festa e de noiva Sob Medida, criados por Tata Ribeiro. Loja e ateliê em Goiânia. Atendimento online no Brasil e no mundo ou presencial em São Paulo, com agendamento.',
   pagina = '',
 } = Astro.props;
-const tituloCompleto = titulo ? `${titulo} · Honōria 1930` : 'Honōria 1930 · Alta-costura autoral brasileira';
+const tituloCompleto = tituloBusca
+  ? `${tituloBusca} · Honōria 1930`
+  : titulo ? `${titulo} · Honōria 1930` : 'Honōria 1930 · Alta-costura autoral brasileira';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const inicio = new URL(`${base}/`, Astro.site).href;
+const canonica = new URL(Astro.url.pathname, Astro.site).href;
+const imagem = new URL((await getImage({ src: fotoCompartilhar, width: 1200, format: 'jpg' })).src, Astro.site).href;
+
+// Ficha da Honōria para o Google (só na página inicial), com os dados de src/config/site.ts.
+const dias = { 'Segunda a sexta': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], Sábado: ['Saturday'] } as Record<string, string[]>;
+const loja = lojas[0];
+const ficha = canonica === inicio && loja ? {
+  '@context': 'https://schema.org',
+  '@type': 'ClothingStore',
+  name: 'Honōria 1930',
+  alternateName: 'Honoria 1930',
+  description: 'Alta-costura autoral brasileira: vestidos de festa, de noiva, de formatura e de debutante Sob Medida, criados por Tata Ribeiro.',
+  url: inicio,
+  image: imagem,
+  email: contato.email,
+  telephone: `+${contato.whatsapp}`,
+  founder: { '@type': 'Person', name: 'Renata Ribeiro', alternateName: 'Tata Ribeiro' },
+  foundingDate: '2017-03',
+  address: { '@type': 'PostalAddress', streetAddress: loja.endereco, addressLocality: loja.cidade, addressRegion: loja.uf, postalCode: loja.cep, addressCountry: 'BR' },
+  openingHoursSpecification: horario.map((h) => {
+    const [abre, fecha] = h.horas.replace(/h/g, ':00').split(' às ');
+    return { '@type': 'OpeningHoursSpecification', dayOfWeek: dias[h.dias], opens: abre.padStart(5, '0'), closes: fecha.padStart(5, '0') };
+  }),
+  sameAs: [`https://www.instagram.com/${contato.instagram}/`],
+} : null;
 ---
 <!doctype html>
 <html lang="pt-BR">
@@ -30,6 +64,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <meta property="og:description" content={descricao} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:site_name" content="Honōria 1930" />
+    <meta property="og:image" content={imagem} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={canonica} />
+    <link rel="sitemap" href={`${base}/sitemap.xml`} />
+    {medicao.googleSearchConsole && <meta name="google-site-verification" content={medicao.googleSearchConsole} />}
+    {ficha && <script type="application/ld+json" set:html={JSON.stringify(ficha)} />}
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
     <script is:inline>document.documentElement.classList.add('js');</script>
