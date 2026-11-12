@@ -10,7 +10,7 @@ const criacoes = defineCollection({
     z.object({
       foto: image(),
       descricao: z.string(), // descrição da imagem, para leitores de tela
-      ocasiao: z.enum(['noivas', 'debutantes', 'formandas', 'festa', 'tata']).optional(),
+      ocasiao: z.enum(['noivas', 'debutantes', 'formandas', 'festa']).optional(),
       video: z.string().optional(), // nome do arquivo em public/videos (ex.: preto-passarela.mp4); a foto vira a capa
       titulo: z.string().optional(),
       legenda: z.string().optional(),

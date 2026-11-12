@@ -7,7 +7,7 @@ import { linkWhatsAppProducao } from '../config/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const criacoes = (await getCollection('criacoes')).sort((a, b) => a.data.ordem - b.data.ordem);
-const nomesOcasiao = { noivas: 'Noivas', debutantes: 'Debutantes', formandas: 'Formandas', festa: 'Festa', tata: 'TATA by Honoria 1930' } as const;
+const nomesOcasiao = { noivas: 'Noivas', debutantes: 'Debutantes', formandas: 'Formandas', festa: 'Festa' } as const;
 const filtros = [
   { id: 'todas', rotulo: 'Todas' },
   { id: 'noivas', rotulo: 'Noivas' },
@@ -90,16 +90,6 @@ const pecas = await Promise.all(criacoes.map(async (c) => {
     </div>
     <button class="vitrine__fechar" type="button" data-vitrine="fechar" aria-label="Fechar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m2 2 10 10M12 2 2 12"/></svg></button>
   </dialog>
-
-  <section class="secao secao--cinza centro" id="tata-by-honoria" aria-labelledby="tata-linha">
-    <div class="envelope envelope--estreito revela">
-      <span class="olho">Linha</span>
-      <h2 class="h-1" id="tata-linha">TATA by Honoria 1930.</h2>
-      <p class="sub texto-2">Uma linha mais descontraída, ligada ao estilo pessoal de Renata Carneiro, com o mesmo cuidado de construção e acabamento de toda peça Honōria.</p>
-      <p class="texto texto-2" style="margin-top:20px">Peças feitas somente sob encomenda.</p>
-      <div class="acoes"><a class="botao" href={linkWhatsAppProducao('Olá, produção! Gostaria de encomendar uma peça da linha TATA by Honoria 1930.')} target="_blank" rel="noopener">Encomendar pelo WhatsApp</a></div>
-    </div>
-  </section>
 
   <Chamada titulo="Viu algo que conversa com você?" texto="Toda criação pode ser o ponto de partida para a sua. Conte o que chamou a sua atenção." interesse="sob-medida" />
 </Base>
