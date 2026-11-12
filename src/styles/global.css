@@ -50,6 +50,7 @@ img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 p { margin: 0 0 1em; }
 h1, h2, h3 { margin: 0; font-weight: 300; text-wrap: balance; }
+p, li, dd, figcaption { text-wrap: pretty; }
 button, input, select, textarea { font: inherit; color: inherit; letter-spacing: inherit; }
 
 ::selection { background: var(--tinta); color: var(--branco); }
@@ -312,8 +313,9 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
   line-height: 1.22;
   letter-spacing: -0.02em;
   font-weight: 250;
-  max-width: 17em;
+  max-width: 19em;
   margin: 0;
+  text-wrap: balance;
 }
 .declaracao__texto .palavra { transition: color .35s var(--suave); }
 .js .declaracao__texto .palavra { color: #3a3a3c; }
