@@ -11,7 +11,6 @@ import { lojas, horario, linkMapa, linkWhatsApp, linkWhatsAppSaoPaulo, contatoSa
         <dl>
           {horario.map((h) => (<div><dt>{h.dias}</dt> <dd>{h.horas}</dd></div>))}
         </dl>
-        <p class="pequeno texto-2">Visitas à loja sem hora marcada. Para atendimento com a Tata, agende previamente.</p>
       </div>
       <div class="acoes">
         <a class="seta" href={linkMapa(loja)} target="_blank" rel="noopener">Como chegar</a>
@@ -22,9 +21,9 @@ import { lojas, horario, linkMapa, linkWhatsApp, linkWhatsAppSaoPaulo, contatoSa
   <article class="loja revela revela-atraso">
     <span class="olho">Com agendamento</span>
     <h3 class="h-2">No Brasil e no mundo</h3>
-    <p class="texto-2">Atendimento online de onde você estiver ou presencial em São Paulo, com agendamento.</p>
+    <address>Online, de onde você estiver.<br />Presencial em São Paulo.</address>
     <div class="loja__detalhes">
-      <p class="pequeno texto-2">WhatsApp {contatoSaoPaulo.whatsappExibicao}</p>
+      <dl><div><dt>WhatsApp</dt> <dd>{contatoSaoPaulo.whatsappExibicao}</dd></div></dl>
     </div>
     <div class="acoes">
       <a class="seta" href={linkWhatsAppSaoPaulo()} target="_blank" rel="noopener">Agendar atendimento</a>
