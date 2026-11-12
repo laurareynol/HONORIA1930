@@ -47,8 +47,8 @@ const renderizadas = await Promise.all(pecas.map(async (p) => ({ peca: p, Conteu
 
   <section class="secao secao--cinza centro" aria-labelledby="visitar">
     <div class="envelope revela">
-      <h2 class="h-2" id="visitar">As peças estão na nossa loja em Goiânia.</h2>
-      <p class="texto-2 visitar__dados">{loja.endereco}{horario.map((h) => (<><br />{h.dias}, {h.horas}</>))}</p>
+      <h2 class="h-2" id="visitar">Venha conhecer de perto.</h2>
+      <p class="texto-2 visitar__dados">{loja.endereco}, {loja.cidade}{horario.map((h) => (<><br />{h.dias}, {h.horas}</>))}</p>
       <div class="acoes"><a class="seta" href={linkMapa(loja)} target="_blank" rel="noopener">Como chegar</a></div>
     </div>
   </section>
