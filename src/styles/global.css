@@ -731,3 +731,5 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .olho { text-wrap: balance; }
 
 .loja--unica { max-width: 560px; margin: clamp(40px, 5vw, 64px) auto 0; }
+.galeria__vazio { text-align: center; padding: clamp(48px, 7vw, 96px) 0; margin: 0; }
+@media (max-width: 480px) { .filtros { gap: 0; padding: 3px; } .filtro { padding: 8px 10px; font-size: 13px; } }

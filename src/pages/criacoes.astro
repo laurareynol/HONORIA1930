@@ -13,10 +13,7 @@ const filtros = [
   { id: 'noivas', rotulo: 'Noivas' },
   { id: 'debutantes', rotulo: 'Debutantes' },
   { id: 'formandas', rotulo: 'Formandas' },
-  { id: 'festa', rotulo: 'Festa' },
-  { id: 'movimento', rotulo: 'Em movimento' },
-  { id: 'tata', rotulo: 'TATA by Honoria 1930' },
-].filter((f) => f.id === 'todas' || criacoes.some((c) => (f.id === 'movimento' ? c.data.video : c.data.ocasiao === f.id)));
+];
 
 // Cada peça leva a sua referência (o nome do arquivo) para a mensagem da produção.
 const pecas = await Promise.all(criacoes.map(async (c) => {
@@ -36,7 +33,7 @@ const pecas = await Promise.all(criacoes.map(async (c) => {
 
   <section class="secao secao--colada" aria-label="Galeria">
     <div class="envelope">
-      {filtros.length > 2 && (
+      {(
         <div class="filtros-envelope">
           <div class="filtros" role="group" aria-label="Filtrar criações">
             {filtros.map((f, i) => <button class="filtro" type="button" data-filtro={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>{f.rotulo}</button>)}
@@ -70,6 +67,7 @@ const pecas = await Promise.all(criacoes.map(async (c) => {
           </figure>
         ))}
       </div>
+      <p class="galeria__vazio texto-2" hidden>Novas fotos desta categoria em breve.</p>
     </div>
   </section>
 
@@ -113,9 +111,11 @@ const pecas = await Promise.all(criacoes.map(async (c) => {
     const f = b.dataset.filtro;
     botoes.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     figuras.forEach((fig) => {
-      const combina = f === 'todas' || (f === 'movimento' ? fig.dataset.comVideo === 'sim' : fig.dataset.ocasiao === f);
+      const combina = f === 'todas' || fig.dataset.ocasiao === f;
       fig.hidden = !combina;
     });
+    const vazio = document.querySelector<HTMLElement>('.galeria__vazio');
+    if (vazio) vazio.hidden = [...figuras].some((fig) => !fig.hidden);
   }));
 
   // Vitrine: a peça de perto, com o pedido de uma criação inspirada nela.
