@@ -6,7 +6,6 @@ import Declaracao from '../components/Declaracao.astro';
 import Etapas from '../components/Etapas.astro';
 import Chamada from '../components/Chamada.astro';
 import Movimento from '../components/Movimento.astro';
-import Logo from '../components/Logo.astro';
 import { url, etapasSobMedida, linkWhatsAppProducao, mensagemProducao } from '../config/site';
 import vermelhoJanela from '../assets/fotos/vermelho-janela.jpg';
 import noivas from '../assets/fotos/noivas.jpg';
@@ -45,11 +44,12 @@ const blocos = [
     {blocos.map((b) => (
       <a class="bloco" href={url(b.href)}>
         <div class="bloco__foto"><Image src={b.foto} alt={b.alt} widths={[640, 960, 1400]} sizes="(min-width: 900px) 50vw, 100vw" style={`object-position:${b.posicao}`} /></div>
-        <h2 class="bloco__capa">
-          <Logo rotulo="Honōria 1930" />
-          <span class="bloco__nome">{b.capa}</span>
-        </h2>
+        <div class="bloco__capa" aria-hidden="true">
+          <span class="bloco__ano"><span>1</span><span>9</span><span>3</span><span>0</span></span>
+          <span class="bloco__marca">Honōria</span>
+        </div>
         <div class="bloco__chamada">
+          <h2 class="bloco__nome">{b.capa}</h2>
           <p>{b.texto}</p>
           <span class="seta">{b.acao}</span>
         </div>

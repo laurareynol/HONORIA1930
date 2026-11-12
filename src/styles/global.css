@@ -344,25 +344,34 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 }
 .bloco { display: flex; flex-direction: column; justify-content: space-between; }
 
-/* Capa de revista: o logo como cabeçalho e a frente logo abaixo. */
+/* Capa de revista, como o álbum editorial: 1930 grande em serifa, Honōria pequena embaixo. */
+.bloco { container-type: inline-size; }
 .bloco__capa {
-  display: flex; flex-direction: column; align-items: center;
-  padding: clamp(36px, 4.4vw, 56px) 24px 0; margin: 0; text-align: center;
-  font-weight: 300;
+  display: flex; flex-direction: column; align-items: stretch;
+  padding: clamp(20px, 4cqi, 36px) 5cqi 0; color: var(--branco); line-height: 1;
 }
-.bloco__capa svg { width: min(48%, 230px); height: auto; color: var(--branco); }
+/* 1930 de ponta a ponta, como a capa do álbum. */
+.bloco__ano {
+  display: flex; justify-content: space-between;
+  font-family: 'Bodoni Moda Variable', 'Didot', 'Bodoni 72', serif;
+  font-variation-settings: 'opsz' 96; font-weight: 400;
+  font-size: 34cqi; line-height: .8;
+}
+.bloco__marca {
+  align-self: flex-end; margin-top: 2.4cqi; font-size: clamp(10px, 1.9cqi, 13px); font-weight: 400;
+  letter-spacing: .38em; text-transform: uppercase; margin-right: -.38em;
+}
 .bloco__nome {
-  display: block; margin-top: clamp(10px, 1vw, 14px);
-  font-size: clamp(11px, .85vw, 12.5px); letter-spacing: .42em; text-transform: uppercase;
-  padding-left: .42em; color: rgba(255,255,255,.92);
+  margin: 0 0 6px; font-size: 12px; font-weight: 400; letter-spacing: .34em;
+  text-transform: uppercase; color: var(--branco);
 }
 /* Chamada de capa, discreta, no pé da foto. */
 .bloco__chamada {
-  padding: 0 clamp(24px, 3vw, 40px) clamp(28px, 3.4vw, 44px);
-  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px;
+  padding: 0 clamp(24px, 3vw, 40px) clamp(28px, 3.4vw, 44px); text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
 }
 .bloco__chamada p { margin: 0; font-size: 14px; letter-spacing: .02em; color: rgba(255,255,255,.88); max-width: 26em; }
-.bloco__chamada .seta { font-size: 14px; }
+.bloco__chamada .seta { font-size: 14px; margin-top: 8px; }
 @media (min-width: 900px) { .bloco { min-height: clamp(560px, 46vw, 760px); } }
 
 /* ---------- Carrossel ---------- */
