@@ -31,15 +31,15 @@ const renderizadas = await Promise.all(pecas.map(async (p) => ({ peca: p, Conteu
               </p>
               <div class="pequeno texto-2"><Conteudo /></div>
               {peca.data.preco && <p class="peca__preco">{peca.data.preco}</p>}
-              <a class="seta" href={linkWhatsApp(`Olá, Cris! Gostaria de saber mais sobre a peça "${peca.data.nome}" (loja ${peca.data.loja}).`)} target="_blank" rel="noopener">Consultar esta peça</a>
+              <a class="seta" href={linkWhatsApp(`Olá! Gostaria de saber mais sobre a peça "${peca.data.nome}" (loja ${peca.data.loja}).`)} target="_blank" rel="noopener">Consultar esta peça</a>
             </article>
           ))}
         </div>
       ) : (
         <div class="vazio revela">
-          <h2 class="h-2">As peças mudam com frequência.</h2>
-          <p class="sub texto-2">Para saber o que está disponível na loja agora, fale com a {contato.atendente} ou visite nossa loja em Goiânia, sem hora marcada.</p>
-          <div class="acoes acoes--centro"><a class="botao" href={linkWhatsApp('Olá, Cris! Gostaria de saber quais peças estão disponíveis para pronta entrega.')} target="_blank" rel="noopener">Perguntar no WhatsApp</a></div>
+          <h2 class="h-2">Prontas para vestir.</h2>
+          <p class="sub texto-2">Para conhecer as peças disponíveis agora, fale com o&nbsp;{contato.atendente} pelo WhatsApp.</p>
+          <div class="acoes acoes--centro"><a class="botao" href={linkWhatsApp('Olá! Gostaria de saber quais peças estão disponíveis para pronta entrega.')} target="_blank" rel="noopener">Ver peças disponíveis</a></div>
         </div>
       )}
     </div>

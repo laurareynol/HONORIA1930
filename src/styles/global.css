@@ -532,6 +532,7 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .peca__dados { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; font-size: 14px; color: var(--tinta-2); margin-bottom: 8px; }
 .peca__preco { font-size: 15px; margin-bottom: 12px; }
 
+.vazio .sub { margin-inline: auto; }
 .vazio { background: var(--cinza); border-radius: var(--raio); padding: clamp(48px, 7vw, 88px) 24px; text-align: center; }
 
 /* ---------- Perguntas frequentes ---------- */

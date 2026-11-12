@@ -2,7 +2,7 @@
 // Para mudar um contato, endereço, horário ou valor, altere aqui: o site inteiro acompanha.
 
 export const contato = {
-  atendente: 'Cris',
+  atendente: 'Atendimento Goiânia',
   whatsapp: '5562999681930',
   whatsappExibicao: '62 99968-1930',
   email: 'cliente.honoriaoficial@gmail.com',
@@ -74,7 +74,7 @@ export const etapasSobMedida: [string, string][] = [
   ['As provas e os detalhes finais', 'O caimento é acompanhado nas provas, com os ajustes necessários até a entrega.'],
 ];
 
-export function linkWhatsApp(mensagem = 'Olá, Cris! Vim pelo site da Honōria.') {
+export function linkWhatsApp(mensagem = 'Olá! Vim pelo site da Honōria.') {
   return `https://wa.me/${contato.whatsapp}?text=${encodeURIComponent(mensagem)}`;
 }
 
