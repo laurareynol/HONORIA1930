@@ -7,10 +7,12 @@ import { linkWhatsAppProducao } from '../config/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const criacoes = (await getCollection('criacoes')).sort((a, b) => a.data.ordem - b.data.ordem);
-const nomesOcasiao = { noivas: 'Noivas', festa: 'Festa', tata: 'TATA by Honoria 1930' } as const;
+const nomesOcasiao = { noivas: 'Noivas', debutantes: 'Debutantes', formandas: 'Formandas', festa: 'Festa', tata: 'TATA by Honoria 1930' } as const;
 const filtros = [
   { id: 'todas', rotulo: 'Todas' },
   { id: 'noivas', rotulo: 'Noivas' },
+  { id: 'debutantes', rotulo: 'Debutantes' },
+  { id: 'formandas', rotulo: 'Formandas' },
   { id: 'festa', rotulo: 'Festa' },
   { id: 'movimento', rotulo: 'Em movimento' },
   { id: 'tata', rotulo: 'TATA by Honoria 1930' },
