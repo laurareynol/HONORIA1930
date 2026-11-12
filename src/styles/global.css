@@ -338,7 +338,7 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .bloco::after {
   content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background:
-    radial-gradient(ellipse 75% 34% at 50% 15%, rgba(0,0,0,.42) 0%, rgba(0,0,0,0) 100%),
+    radial-gradient(ellipse 60% 26% at 50% 13%, rgba(0,0,0,.4) 0%, rgba(0,0,0,0) 100%),
     linear-gradient(to bottom, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 20%, rgba(0,0,0,.22) 36%, rgba(0,0,0,0) 52%),
     linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 30%);
 }
@@ -350,10 +350,10 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
   padding: clamp(36px, 4.4vw, 56px) 24px 0; margin: 0; text-align: center;
   font-weight: 300;
 }
-.bloco__capa svg { width: min(78%, 440px); height: auto; color: var(--branco); }
+.bloco__capa svg { width: min(48%, 230px); height: auto; color: var(--branco); }
 .bloco__nome {
-  display: block; margin-top: clamp(14px, 1.6vw, 22px);
-  font-size: clamp(12px, 1vw, 14px); letter-spacing: .42em; text-transform: uppercase;
+  display: block; margin-top: clamp(10px, 1vw, 14px);
+  font-size: clamp(11px, .85vw, 12.5px); letter-spacing: .42em; text-transform: uppercase;
   padding-left: .42em; color: rgba(255,255,255,.92);
 }
 /* Chamada de capa, discreta, no pé da foto. */
