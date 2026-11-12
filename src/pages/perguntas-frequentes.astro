@@ -8,7 +8,7 @@ const h = horario.map((x) => `${x.dias.toLowerCase()}, das ${x.horas}`).join('; 
 const cidades = lojas.map((l) => l.cidade).join(' e ');
 const perguntas = [
   ['Preciso agendar para visitar a loja?', `A loja de ${cidades} recebe sem hora marcada: ${h}. O atendimento com a Tata é sempre agendado.`],
-  ['Como funciona o atendimento no Brasil e no mundo?', `Atendemos online de onde você estiver ou presencialmente em São Paulo, sempre com agendamento prévio. Nossa única loja física fica em Goiânia. Fale pelo WhatsApp ${contatoSaoPaulo.whatsappExibicao} para consultar a disponibilidade e combinar os detalhes.`],
+  ['Como funciona o atendimento no Brasil e no mundo?', `Atendemos online de onde você estiver, sempre com agendamento prévio. Nossa loja física fica em Goiânia. Fale pelo WhatsApp ${contatoSaoPaulo.whatsappExibicao} para consultar a disponibilidade e combinar os detalhes.`],
   ['Como faço para criar uma peça com a Tata?', `O atendimento com a Tata é agendado com a produção, pelo WhatsApp ${producao.whatsappExibicao}. A reunião pode ser presencial (${atendimentoTata.presencial}) ou online (${atendimentoTata.online}). O valor é pago uma única vez e não é devolvido nem abatido do valor da peça.`],
   ['Moro em outra cidade ou país. Posso fazer o meu vestido de noiva com a Honōria?', 'Sim. A Tata atende noivas de qualquer lugar do mundo, e o encontro com ela normalmente acontece por chamada de vídeo.'],
   ['Com quanta antecedência devo começar?', `Pedimos ${antecedencia.texto} entre o primeiro encontro e a data do evento, tanto para festa quanto para noivas. Se a sua data estiver mais próxima, fale com a produção pelo WhatsApp ${producao.whatsappExibicao} para conferir a disponibilidade.`],

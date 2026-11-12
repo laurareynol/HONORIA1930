@@ -46,7 +46,7 @@ export function linkWhatsAppProducao(mensagem = 'Olá! Vim pelo site da Honōria
 }
 
 export function linkWhatsAppSaoPaulo() {
-  const mensagem = 'Olá! Vim pelo site da Honōria e gostaria de agendar um atendimento online ou presencial em São Paulo.';
+  const mensagem = 'Olá! Vim pelo site da Honōria e gostaria de agendar um atendimento online.';
   return `https://wa.me/${contatoSaoPaulo.whatsapp}?text=${encodeURIComponent(mensagem)}`;
 }
 

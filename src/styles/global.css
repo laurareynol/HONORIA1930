@@ -490,6 +490,7 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .chamada { background: var(--preto); color: var(--branco); text-align: center; }
 .chamada .sub { color: var(--claro-2); margin-left: auto; margin-right: auto; }
 .chamada .seta { color: var(--branco); }
+.chamada .acoes { justify-content: center; }
 
 /* ---------- Galeria ---------- */
 

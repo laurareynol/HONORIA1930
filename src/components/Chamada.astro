@@ -3,7 +3,7 @@ import { url, linkWhatsApp, linkWhatsAppProducao } from '../config/site';
 interface Props { titulo?: string; texto?: string; interesse?: string }
 const {
   titulo = 'Vamos conversar sobre a sua ocasião?',
-  texto = 'Conte o que você procura. Organizamos o seu atendimento na loja em Goiânia, online ou presencial em São Paulo, com agendamento.',
+  texto = 'Conte o que você procura. Organizamos o seu atendimento, online ou na nossa loja.',
   interesse,
 } = Astro.props;
 const destino = interesse ? `${url('atendimento')}?interesse=${interesse}` : url('atendimento');
