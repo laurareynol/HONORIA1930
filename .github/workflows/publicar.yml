@@ -43,3 +43,32 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Publica também na hospedagem própria (cPanel) em honoriaoficial.com.
+  # Só roda quando os segredos FTP_SERVER, FTP_USERNAME e FTP_PASSWORD
+  # estiverem cadastrados no GitHub (Settings > Secrets and variables > Actions).
+  cpanel:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+    steps:
+      - if: env.FTP_SERVER != ''
+        uses: actions/checkout@v4
+      - if: env.FTP_SERVER != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - if: env.FTP_SERVER != ''
+        run: npm ci && npm run build
+        env:
+          SITE_URL: https://honoriaoficial.com
+          BASE_PATH: /
+      - if: env.FTP_SERVER != ''
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ./
