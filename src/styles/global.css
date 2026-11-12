@@ -334,14 +334,23 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 }
 .bloco__foto { position: absolute; inset: 0; z-index: -1; }
 .bloco__foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.6s var(--longo); }
-.bloco:hover .bloco__foto img { transform: scale(1.035); }
-.bloco::after {
-  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background:
-    radial-gradient(ellipse 60% 26% at 50% 13%, rgba(0,0,0,.4) 0%, rgba(0,0,0,0) 100%),
-    linear-gradient(to bottom, rgba(0,0,0,.72) 0%, rgba(0,0,0,.52) 20%, rgba(0,0,0,.22) 36%, rgba(0,0,0,0) 52%),
-    linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 30%);
+.bloco:hover .bloco__foto img, .bloco:hover .bloco__recorte { transform: scale(1.035); }
+/* A modelo recortada passa na frente do 1930. */
+.bloco__recorte {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: var(--veu), var(--recorte) var(--posicao) / cover no-repeat;
+  -webkit-mask: var(--recorte) var(--posicao) / cover no-repeat;
+  mask: var(--recorte) var(--posicao) / cover no-repeat;
+  transition: transform 1.6s var(--longo);
 }
+.bloco__capa, .bloco__chamada { position: relative; }
+.bloco__chamada { z-index: 2; }
+/* Véu escuro, igual na foto e no recorte, para o texto ler bem sem marcar o contorno da modelo. */
+.bloco {
+  --veu: linear-gradient(to bottom, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 30%, rgba(0,0,0,0) 46%),
+         linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 30%);
+}
+.bloco__foto::after { content: ''; position: absolute; inset: 0; background: var(--veu); pointer-events: none; }
 .bloco { display: flex; flex-direction: column; justify-content: space-between; }
 
 /* Capa de revista, como o álbum editorial: 1930 grande em serifa, Honōria pequena embaixo. */
@@ -352,12 +361,14 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 }
 /* 1930 de ponta a ponta, como a capa do álbum. */
 .bloco__ano {
+  text-shadow: 0 2px 30px rgba(0,0,0,.18);
   display: flex; justify-content: space-between;
   font-family: 'Bodoni Moda Variable', 'Didot', 'Bodoni 72', serif;
   font-variation-settings: 'opsz' 96; font-weight: 400;
   font-size: 34cqi; line-height: .8;
 }
 .bloco__marca {
+  position: relative; z-index: 2;
   align-self: flex-end; margin-top: 2.4cqi; font-size: clamp(10px, 1.9cqi, 13px); font-weight: 400;
   letter-spacing: .38em; text-transform: uppercase; margin-right: -.38em;
 }

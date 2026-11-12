@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Lojas from '../components/Lojas.astro';
 import Declaracao from '../components/Declaracao.astro';
@@ -12,14 +12,20 @@ import noivas from '../assets/fotos/noivas.jpg';
 import vermelhoCroquis from '../assets/fotos/vermelho-croquis.jpg';
 import pretoManequim from '../assets/fotos/preto-manequim.jpg';
 import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
+// Recortes das modelos (fundo removido) que ficam na frente do 1930, como no álbum editorial.
+import recorteNoivas from '../assets/fotos/recorte-noivas.png';
+import recorteVermelho from '../assets/fotos/recorte-vermelho-croquis.png';
+import recortePreto from '../assets/fotos/recorte-preto-manequim.png';
+import recorteRosa from '../assets/fotos/recorte-rosa-maquina.png';
 import tata from '../assets/fotos/tata.jpg';
 
 const blocos = [
-  { titulo: 'Honoria para Casar', capa: 'Para Casar', texto: 'Um vestido de noiva que nasce da sua história.', href: 'honoria-para-casar', acao: 'Para noivas', foto: noivas, alt: 'Três noivas sentadas lado a lado, com vestidos de renda e tule.', posicao: '50% 40%' },
-  { titulo: 'Sob Medida', capa: 'Sob Medida', texto: 'Para madrinhas, formandas, debutantes e convidadas.', href: 'sob-medida', acao: 'Como funciona', foto: vermelhoCroquis, alt: 'Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê.', posicao: '50% 30%' },
-  { titulo: 'Pronta entrega', capa: 'Pronta Entrega', texto: 'Criações autorais, prontas para vestir.', href: 'pronta-entrega', acao: 'Ver as peças', foto: pretoManequim, alt: 'Em preto e branco, modelo com vestido de renda ao lado de um manequim.', posicao: '64% 50%' },
-  { titulo: 'O ateliê', capa: 'Ateliê', texto: 'Desenhado por Tata, construído por muitas mãos.', href: 'atelie', acao: 'Conhecer', foto: rosaMaquina, alt: 'Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura.', posicao: '50% 38%' },
+  { titulo: 'Honoria para Casar', capa: 'Para Casar', texto: 'Um vestido de noiva que nasce da sua história.', href: 'honoria-para-casar', acao: 'Para noivas', foto: noivas, recorte: recorteNoivas, alt: 'Três noivas sentadas lado a lado, com vestidos de renda e tule.', posicao: '50% 40%' },
+  { titulo: 'Sob Medida', capa: 'Sob Medida', texto: 'Para madrinhas, formandas, debutantes e convidadas.', href: 'sob-medida', acao: 'Como funciona', foto: vermelhoCroquis, recorte: recorteVermelho, alt: 'Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê.', posicao: '50% 8%' },
+  { titulo: 'Pronta entrega', capa: 'Pronta Entrega', texto: 'Criações autorais, prontas para vestir.', href: 'pronta-entrega', acao: 'Ver as peças', foto: pretoManequim, recorte: recortePreto, alt: 'Em preto e branco, modelo com vestido de renda ao lado de um manequim.', posicao: '64% 50%' },
+  { titulo: 'O ateliê', capa: 'Ateliê', texto: 'Desenhado por Tata, construído por muitas mãos.', href: 'atelie', acao: 'Conhecer', foto: rosaMaquina, recorte: recorteRosa, alt: 'Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura.', posicao: '50% 38%' },
 ];
+const recortes = await Promise.all(blocos.map(async (b) => (await getImage({ src: b.recorte, width: 1400, format: 'webp' })).src));
 ---
 <Base tituloBusca="Vestidos de festa e de noiva sob medida em Goiânia">
   <section class="abertura">
@@ -41,13 +47,14 @@ const blocos = [
   </Declaracao>
 
   <section class="mosaico" aria-label="Por onde começar">
-    {blocos.map((b) => (
+    {blocos.map((b, i) => (
       <a class="bloco" href={url(b.href)}>
         <div class="bloco__foto"><Image src={b.foto} alt={b.alt} widths={[640, 960, 1400]} sizes="(min-width: 900px) 50vw, 100vw" style={`object-position:${b.posicao}`} /></div>
         <div class="bloco__capa" aria-hidden="true">
           <span class="bloco__ano"><span>1</span><span>9</span><span>3</span><span>0</span></span>
           <span class="bloco__marca">Honōria</span>
         </div>
+        <div class="bloco__recorte" aria-hidden="true" style={`--recorte:url(${recortes[i]});--posicao:${b.posicao}`}></div>
         <div class="bloco__chamada">
           <h2 class="bloco__nome">{b.capa}</h2>
           <p>{b.texto}</p>
