@@ -337,11 +337,31 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .bloco:hover .bloco__foto img { transform: scale(1.035); }
 .bloco::after {
   content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(to bottom, rgba(0,0,0,.66) 0%, rgba(0,0,0,.34) 32%, rgba(0,0,0,0) 58%);
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.5) 0%, rgba(0,0,0,.18) 26%, rgba(0,0,0,0) 44%),
+    linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 30%);
 }
-.bloco__texto { padding: clamp(40px, 5vw, 56px) 24px 0; text-align: center; }
-.bloco__texto .sub { color: rgba(255,255,255,.88); margin: 10px auto 0; font-size: clamp(15px, 1.2vw, 17px); max-width: 24em; }
-.bloco__texto .seta { margin-top: 18px; }
+.bloco { display: flex; flex-direction: column; justify-content: space-between; }
+
+/* Capa de revista: o logo como cabeçalho e a frente logo abaixo. */
+.bloco__capa {
+  display: flex; flex-direction: column; align-items: center;
+  padding: clamp(36px, 4.4vw, 56px) 24px 0; margin: 0; text-align: center;
+  font-weight: 300;
+}
+.bloco__capa svg { width: min(78%, 440px); height: auto; color: var(--branco); }
+.bloco__nome {
+  display: block; margin-top: clamp(14px, 1.6vw, 22px);
+  font-size: clamp(12px, 1vw, 14px); letter-spacing: .42em; text-transform: uppercase;
+  padding-left: .42em; color: rgba(255,255,255,.92);
+}
+/* Chamada de capa, discreta, no pé da foto. */
+.bloco__chamada {
+  padding: 0 clamp(24px, 3vw, 40px) clamp(28px, 3.4vw, 44px);
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px;
+}
+.bloco__chamada p { margin: 0; font-size: 14px; letter-spacing: .02em; color: rgba(255,255,255,.88); max-width: 26em; }
+.bloco__chamada .seta { font-size: 14px; }
 @media (min-width: 900px) { .bloco { min-height: clamp(560px, 46vw, 760px); } }
 
 /* ---------- Carrossel ---------- */
@@ -609,7 +629,7 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 }
 
 .abertura .acoes { justify-content: center; }
-.bloco__texto { text-shadow: 0 1px 24px rgba(0,0,0,.25); }
+.bloco__capa, .bloco__chamada { text-shadow: 0 1px 24px rgba(0,0,0,.25); }
 
 /* Em movimento: quatro vídeos lado a lado */
 .movimento { background: var(--preto); color: var(--branco); padding: var(--secao) 0 12px; }

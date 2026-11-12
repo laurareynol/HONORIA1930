@@ -6,6 +6,7 @@ import Declaracao from '../components/Declaracao.astro';
 import Etapas from '../components/Etapas.astro';
 import Chamada from '../components/Chamada.astro';
 import Movimento from '../components/Movimento.astro';
+import Logo from '../components/Logo.astro';
 import { url, etapasSobMedida, linkWhatsAppProducao, mensagemProducao } from '../config/site';
 import vermelhoJanela from '../assets/fotos/vermelho-janela.jpg';
 import noivas from '../assets/fotos/noivas.jpg';
@@ -15,10 +16,10 @@ import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
 import tata from '../assets/fotos/tata.jpg';
 
 const blocos = [
-  { titulo: 'Honoria para Casar', texto: 'Um vestido de noiva que nasce da sua história.', href: 'honoria-para-casar', acao: 'Para noivas', foto: noivas, alt: 'Três noivas sentadas lado a lado, com vestidos de renda e tule.', posicao: '50% 40%' },
-  { titulo: 'Sob Medida', texto: 'Para madrinhas, formandas, debutantes e convidadas.', href: 'sob-medida', acao: 'Como funciona', foto: vermelhoCroquis, alt: 'Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê.', posicao: '50% 30%' },
-  { titulo: 'Pronta entrega', texto: 'Criações autorais na nossa loja em Goiânia.', href: 'pronta-entrega', acao: 'Ver as peças', foto: pretoManequim, alt: 'Em preto e branco, modelo com vestido de renda ao lado de um manequim.', posicao: '64% 50%' },
-  { titulo: 'O ateliê', texto: 'Desenhado por Tata, construído por muitas mãos.', href: 'atelie', acao: 'Conhecer', foto: rosaMaquina, alt: 'Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura.', posicao: '50% 38%' },
+  { titulo: 'Honoria para Casar', capa: 'Para Casar', texto: 'Um vestido de noiva que nasce da sua história.', href: 'honoria-para-casar', acao: 'Para noivas', foto: noivas, alt: 'Três noivas sentadas lado a lado, com vestidos de renda e tule.', posicao: '50% 40%' },
+  { titulo: 'Sob Medida', capa: 'Sob Medida', texto: 'Para madrinhas, formandas, debutantes e convidadas.', href: 'sob-medida', acao: 'Como funciona', foto: vermelhoCroquis, alt: 'Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê.', posicao: '50% 30%' },
+  { titulo: 'Pronta entrega', capa: 'Pronta Entrega', texto: 'Criações autorais, prontas para vestir.', href: 'pronta-entrega', acao: 'Ver as peças', foto: pretoManequim, alt: 'Em preto e branco, modelo com vestido de renda ao lado de um manequim.', posicao: '64% 50%' },
+  { titulo: 'O ateliê', capa: 'Ateliê', texto: 'Desenhado por Tata, construído por muitas mãos.', href: 'atelie', acao: 'Conhecer', foto: rosaMaquina, alt: 'Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura.', posicao: '50% 38%' },
 ];
 ---
 <Base tituloBusca="Vestidos de festa e de noiva sob medida em Goiânia">
@@ -44,9 +45,12 @@ const blocos = [
     {blocos.map((b) => (
       <a class="bloco" href={url(b.href)}>
         <div class="bloco__foto"><Image src={b.foto} alt={b.alt} widths={[640, 960, 1400]} sizes="(min-width: 900px) 50vw, 100vw" style={`object-position:${b.posicao}`} /></div>
-        <div class="bloco__texto">
-          <h2 class="h-1">{b.titulo}</h2>
-          <p class="sub">{b.texto}</p>
+        <h2 class="bloco__capa">
+          <Logo rotulo="Honōria 1930" />
+          <span class="bloco__nome">{b.capa}</span>
+        </h2>
+        <div class="bloco__chamada">
+          <p>{b.texto}</p>
           <span class="seta">{b.acao}</span>
         </div>
       </a>
