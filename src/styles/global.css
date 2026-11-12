@@ -664,8 +664,15 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .movimento__videos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .movimento__quadro { position: relative; aspect-ratio: 9 / 16; max-width: 100%; overflow: hidden; background: #111; }
 .movimento__quadro video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-/* No celular, o par branco inverte a ordem e forma um xadrez com o par preto. */
-@media (max-width: 899px) { .movimento__par:nth-child(2) .movimento__quadro:first-child { order: 2; } }
+/* No celular: passarela preta | zoom branco / zoom preto | passarela branca (xadrez). */
+@media (max-width: 899px) {
+  .movimento__grade { grid-template-columns: 1fr 1fr; }
+  .movimento__par, .movimento__videos { display: contents; }
+  .movimento__par:nth-child(1) .movimento__quadro:nth-child(1) { order: 1; }
+  .movimento__par:nth-child(2) .movimento__quadro:nth-child(2) { order: 2; }
+  .movimento__par:nth-child(1) .movimento__quadro:nth-child(2) { order: 3; }
+  .movimento__par:nth-child(2) .movimento__quadro:nth-child(1) { order: 4; }
+}
 
 /* ---------- Pedido de atendimento: passos e prazo ---------- */
 .passos-pedido { margin: 14px 0 0; padding-left: 1.2em; display: grid; gap: 10px; color: var(--tinta-2); }
