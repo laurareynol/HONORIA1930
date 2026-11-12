@@ -721,3 +721,5 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .vitrine__fechar svg { width: 14px; height: 14px; }
 @media (prefers-reduced-motion: reduce) { .vitrine[open] { animation: none; } }
 .olho { text-wrap: balance; }
+
+.loja--unica { max-width: 560px; margin: clamp(40px, 5vw, 64px) auto 0; }
