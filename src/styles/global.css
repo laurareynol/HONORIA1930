@@ -363,8 +363,8 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .bloco__ano {
   text-shadow: 0 2px 30px rgba(0,0,0,.18);
   display: flex; justify-content: space-between;
-  font-family: 'Bodoni Moda Variable', 'Didot', 'Bodoni 72', serif;
-  font-variation-settings: 'opsz' 96; font-weight: 400;
+  font-family: 'Noto Serif Display Variable', 'Didot', serif;
+  font-weight: 400;
   font-size: 34cqi; line-height: .8;
 }
 .bloco__marca {
