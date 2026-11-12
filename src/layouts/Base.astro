@@ -20,7 +20,7 @@ interface Props {
 const {
   titulo,
   tituloBusca,
-  descricao = 'Honōria 1930: alta-costura autoral brasileira. Vestidos de festa e de noiva Sob Medida, criados por Tata Ribeiro. Loja e ateliê em Goiânia. Atendimento online no Brasil e no mundo ou presencial em São Paulo, com agendamento.',
+  descricao = 'Honōria 1930: alta-costura autoral brasileira. Vestidos de festa e de noiva Sob Medida, criados por Renata Carneiro. Loja e ateliê em Goiânia. Atendimento online no Brasil e no mundo ou presencial em São Paulo, com agendamento.',
   pagina = '',
 } = Astro.props;
 const tituloCompleto = tituloBusca
@@ -39,12 +39,12 @@ const ficha = canonica === inicio && loja ? {
   '@type': 'ClothingStore',
   name: 'Honōria 1930',
   alternateName: 'Honoria 1930',
-  description: 'Alta-costura autoral brasileira: vestidos de festa, de noiva, de formatura e de debutante Sob Medida, criados por Tata Ribeiro.',
+  description: 'Alta-costura autoral brasileira: vestidos de festa, de noiva, de formatura e de debutante Sob Medida, criados por Renata Carneiro.',
   url: inicio,
   image: imagem,
   email: contato.email,
   telephone: `+${contato.whatsapp}`,
-  founder: { '@type': 'Person', name: 'Renata Ribeiro', alternateName: 'Tata Ribeiro' },
+  founder: { '@type': 'Person', name: 'Renata Carneiro', alternateName: 'Tata', jobTitle: 'Founder, Fashion Designer & Creative Director' },
   foundingDate: '2017-03',
   address: { '@type': 'PostalAddress', streetAddress: loja.endereco, addressLocality: loja.cidade, addressRegion: loja.uf, postalCode: loja.cep, addressCountry: 'BR' },
   openingHoursSpecification: horario.map((h) => {
