@@ -23,7 +23,7 @@ const blocos = [
   { titulo: 'Honoria para Casar', capa: 'Para Casar', texto: 'Um vestido de noiva que nasce da sua história.', href: 'honoria-para-casar', acao: 'Para noivas', foto: noivas, recorte: recorteNoivas, alt: 'Três noivas sentadas lado a lado, com vestidos de renda e tule.', posicao: '50% 40%' },
   { titulo: 'Sob Medida', capa: 'Sob Medida', texto: 'Para madrinhas, formandas, debutantes e convidadas.', href: 'sob-medida', acao: 'Como funciona', foto: vermelhoCroquis, recorte: recorteVermelho, alt: 'Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê.', posicao: '50% 8%' },
   { titulo: 'Pronta entrega', capa: 'Pronta Entrega', texto: 'Criações autorais, prontas para vestir.', href: 'pronta-entrega', acao: 'Ver as peças', foto: pretoManequim, recorte: recortePreto, alt: 'Em preto e branco, modelo com vestido de renda ao lado de um manequim.', posicao: '64% 50%' },
-  { titulo: 'O ateliê', capa: 'Ateliê', texto: 'Desenhado por Tata, construído por muitas mãos.', href: 'atelie', acao: 'Conhecer', foto: rosaMaquina, recorte: recorteRosa, alt: 'Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura.', posicao: '50% 38%' },
+  { titulo: 'O ateliê', capa: 'Ateliê', texto: 'Desenhado por Renata Carneiro, construído por muitas mãos.', href: 'atelie', acao: 'Conhecer', foto: rosaMaquina, recorte: recorteRosa, alt: 'Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura.', posicao: '50% 38%' },
 ];
 const recortes = await Promise.all(blocos.map(async (b) => (await getImage({ src: b.recorte, width: 1400, format: 'webp' })).src));
 ---

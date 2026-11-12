@@ -44,7 +44,7 @@ const ficha = canonica === inicio && loja ? {
   image: imagem,
   email: contato.email,
   telephone: `+${contato.whatsapp}`,
-  founder: { '@type': 'Person', name: 'Renata Carneiro', alternateName: 'Tata', jobTitle: 'Founder, Fashion Designer & Creative Director' },
+  founder: { '@type': 'Person', name: 'Renata Carneiro', jobTitle: 'Founder, Fashion Designer & Creative Director' },
   foundingDate: '2017-03',
   address: { '@type': 'PostalAddress', streetAddress: loja.endereco, addressLocality: loja.cidade, addressRegion: loja.uf, postalCode: loja.cep, addressCountry: 'BR' },
   openingHoursSpecification: horario.map((h) => {

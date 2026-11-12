@@ -8,7 +8,7 @@ descricaoCapa: Modelo com vestido vermelho debruçada sobre croquis na mesa do a
 
 Um vestido Sob Medida não começa no papel. Começa numa conversa.
 
-Na reunião com a Tata, a pergunta não é qual cor, qual tecido ou qual modelo. É outra: para que momento é esse vestido, como você quer se sentir ao vesti-lo, que relação você tem com a roupa. As respostas raramente cabem numa lista. Aparecem num gesto, numa referência guardada há anos, num detalhe que você nunca usaria e noutro sem o qual não se reconhece.
+Na reunião com a estilista, a pergunta não é qual cor, qual tecido ou qual modelo. É outra: para que momento é esse vestido, como você quer se sentir ao vesti-lo, que relação você tem com a roupa. As respostas raramente cabem numa lista. Aparecem num gesto, numa referência guardada há anos, num detalhe que você nunca usaria e noutro sem o qual não se reconhece.
 
 É dessa escuta que nasce o desenho. A criação é conjunta: silhueta, matéria e detalhes vão sendo decididos a quatro mãos, até que o desenho deixe de ser uma ideia e passe a ser um vestido possível.
 
