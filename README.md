@@ -1,6 +1,6 @@
 # Site Honōria 1930
 
-Site estático feito com [Astro](https://astro.build). Publicado pelo GitHub Pages a cada alteração no ramo `main`.
+Site estático feito com [Astro](https://astro.build). Publicado em https://honoriaoficial.com (hospedagem cPanel, por FTPS) a cada alteração no ramo `main`.
 
 ## Onde mudar cada coisa
 
@@ -32,7 +32,7 @@ Cada pasta de conteúdo tem um arquivo `_modelo.md`. Para criar algo novo, copie
 
 Qualquer alteração salva no ramo `main` do GitHub é publicada sozinha em alguns minutos (aba **Actions** mostra o andamento). Dá para editar direto pelo site do GitHub: abra o arquivo, clique no lápis, salve com "Commit changes".
 
-Na primeira vez, em **Settings → Pages**, escolha **Source: GitHub Actions**.
+Os dados de acesso à hospedagem ficam em **Settings → Secrets and variables → Actions**: `FTP_SERVER`, `FTP_USERNAME` e `FTP_PASSWORD`.
 
 ## Rodar no computador (opcional)
 
