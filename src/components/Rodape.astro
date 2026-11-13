@@ -26,10 +26,9 @@ const ano = new Date().getFullYear();
       <div>
         <h2>Atendimento</h2>
         <ul>
-          <li><a href={linkWhatsAppSaoPaulo()} target="_blank" rel="noopener">No Brasil e no mundo · Com agendamento<br />WhatsApp {contatoSaoPaulo.whatsappExibicao}</a></li>
+          <li><a href={linkWhatsAppSaoPaulo()} target="_blank" rel="noopener">No Brasil e no mundo · {contatoSaoPaulo.whatsappExibicao}</a></li>
           <li><a href={url('atendimento')}>Agendar uma conversa</a></li>
-          <li><a href={linkWhatsAppProducao()} target="_blank" rel="noopener">Sob Medida · Produção {producao.whatsappExibicao}</a></li>
-          <li><a href={linkWhatsApp()} target="_blank" rel="noopener">Loja e dúvidas · {contato.whatsappExibicao}</a></li>
+          <li><a href={linkWhatsApp()} target="_blank" rel="noopener">Goiânia · {contato.whatsappExibicao}</a></li>
           <li><a href={`mailto:${contato.email}`}>{contato.email}</a></li>
           <li><a href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">Instagram @{contato.instagram}</a></li>
         </ul>

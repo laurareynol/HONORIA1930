@@ -3,8 +3,8 @@
 
 export const contato = {
   atendente: 'Atendimento Goiânia',
-  whatsapp: '5562999681930',
-  whatsappExibicao: '62 99968-1930',
+  whatsapp: '5562998763118',
+  whatsappExibicao: '(62) 99876-3118',
   email: 'cliente.honoriaoficial@gmail.com',
   instagram: 'honoriaoficial',
 };
@@ -20,8 +20,8 @@ export const contatoSaoPaulo = {
 };
 
 export const producao = {
-  whatsapp: '5562998741001',
-  whatsappExibicao: '(62) 99874-1001',
+  whatsapp: '5562998763118',
+  whatsappExibicao: '(62) 99876-3118',
 };
 
 // Antecedência mínima pedida para uma criação Sob Medida (vale também para noivas).

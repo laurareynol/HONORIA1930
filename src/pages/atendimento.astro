@@ -93,9 +93,8 @@ import { contato, linkWhatsApp, url, contatoSaoPaulo, linkWhatsAppSaoPaulo, prod
         <div class="cartao-contato">
           <span class="olho">Outros canais</span>
           <ul>
-            <li><a href={linkWhatsAppProducao()} target="_blank" rel="noopener">Sob Medida · Produção {producao.whatsappExibicao}</a></li>
-            <li><a href={linkWhatsAppSaoPaulo()} target="_blank" rel="noopener">No Brasil e no mundo · WhatsApp {contatoSaoPaulo.whatsappExibicao}</a> <span class="texto-2">(com agendamento)</span></li>
-            <li><a href={linkWhatsApp()} target="_blank" rel="noopener">Loja e dúvidas · WhatsApp {contato.whatsappExibicao}</a> <span class="texto-2">({contato.atendente})</span></li>
+            <li><a href={linkWhatsAppSaoPaulo()} target="_blank" rel="noopener">No Brasil e no mundo · WhatsApp {contatoSaoPaulo.whatsappExibicao}</a></li>
+            <li><a href={linkWhatsApp()} target="_blank" rel="noopener">Goiânia · WhatsApp {contato.whatsappExibicao}</a></li>
             <li><a href={`mailto:${contato.email}`}>{contato.email}</a></li>
             <li><a href={`https://www.instagram.com/${contato.instagram}/`} target="_blank" rel="noopener">Instagram @{contato.instagram}</a></li>
           </ul>
