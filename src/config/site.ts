@@ -33,7 +33,7 @@ export const medicao = {
   googleAnalytics: 'G-B3SRKR9BDY',
   pixelMeta: '',
   // Google Search Console: só o código do campo content da "tag HTML" (ex.: abc123XYZ...).
-  googleSearchConsole: '',
+  googleSearchConsole: '-gPQ9ZhwONAF1_5-MgKIld0rjCYkSHaGJ_NVNIPeI2Q',
 };
 
 // Mensagem padrão para a produção, dizendo de qual página a cliente veio.
