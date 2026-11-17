@@ -7,9 +7,9 @@ import { url, etapasSobMedida, linkWhatsAppProducao, mensagemProducao, anteceden
 import vermelhoCroquis from '../assets/fotos/vermelho-croquis.jpg';
 import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
 
-const ocasioes = ['Madrinhas', 'Mães dos noivos', 'Irmãs dos noivos', 'Formandas', 'Debutantes', 'Convidadas', 'Bailes e celebrações'];
+const ocasioes = ['Debutantes', 'Formandas', 'Madrinhas', 'Mães e irmãs', 'Convidadas', 'Bailes e celebrações'];
 ---
-<Base titulo="Sob Medida" tituloBusca="Vestido de festa sob medida: madrinha, formatura e debutante" pagina="sob-medida" descricao="Sob Medida na Honōria 1930: um vestido de festa criado a partir de você, da reunião com Renata Carneiro à entrega.">
+<Base titulo="Sob Medida" tituloBusca="Vestido de festa sob medida: debutante, formatura e madrinha" pagina="sob-medida" descricao="Sob Medida na Honōria 1930: um vestido de festa criado a partir de você, da reunião com Renata Carneiro à entrega.">
   <section class="cabeca">
     <div class="envelope">
       <span class="olho">Sob Medida</span>
@@ -43,7 +43,7 @@ const ocasioes = ['Madrinhas', 'Mães dos noivos', 'Irmãs dos noivos', 'Formand
       <ul class="lista-limpa" style="margin-top:40px">
         {ocasioes.map((o) => <li>{o}</li>)}
       </ul>
-      <p class="texto texto-2" style="margin-top:32px">Para noivas, conheça <a href={url('honoria-para-casar')}>Honoria para Casar</a>.</p>
+      <p class="texto texto-2" style="margin-top:32px">Para os 15 anos, conheça a página <a href={url('debutantes')}>Debutantes</a>. Para noivas, <a href={url('honoria-para-casar')}>Honoria para Casar</a>.</p>
     </div>
   </section>
 

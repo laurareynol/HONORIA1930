@@ -2,7 +2,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
-const paginas = ['', 'sob-medida/', 'honoria-para-casar/', 'criacoes/', 'pronta-entrega/', 'atelie/', 'diario/', 'atendimento/', 'perguntas-frequentes/', 'imprensa/', 'privacidade/'];
+const paginas = ['', 'debutantes/', 'sob-medida/', 'criacoes/', 'honoria-para-casar/', 'pronta-entrega/', 'atelie/', 'diario/', 'atendimento/', 'perguntas-frequentes/', 'imprensa/', 'privacidade/'];
 
 export const GET: APIRoute = async ({ site }) => {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');

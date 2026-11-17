@@ -84,11 +84,12 @@ export function linkMapa(loja: (typeof lojas)[number]) {
 }
 
 export const navegacao = [
+  { rotulo: 'Debutantes', href: 'debutantes' },
   { rotulo: 'Sob Medida', href: 'sob-medida' },
-  { rotulo: 'Honoria para Casar', href: 'honoria-para-casar' },
   { rotulo: 'Criações', href: 'criacoes' },
   { rotulo: 'Pronta entrega', href: 'pronta-entrega' },
   { rotulo: 'Ateliê', href: 'atelie' },
+  { rotulo: 'Noivas', href: 'honoria-para-casar' },
   { rotulo: 'Diário', href: 'diario' },
 ];
 

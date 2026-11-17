@@ -20,7 +20,7 @@ interface Props {
 const {
   titulo,
   tituloBusca,
-  descricao = 'Honōria 1930: alta-costura autoral brasileira. Vestidos de festa e de noiva Sob Medida, criados por Renata Carneiro. Atendimento online, no Brasil e no mundo.',
+  descricao = 'Honōria 1930: alta-costura autoral brasileira. Vestidos de debutante, de festa e de noiva Sob Medida, criados por Renata Carneiro. Atendimento online, no Brasil e no mundo.',
   pagina = '',
 } = Astro.props;
 const tituloCompleto = tituloBusca
@@ -39,7 +39,7 @@ const ficha = canonica === inicio && loja ? {
   '@type': 'ClothingStore',
   name: 'Honōria 1930',
   alternateName: 'Honoria 1930',
-  description: 'Alta-costura autoral brasileira: vestidos de festa, de noiva, de formatura e de debutante Sob Medida, criados por Renata Carneiro.',
+  description: 'Alta-costura autoral brasileira: vestidos de debutante, de formatura, de festa e de noiva Sob Medida, criados por Renata Carneiro.',
   url: inicio,
   image: imagem,
   email: contato.email,

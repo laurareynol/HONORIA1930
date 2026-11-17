@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Etapas from '../components/Etapas.astro';
+import Chamada from '../components/Chamada.astro';
+import { url, etapasSobMedida, linkWhatsAppProducao, mensagemProducao, antecedencia } from '../config/site';
+import rosaMaquina from '../assets/fotos/rosa-maquina.jpg';
+import vermelhoJanela from '../assets/fotos/vermelho-janela.jpg';
+---
+<Base titulo="Debutantes" tituloBusca="Vestido de debutante sob medida: vestido de 15 anos" pagina="debutantes" descricao="Vestido de debutante Sob Medida na Honōria 1930: o vestido dos seus 15 anos criado com a estilista Renata Carneiro. Atendimento online, no Brasil e no mundo.">
+  <section class="cabeca">
+    <div class="envelope">
+      <h1 class="h-hero">Os seus 15 anos.</h1>
+      <p class="sub texto-2">Um vestido de debutante criado a partir de você, com a estilista Renata Carneiro.</p>
+      <div class="acoes acoes--centro">
+        <a class="botao" href={linkWhatsAppProducao(mensagemProducao('Debutantes', 'gostaria de agendar uma conversa com a estilista sobre o meu vestido de 15 anos'))} target="_blank" rel="noopener">Agendar com a estilista</a>
+        <a class="seta" href="#criacao">Como funciona</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="imagem-larga imagem-larga--16x9 aproxima">
+    <Image src={rosaMaquina} alt="Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura." widths={[800, 1200, 1600]} sizes="100vw" loading="eager" style="object-position: 50% 38%" />
+  </div>
+
+  <section class="secao centro" id="criacao" aria-labelledby="noite">
+    <div class="envelope envelope--estreito revela">
+      <h2 class="h-1" id="noite">Desenhado para a sua noite.</h2>
+      <p class="sub texto-2">Na conversa com a estilista, você conta como imagina a festa, o que quer sentir e quem você é. É dessa escuta que nasce o desenho.</p>
+      <p class="texto texto-2" style="margin-top:24px">Depois vêm medidas, modelagem, corte, costura, arremate e as provas, até cada detalhe estar como você sonhou. Tudo feito à mão, no nosso ateliê.</p>
+    </div>
+  </section>
+
+  <section class="secao secao--cinza" aria-labelledby="etapas">
+    <div class="envelope revela">
+      <h2 class="h-1" id="etapas">Do primeiro traço à festa.</h2>
+    </div>
+    <div style="margin-top:clamp(40px,5vw,64px)"><Etapas etapas={etapasSobMedida} /></div>
+  </section>
+
+  <section class="secao secao--colada" aria-label="Antes de começar">
+    <div class="envelope">
+      <div class="destaques" style="margin-top:0">
+        <div class="destaque revela"><h3 class="h-3">Conversa com a estilista.</h3><p>O primeiro encontro é agendado e tem um valor de consultoria.</p></div>
+        <div class="destaque revela revela-atraso"><h3 class="h-3">{antecedencia.meses} meses de antecedência.</h3><p>Pedimos {antecedencia.texto} entre o primeiro encontro e a data da festa.</p></div>
+        <div class="destaque revela revela-atraso"><h3 class="h-3">De qualquer lugar.</h3><p>Debutantes de outras cidades e países são atendidas por chamada de vídeo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--cinza" aria-labelledby="familia">
+    <div class="envelope lado">
+      <div class="lado__foto revela">
+        <Image src={vermelhoJanela} alt="Modelo com vestido vermelho de babados volumosos junto à janela do ateliê." widths={[480, 800, 1200]} sizes="(min-width: 900px) 50vw, 100vw" />
+      </div>
+      <div class="revela">
+        <h2 class="h-1" id="familia">Para quem estará ao seu lado.</h2>
+        <p class="sub texto-2">Mãe, irmãs e madrinhas também podem ter a sua criação Sob Medida.</p>
+        <div class="acoes"><a class="seta" href={url('sob-medida')}>Conhecer o Sob Medida</a></div>
+      </div>
+    </div>
+  </section>
+
+  <Chamada titulo="Vamos começar o seu vestido?" texto="Conte a data da festa e a cidade onde você está. Agendamos a sua conversa com a estilista." interesse="debutante" />
+</Base>

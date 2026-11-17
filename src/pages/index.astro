@@ -20,14 +20,14 @@ import recorteRosa from '../assets/fotos/recorte-rosa-maquina.png';
 import tata from '../assets/fotos/tata.jpg';
 
 const blocos = [
-  { titulo: 'Honoria para Casar', capa: 'Para Casar', texto: 'Um vestido de noiva que nasce da sua história.', href: 'honoria-para-casar', acao: 'Para noivas', foto: noivas, recorte: recorteNoivas, alt: 'Três noivas sentadas lado a lado, com vestidos de renda e tule.', posicao: '50% 40%' },
-  { titulo: 'Sob Medida', capa: 'Sob Medida', texto: 'Para madrinhas, formandas, debutantes e convidadas.', href: 'sob-medida', acao: 'Como funciona', foto: vermelhoCroquis, recorte: recorteVermelho, alt: 'Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê.', posicao: '50% 8%' },
+  { titulo: 'Debutantes', capa: 'Debutantes', texto: 'O vestido dos seus 15 anos, criado a partir de você.', href: 'debutantes', acao: 'Para debutantes', foto: rosaMaquina, recorte: recorteRosa, alt: 'Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura.', posicao: '50% 38%' },
+  { titulo: 'Sob Medida', capa: 'Sob Medida', texto: 'Para formandas, madrinhas e convidadas.', href: 'sob-medida', acao: 'Como funciona', foto: vermelhoCroquis, recorte: recorteVermelho, alt: 'Modelo com vestido vermelho debruçada sobre croquis na mesa do ateliê.', posicao: '50% 8%' },
   { titulo: 'Pronta entrega', capa: 'Pronta Entrega', texto: 'Criações autorais, prontas para vestir.', href: 'pronta-entrega', acao: 'Ver as peças', foto: pretoManequim, recorte: recortePreto, alt: 'Em preto e branco, modelo com vestido de renda ao lado de um manequim.', posicao: '64% 50%' },
-  { titulo: 'O ateliê', capa: 'Ateliê', texto: 'Desenhado por Renata Carneiro, construído por muitas mãos.', href: 'atelie', acao: 'Conhecer', foto: rosaMaquina, recorte: recorteRosa, alt: 'Modelo de costas com vestido rosa de saia em camadas de tule, diante de uma máquina de costura.', posicao: '50% 38%' },
+  { titulo: 'Honoria para Casar', capa: 'Para Casar', texto: 'Um vestido de noiva que nasce da sua história.', href: 'honoria-para-casar', acao: 'Para noivas', foto: noivas, recorte: recorteNoivas, alt: 'Três noivas sentadas lado a lado, com vestidos de renda e tule.', posicao: '50% 40%' },
 ];
 const recortes = await Promise.all(blocos.map(async (b) => (await getImage({ src: b.recorte, width: 1400, format: 'webp' })).src));
 ---
-<Base tituloBusca="Vestidos de festa e de noiva sob medida em Goiânia">
+<Base tituloBusca="Vestido de debutante e de festa sob medida">
   <section class="abertura">
     <div class="abertura__foto">
       <Image src={vermelhoJanela} alt="Modelo com vestido vermelho de babados volumosos, apoiada numa mesa de costura junto à janela do ateliê." widths={[640, 960, 1271]} sizes="100vw" loading="eager" fetchpriority="high" />
@@ -37,7 +37,7 @@ const recortes = await Promise.all(blocos.map(async (b) => (await getImage({ src
       <p class="sub entra">Alta-costura autoral brasileira. <em>Handmade</em>.</p>
       <div class="acoes entra">
         <a class="botao botao--claro" href={url('atendimento')}>Agendar uma conversa</a>
-        <a class="seta" href={url('sob-medida')}>Conhecer o Sob Medida</a>
+        <a class="seta" href={url('debutantes')}>Para debutantes</a>
       </div>
     </div>
   </section>
