@@ -156,15 +156,17 @@ import { contato, linkWhatsApp, url, contatoSaoPaulo, linkWhatsAppSaoPaulo, prod
     let data = String(d.get('data') || '');
     if (data) { const [a, m, dia] = data.split('-'); data = `${dia}/${m}/${a}`; }
     const linhas = [
-      `Olá, produção! Sou ${nome} e gostaria de atendimento Sob Medida com a Honōria.`,
-      `Telefone para contato: ${telefone}`,
-      `Interesse: ${d.get('interesse')}`,
-      d.get('ocasiao') && `Ocasião: ${d.get('ocasiao')}`,
-      data && `Data do evento: ${data}${prazoCurto() ? ` (menos de ${meses} meses)` : ''}`,
-      d.get('cidade') && `Cidade: ${d.get('cidade')}`,
-      d.get('conheceu') && `Como conheceu a Honōria: ${d.get('conheceu')}`,
-      origem && `Vim pela página: ${origem}`,
-      d.get('mensagem') && `\n${d.get('mensagem')}`,
+      `Olá! Gostaria de um atendimento com a Honōria.\n`,
+      `*PEDIDO DE ATENDIMENTO*`,
+      `*Nome:* ${nome}`,
+      `*Telefone:* ${telefone}`,
+      `*Interesse:* ${d.get('interesse')}`,
+      d.get('ocasiao') && `*Ocasião:* ${d.get('ocasiao')}`,
+      data && `*Data do evento:* ${data}${prazoCurto() ? ` (menos de ${meses} meses)` : ''}`,
+      d.get('cidade') && `*Cidade e país:* ${d.get('cidade')}`,
+      d.get('conheceu') && `*Como conheceu:* ${d.get('conheceu')}`,
+      origem && `*Página do site:* ${origem}`,
+      d.get('mensagem') && `\n*Mensagem:*\n${d.get('mensagem')}`,
     ].filter(Boolean);
     document.dispatchEvent(new CustomEvent('honoria:pedido', { detail: { interesse: String(d.get('interesse')), ocasiao: String(d.get('ocasiao') || ''), prazo_curto: prazoCurto() ? 'sim' : 'nao' } }));
     const destino = `https://wa.me/${numero}?text=${encodeURIComponent(linhas.join('\n'))}`;
