@@ -737,3 +737,6 @@ a.peca:hover .peca__foto img { transform: scale(1.02); }
 .produto__politica { margin-top: 32px; display: grid; gap: 8px; }
 .produto__politica p, .produto__nota { margin: 0; }
 .produto__nota { margin-top: 24px; }
+/* Fotos de produto com fundo branco: proporção 2:3, sem corte */
+.pecas .peca__foto, .produto__fotos .peca__foto { aspect-ratio: 2 / 3; background: #fff; }
+.pecas .peca__foto img, .produto__fotos .peca__foto img { object-fit: contain; }

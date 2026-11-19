@@ -7,12 +7,11 @@ const loja = lojas[0];
 
 const pecas = (await getCollection('pronta-entrega')).filter((p) => p.data.disponivel).sort((a, b) => a.data.ordem - b.data.ordem);
 ---
-<Base titulo="Pronta entrega" tituloBusca="Vestidos de festa pronta entrega em Goiânia" pagina="pronta-entrega" descricao="Pronta entrega Honōria 1930: criações autorais disponíveis na loja de Goiânia.">
+<Base titulo="Pronta entrega" tituloBusca="Vestidos de festa e de debutante pronta entrega" pagina="pronta-entrega" descricao="Pronta entrega Honōria 1930: vestidos autorais de debutante e de festa, prontos para comprar online ou conhecer na loja.">
   <section class="cabeca">
     <div class="envelope">
-      <span class="olho">Pronta entrega</span>
       <h1 class="h-hero">Pronta para encontrar quem vai vesti-la.</h1>
-      <p class="sub texto-2">Peças autorais com o mesmo desenho, acabamento e cuidado de toda criação Honōria, na loja de Goiânia.</p>
+      <p class="sub texto-2">Peças autorais com o mesmo desenho, acabamento e cuidado de toda criação Honōria. <em>Handmade</em>.</p>
     </div>
   </section>
 
