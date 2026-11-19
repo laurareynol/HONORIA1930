@@ -740,3 +740,7 @@ a.peca:hover .peca__foto img { transform: scale(1.02); }
 /* Fotos de produto com fundo branco: proporção 2:3, sem corte */
 .pecas .peca__foto, .produto__fotos .peca__foto { aspect-ratio: 2 / 3; background: #fff; }
 .pecas .peca__foto img, .produto__fotos .peca__foto img { object-fit: contain; }
+/* Link de voltar: seta antes do texto, apontando para trás, com respiro */
+.seta--volta::after { content: none; }
+.seta--volta::before { content: '‹'; font-size: 1.25em; line-height: 1; margin-right: 8px; display: inline-block; transform: translateY(-1px); transition: transform .3s var(--suave); }
+.seta--volta:hover::before { transform: translate(-3px, -1px); }
