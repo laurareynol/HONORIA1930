@@ -3,6 +3,8 @@ nome: Conjunto azul-céu bordado
 foto: ../../assets/fotos/pe-azul-ceu-conjunto.jpg
 descricao: Conjunto de cropped e saia longa rodada azul-céu, com flores bordadas em relevo nos ombros e na saia.
 loja: Goiânia
+preco: R$ 4.980
+tamanho: "38"
 cor: Azul-céu
 ocasiao: debutantes
 ordem: 2

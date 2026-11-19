@@ -27,7 +27,7 @@ const duvida = linkWhatsApp(`Olá! Tenho interesse na peça "${d.nome}"${d.taman
         <h1 class="h-2">{d.nome}</h1>
         {d.preco && <p class="produto__preco">{d.preco}</p>}
         <dl class="produto__dados">
-          {d.tamanho && <div><dt>Tamanho</dt><dd>{d.tamanho}</dd></div>}
+          {d.tamanho && <div><dt>{d.tamanho.includes(" e ") ? "Tamanhos" : "Tamanho"}</dt><dd>{d.tamanho}</dd></div>}
           {d.cor && <div><dt>Cor</dt><dd>{d.cor}</dd></div>}
         </dl>
         <div class="texto-2 produto__texto"><Content /></div>

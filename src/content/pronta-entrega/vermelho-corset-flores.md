@@ -1,9 +1,11 @@
 ---
-nome: Vestido vermelho com corset bordado
+nome: Vestido marsala com corset bordado
 foto: ../../assets/fotos/pe-vermelho-corset-flores.jpg
-descricao: Vestido vermelho de alças finas com corset transparente bordado com flores e saia ampla franzida.
+descricao: Vestido marsala de alças finas com corset transparente bordado com flores e saia ampla franzida.
 loja: Goiânia
-cor: Vermelho
+preco: R$ 9.980
+tamanho: "40"
+cor: Marsala
 ocasiao: debutantes
 ordem: 3
 disponivel: true

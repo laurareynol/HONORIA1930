@@ -1,8 +1,10 @@
 ---
-nome: Vestido vermelho com laço
+nome: Slipdress vermelho com babado
 foto: ../../assets/fotos/pe-vermelho-laco.jpg
-descricao: Vestido longo vermelho de gola alta com laço no ombro e babado em cascata na saia.
+descricao: Slipdress longo vermelho de gola alta com laço no ombro e babado em cascata na saia.
 loja: Goiânia
+preco: R$ 4.980
+tamanho: "38"
 cor: Vermelho
 ocasiao: festa
 ordem: 6
