@@ -1,12 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection, render } from 'astro:content';
-import Base from '../layouts/Base.astro';
-import { linkWhatsApp, contato, lojas, horario, linkMapa } from '../config/site';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { url, linkWhatsApp, contato, lojas, horario, linkMapa } from '../../config/site';
 const loja = lojas[0];
 
-const pecas = (await getCollection('pronta-entrega')).filter((p) => p.data.disponivel);
-const renderizadas = await Promise.all(pecas.map(async (p) => ({ peca: p, Conteudo: (await render(p)).Content })));
+const pecas = (await getCollection('pronta-entrega')).filter((p) => p.data.disponivel).sort((a, b) => a.data.ordem - b.data.ordem);
 ---
 <Base titulo="Pronta entrega" tituloBusca="Vestidos de festa pronta entrega em Goiânia" pagina="pronta-entrega" descricao="Pronta entrega Honōria 1930: criações autorais disponíveis na loja de Goiânia.">
   <section class="cabeca">
@@ -19,20 +18,18 @@ const renderizadas = await Promise.all(pecas.map(async (p) => ({ peca: p, Conteu
 
   <section class="secao secao--colada" aria-label="Peças disponíveis">
     <div class="envelope">
-      {renderizadas.length > 0 ? (
+      {pecas.length > 0 ? (
         <div class="pecas">
-          {renderizadas.map(({ peca, Conteudo }) => (
-            <article class="peca revela">
+          {pecas.map((peca) => (
+            <a class="peca revela" href={url(`pronta-entrega/${peca.id}`)}>
               <div class="peca__foto"><Image src={peca.data.foto} alt={peca.data.descricao} widths={[480, 800]} sizes="(min-width: 1080px) 33vw, (min-width: 640px) 50vw, 100vw" /></div>
               <h2 class="h-3 peca__nome">{peca.data.nome}</h2>
               <p class="peca__dados">
-                <span>Loja {peca.data.loja}</span>
                 {peca.data.tamanho && <span>Tamanho {peca.data.tamanho}</span>}
+                {peca.data.cor && <span>{peca.data.cor}</span>}
               </p>
-              <div class="pequeno texto-2"><Conteudo /></div>
               {peca.data.preco && <p class="peca__preco">{peca.data.preco}</p>}
-              <a class="seta" href={linkWhatsApp(`Olá! Gostaria de saber mais sobre a peça "${peca.data.nome}" (loja ${peca.data.loja}).`)} target="_blank" rel="noopener">Consultar esta peça</a>
-            </article>
+            </a>
           ))}
         </div>
       ) : (

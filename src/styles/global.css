@@ -733,3 +733,25 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .galeria__vazio { text-align: center; padding: clamp(48px, 7vw, 96px) 0; margin: 0; }
 @media (max-width: 480px) { .filtros { gap: 0; padding: 3px; } .filtro { padding: 8px 10px; font-size: 13px; } }
 .visitar__dados { margin: 12px auto 0; max-width: 40em; }
+
+/* Página de cada peça da pronta entrega */
+a.peca { display: block; color: inherit; text-decoration: none; }
+a.peca .peca__foto img { transition: transform .6s ease; }
+a.peca:hover .peca__foto img { transform: scale(1.02); }
+.produto { padding: clamp(96px, 10vw, 140px) 0 clamp(64px, 8vw, 112px); }
+.produto__grade { display: grid; gap: 40px; }
+@media (min-width: 900px) { .produto__grade { grid-template-columns: 1.3fr 1fr; gap: 64px; align-items: start; } .produto__info { position: sticky; top: 96px; } }
+.produto__fotos { display: grid; gap: 12px; min-width: 0; }
+.produto__fotos .peca__foto { margin: 0; }
+.produto__info { min-width: 0; }
+.produto__info .seta--volta { display: inline-block; margin-bottom: 24px; color: var(--tinta-2); }
+.produto__preco { font-size: 17px; margin: 12px 0 0; }
+.produto__dados { display: flex; gap: 32px; margin: 28px 0 0; padding: 20px 0; border-block: 1px solid var(--linha, #e5e5e5); }
+.produto__dados dt { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-2); }
+.produto__dados dd { margin: 4px 0 0; }
+.produto__dados:empty { display: none; }
+.produto__texto { margin-top: 24px; }
+.produto__acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 32px; }
+.produto__politica { margin-top: 32px; display: grid; gap: 8px; }
+.produto__politica p, .produto__nota { margin: 0; }
+.produto__nota { margin-top: 24px; }

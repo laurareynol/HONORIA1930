@@ -7,7 +7,8 @@ const paginas = ['', 'debutantes/', 'sob-medida/', 'criacoes/', 'honoria-para-ca
 export const GET: APIRoute = async ({ site }) => {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   const textos = await getCollection('diario', (t) => !t.data.rascunho);
-  const enderecos = [...paginas, ...textos.map((t) => `diario/${t.id}/`)].map((p) => new URL(`${base}/${p}`, site).href);
+  const pecas = await getCollection('pronta-entrega', (p) => p.data.disponivel);
+  const enderecos = [...paginas, ...textos.map((t) => `diario/${t.id}/`), ...pecas.map((p) => `pronta-entrega/${p.id}/`)].map((p) => new URL(`${base}/${p}`, site).href);
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${enderecos.map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`;
   return new Response(xml, { headers: { 'Content-Type': 'application/xml; charset=utf-8' } });
 };

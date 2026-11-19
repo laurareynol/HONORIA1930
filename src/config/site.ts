@@ -27,6 +27,12 @@ export const producao = {
 // Antecedência mínima pedida para uma criação Sob Medida (vale também para noivas).
 export const antecedencia = { meses: 3, texto: 'pelo menos 3 meses' };
 
+// Compra online da pronta entrega. Cada texto só aparece na página da peça quando estiver preenchido.
+export const compra = {
+  envio: '', // ex.: 'Enviamos para todo o Brasil. O frete é combinado pelo WhatsApp após a compra.'
+  trocas: '', // política de troca e devolução (lembrete: compras online têm 7 dias para desistência, pelo Código de Defesa do Consumidor)
+};
+
 // Medição de visitas. Cole aqui os códigos quando tiver: enquanto estiverem vazios, nada é carregado.
 // Google Analytics: o "ID da métrica" (ex.: G-ABC123XYZ). Pixel do Meta: o número do pixel.
 export const medicao = {

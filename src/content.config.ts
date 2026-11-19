@@ -23,11 +23,16 @@ const prontaEntrega = defineCollection({
   schema: ({ image }) =>
     z.object({
       nome: z.string(),
-      foto: image(),
+      foto: image(), // foto principal, usada na vitrine
       descricao: z.string(),
+      fotos: z.array(z.object({ foto: image(), descricao: z.string() })).default([]), // fotos extras da página da peça
       loja: z.literal('Goiânia'),
       preco: z.string().optional(), // ex.: "R$ 4.800"; deixe vazio para não exibir
       tamanho: z.string().optional(),
+      cor: z.string().optional(),
+      ocasiao: z.enum(['debutantes', 'formandas', 'festa', 'noivas']).optional(),
+      linkPagamento: z.string().url().optional(), // link do Mercado Pago ou PagBank; sem ele, o botão abre o WhatsApp
+      ordem: z.number().default(100),
       disponivel: z.boolean().default(true),
     }),
 });

@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { url, linkWhatsApp, compra } from '../../config/site';
+
+export async function getStaticPaths() {
+  const pecas = (await getCollection('pronta-entrega')).filter((p) => p.data.disponivel);
+  return pecas.map((peca) => ({ params: { id: peca.id }, props: { peca } }));
+}
+const { peca } = Astro.props;
+const { Content } = await render(peca);
+const d = peca.data;
+const fotos = [{ foto: d.foto, descricao: d.descricao }, ...d.fotos];
+const duvida = linkWhatsApp(`Olá! Tenho interesse na peça "${d.nome}"${d.tamanho ? `, tamanho ${d.tamanho}` : ''}.`);
+---
+<Base titulo={d.nome} tituloBusca={`${d.nome}: vestido pronta entrega`} pagina="pronta-entrega" descricao={`${d.nome}, pronta entrega Honōria 1930. Criação autoral, feita à mão no nosso ateliê.`}>
+  <section class="produto">
+    <div class="envelope produto__grade">
+      <div class="produto__fotos">
+        {fotos.map((f, i) => (
+          <div class="peca__foto"><Image src={f.foto} alt={f.descricao} widths={[600, 900, 1200]} sizes="(min-width: 900px) 55vw, 100vw" loading={i === 0 ? 'eager' : 'lazy'} /></div>
+        ))}
+      </div>
+      <div class="produto__info">
+        <a class="seta seta--volta pequeno" href={url('pronta-entrega')}>Pronta entrega</a>
+        <h1 class="h-2">{d.nome}</h1>
+        {d.preco && <p class="produto__preco">{d.preco}</p>}
+        <dl class="produto__dados">
+          {d.tamanho && <div><dt>Tamanho</dt><dd>{d.tamanho}</dd></div>}
+          {d.cor && <div><dt>Cor</dt><dd>{d.cor}</dd></div>}
+        </dl>
+        <div class="texto-2 produto__texto"><Content /></div>
+        <div class="produto__acoes">
+          {d.linkPagamento ? (
+            <>
+              <a class="botao" href={d.linkPagamento} target="_blank" rel="noopener" data-compra={d.nome}>Comprar</a>
+              <a class="seta" href={duvida} target="_blank" rel="noopener">Tirar dúvidas pelo WhatsApp</a>
+            </>
+          ) : (
+            <a class="botao" href={duvida} target="_blank" rel="noopener">Quero esta peça</a>
+          )}
+        </div>
+        {(compra.envio || compra.trocas) && (
+          <div class="produto__politica pequeno texto-2">
+            {compra.envio && <p><strong>Envio.</strong> {compra.envio}</p>}
+            {compra.trocas && <p><strong>Trocas e devoluções.</strong> {compra.trocas}</p>}
+          </div>
+        )}
+        <p class="pequeno texto-2 produto__nota">Peça autoral, feita à mão no nosso ateliê.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+<script>
+  document.querySelectorAll('[data-compra]').forEach((a) => a.addEventListener('click', () => {
+    const w = window as any;
+    w.gtag?.('event', 'begin_checkout', { item_name: (a as HTMLElement).dataset.compra });
+    w.fbq?.('track', 'InitiateCheckout');
+  }));
+</script>
