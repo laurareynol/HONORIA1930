@@ -741,4 +741,4 @@ a.peca:hover .peca__foto img { transform: scale(1.02); }
 .pecas .peca__foto, .produto__fotos .peca__foto { aspect-ratio: 2 / 3; background: #fff; }
 .pecas .peca__foto img, .produto__fotos .peca__foto img { object-fit: contain; }
 /* Link de voltar: mesma seta, com mais respiro */
-.seta--volta { gap: 8px; }
+.seta--volta::after { margin-left: 8px; display: inline-block; }
