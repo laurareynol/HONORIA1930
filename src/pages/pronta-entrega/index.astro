@@ -23,10 +23,6 @@ const pecas = (await getCollection('pronta-entrega')).filter((p) => p.data.dispo
             <a class="peca revela" href={url(`pronta-entrega/${peca.id}`)}>
               <div class="peca__foto"><Image src={peca.data.foto} alt={peca.data.descricao} widths={[480, 800]} sizes="(min-width: 1080px) 33vw, (min-width: 640px) 50vw, 100vw" /></div>
               <h2 class="h-3 peca__nome">{peca.data.nome}</h2>
-              <p class="peca__dados">
-                {peca.data.tamanho && <span>{peca.data.tamanho.includes(" e ") ? "Tamanhos" : "Tamanho"} {peca.data.tamanho}</span>}
-                {peca.data.cor && <span>{peca.data.cor}</span>}
-              </p>
               {peca.data.preco && <p class="peca__preco">{peca.data.preco}</p>}
             </a>
           ))}
