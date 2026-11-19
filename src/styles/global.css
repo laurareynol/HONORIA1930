@@ -589,24 +589,6 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .duas-colunas { display: grid; gap: 24px; align-items: start; }
 @media (min-width: 960px) { .duas-colunas { grid-template-columns: 1.35fr 1fr; gap: 48px; } }
 
-/* ---------- Diário ---------- */
-
-.textos { display: grid; gap: 20px; }
-@media (min-width: 900px) { .textos { grid-template-columns: repeat(2, 1fr); } }
-.cartao-texto {
-  display: flex; flex-direction: column; text-decoration: none;
-  background: var(--cinza); border-radius: var(--raio); overflow: hidden;
-  transition: transform .5s var(--longo);
-}
-.cartao-texto:hover { transform: scale(1.01); }
-.cartao-texto__foto { aspect-ratio: 16 / 10; overflow: hidden; }
-.cartao-texto__foto img { width: 100%; height: 100%; object-fit: cover; }
-.cartao-texto__corpo { padding: 32px; }
-.cartao-texto h2 { margin: 6px 0 10px; }
-
-.artigo p { font-size: clamp(17px, 1.4vw, 19px); line-height: 1.65; }
-.artigo > p:first-of-type { font-size: clamp(18px, 1.6vw, 21px); line-height: 1.4; font-weight: 300; letter-spacing: -0.015em; }
-.artigo h2 { font-size: clamp(20px, 1.7vw, 24px); letter-spacing: -0.02em; margin: 56px 0 16px; }
 
 .prosa p { font-size: 17px; }
 .prosa h2 { font-size: clamp(19px, 1.6vw, 22px); letter-spacing: -0.02em; margin: 48px 0 12px; }

@@ -37,17 +37,5 @@ const prontaEntrega = defineCollection({
     }),
 });
 
-const diario = defineCollection({
-  loader: glob({ pattern: '[^_]*.md', base: './src/content/diario' }),
-  schema: ({ image }) =>
-    z.object({
-      titulo: z.string(),
-      resumo: z.string(),
-      data: z.coerce.date(),
-      capa: image().optional(),
-      descricaoCapa: z.string().optional(),
-      rascunho: z.boolean().default(false),
-    }),
-});
 
-export const collections = { criacoes, 'pronta-entrega': prontaEntrega, diario };
+export const collections = { criacoes, 'pronta-entrega': prontaEntrega };

@@ -96,7 +96,6 @@ export const navegacao = [
   { rotulo: 'Pronta entrega', href: 'pronta-entrega' },
   { rotulo: 'Ateliê', href: 'atelie' },
   { rotulo: 'Noivas', href: 'honoria-para-casar' },
-  { rotulo: 'Diário', href: 'diario' },
 ];
 
 // Monta links internos respeitando o endereço de publicação.

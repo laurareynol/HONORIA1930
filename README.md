@@ -9,7 +9,6 @@ Site estático feito com [Astro](https://astro.build). Publicado em https://hono
 | WhatsApp, e-mail, Instagram, horário, endereços das lojas, valores do atendimento com a Tata, menu | `src/config/site.ts` |
 | Peças de pronta entrega | `src/content/pronta-entrega/` |
 | Criações (galeria) | `src/content/criacoes/` |
-| Textos do Diário | `src/content/diario/` |
 | Fotos | `src/assets/fotos/` |
 | Cores, fontes, espaçamentos | `src/styles/global.css` |
 | Etapas do Sob Medida | `src/config/site.ts` (etapasSobMedida) |
